@@ -7,4 +7,8 @@ public class User {
 	public User() {
 		super();
 	}
+	
+	public User(String name){
+		this.name = name;
+	}
 }
