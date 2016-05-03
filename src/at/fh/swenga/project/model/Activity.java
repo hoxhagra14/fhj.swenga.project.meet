@@ -1,22 +1,50 @@
 package at.fh.swenga.project.model;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Version;
+
+
+
+@Entity
+@Table(name = "Activity")
 public class Activity {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	//User
-	//Subcategory 
+	
+	@ManyToMany(mappedBy="activity", fetch=FetchType.EAGER)
+	private List<User> users;
+	
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	Subcategory subcategory;
+	
 	private String ort; // Wie Subcategory?
 	// Zusätzlich für zocken Kommunikationskanal?
 	private Date date;
 	private String titel;
 	private String text;
 	private boolean closed;
-	private int limit;// Count der Teilnehmer für limitierte Activitäten
+	private int limit; // Count der Teilnehmer für limitierte Activitäten
 	private boolean deprecated; // In der Datenbank behalten selbst nach ablauf 
 								// damit Bewertungen durchgeführt werden können
 								// überprüfen mit Systdatetime? 
+	private String subcategoryString; // Falls eine Andere Activity; Also nicht in Liste vorhanden
+	
+	@Version
+	long version;
 	
 	public Activity() {
 		super();
