@@ -40,7 +40,7 @@ public class Activity {
 	private String title;
 	private String text;
 	private boolean closed;
-	private int limit; // Count der Teilnehmer für limitierte Activitäten
+	private int restriction ; // Count der Teilnehmer für limitierte Activitäten
 	private boolean deprecated; // In der Datenbank behalten selbst nach ablauf 
 								// damit Bewertungen durchgeführt werden können
 								// überprüfen mit Systdatetime? 
@@ -53,14 +53,14 @@ public class Activity {
 		super();
 	}
 	public Activity(String ort, Date date, String title, String text,
-			boolean closed, int limit, boolean deprecated) {
+			boolean closed, int restriction, boolean deprecated) {
 		super();
 		this.ort = ort;
 		this.date = date;
 		this.title = title;
 		this.text = text;
 		this.closed = closed;
-		this.limit = limit;
+		this.restriction = restriction;
 		this.deprecated = deprecated;
 	}
 	public String getOrt() {
@@ -93,11 +93,11 @@ public class Activity {
 	public void setClosed(boolean closed) {
 		this.closed = closed;
 	}
-	public int getLimit() {
-		return limit;
+	public int getRestriction() {
+		return restriction;
 	}
-	public void setLimit(int limit) {
-		this.limit = limit;
+	public void setRestriction(int restriction) {
+		this.restriction = restriction;
 	}
 	public boolean isDeprecated() {
 		return deprecated;
