@@ -26,8 +26,10 @@ public class Activity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	private User owner;
 	
-	//Creater??
 	@ManyToMany(mappedBy="activities", fetch=FetchType.EAGER)
 	private List<User> users;
 	
@@ -52,9 +54,13 @@ public class Activity {
 	public Activity() {
 		super();
 	}
+
+	
 	public Activity(String ort, Date date, String title, String text,
 			boolean closed, int restriction, boolean deprecated) {
 		super();
+		this.users = users;
+		this.subcategory = subcategory;
 		this.ort = ort;
 		this.date = date;
 		this.title = title;
@@ -62,54 +68,99 @@ public class Activity {
 		this.closed = closed;
 		this.restriction = restriction;
 		this.deprecated = deprecated;
+		this.subcategoryString = subcategoryString;
 	}
-	public String getOrt() {
-		return ort;
+
+	public int getId() {
+		return id;
 	}
-	public void setOrt(String ort) {
-		this.ort = ort;
+
+
+	public void setId(int id) {
+		this.id = id;
 	}
-	public Date getDate() {
-		return date;
+
+
+	public List<User> getUsers() {
+		return users;
 	}
-	public void setDate(Date date) {
-		this.date = date;
+
+	public void setUsers(List<User> users) {
+		this.users = users;
 	}
-	public String gettitle() {
-		return title;
-	}
-	public void settitle(String title) {
-		this.title = title;
-	}
-	public String getText() {
-		return text;
-	}
-	public void setText(String text) {
-		this.text = text;
-	}
-	public boolean isClosed() {
-		return closed;
-	}
-	public void setClosed(boolean closed) {
-		this.closed = closed;
-	}
-	public int getRestriction() {
-		return restriction;
-	}
-	public void setRestriction(int restriction) {
-		this.restriction = restriction;
-	}
-	public boolean isDeprecated() {
-		return deprecated;
-	}
-	public void setDeprecated(boolean deprecated) {
-		this.deprecated = deprecated;
-	}
+
 	public Subcategory getSubcategory() {
 		return subcategory;
 	}
+
 	public void setSubcategory(Subcategory subcategory) {
 		this.subcategory = subcategory;
 	}
+
+	public String getOrt() {
+		return ort;
+	}
+
+	public void setOrt(String ort) {
+		this.ort = ort;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
+	public boolean isClosed() {
+		return closed;
+	}
+
+	public void setClosed(boolean closed) {
+		this.closed = closed;
+	}
+
+	public int getRestriction() {
+		return restriction;
+	}
+
+	public void setRestriction(int restriction) {
+		this.restriction = restriction;
+	}
+
+	public boolean isDeprecated() {
+		return deprecated;
+	}
+
+	public void setDeprecated(boolean deprecated) {
+		this.deprecated = deprecated;
+	}
+
+	public String getSubcategoryString() {
+		return subcategoryString;
+	}
+
+	public void setSubcategoryString(String subcategoryString) {
+		this.subcategoryString = subcategoryString;
+	}
+	
+	
 	
 }

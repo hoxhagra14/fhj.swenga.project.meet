@@ -36,7 +36,7 @@
 
 
 
-		<!--  list all employees ----------------------------------------------------------- -->
+		<!--  list all activities ----------------------------------------------------------- -->
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1">
 				<h1>Activities</h1>
@@ -60,21 +60,16 @@
 						<c:forEach items="${activities}" var="activity">
 							<tr>
 								<td>${activity.id}</td>
-								<td>${activity.subcategory}</td>
 								<td>${activity.ort}</td>
 								<td>${activity.text}</td>
-								<td>${activity.limit}</td>
-								<td>${activity.version}</td>
-								<td><fmt:formatDate value="${activity.date}"
-										pattern="dd.MM.yyyy" />
-								<td><a href="delete?id=${activity.id}">Delete</a></td>
+								<td>${activity.restriction}</td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
 			</div>
 		</div>
-		<!--  list all employees ----------------------------------------------------------- -->
+		<!--  list all activities ----------------------------------------------------------- -->
 	</div>
 	<!--  end of container -->
 	<%@include file="includes/bootstrapJs.js"%>

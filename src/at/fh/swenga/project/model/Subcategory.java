@@ -26,21 +26,28 @@ public class Subcategory {
 	
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	Category category;
-	
+
 	@OneToMany(mappedBy = "subcategory", fetch = FetchType.EAGER)
 	private Set<Activity> activities; // Set?
 	
 	@Version
 	long version;
 
-	public Subcategory(){
-	}
-
-	public Subcategory(String name) {
+	public Subcategory() {
 		super();
-		this.name = name;
 	}
 	
+	public Subcategory(String name){
+		this.name = name;
+	}
+
+	public Subcategory(String name, Category category, Set<Activity> activities) {
+		super();
+		this.name = name;
+		this.category = category;
+		this.activities = activities;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -48,4 +55,22 @@ public class Subcategory {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+	public Set<Activity> getActivities() {
+		return activities;
+	}
+
+	public void setActivities(Set<Activity> activities) {
+		this.activities = activities;
+	}
+	
+	
 }
