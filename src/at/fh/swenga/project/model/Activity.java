@@ -22,10 +22,13 @@ import javax.persistence.Version;
 public class Activity {
 	
 	@Id
+	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@ManyToMany(mappedBy="activity", fetch=FetchType.EAGER)
+	
+	//Creater??
+	@ManyToMany(mappedBy="activities", fetch=FetchType.EAGER)
 	private List<User> users;
 	
 	@ManyToOne(cascade = CascadeType.PERSIST)
@@ -34,10 +37,10 @@ public class Activity {
 	private String ort; // Wie Subcategory?
 	// Zusätzlich für zocken Kommunikationskanal?
 	private Date date;
-	private String titel;
+	private String title;
 	private String text;
 	private boolean closed;
-	private int limit; // Count der Teilnehmer für limitierte Activitäten
+	private int restriction ; // Count der Teilnehmer für limitierte Activitäten
 	private boolean deprecated; // In der Datenbank behalten selbst nach ablauf 
 								// damit Bewertungen durchgeführt werden können
 								// überprüfen mit Systdatetime? 
@@ -49,15 +52,15 @@ public class Activity {
 	public Activity() {
 		super();
 	}
-	public Activity(String ort, Date date, String titel, String text,
-			boolean closed, int limit, boolean deprecated) {
+	public Activity(String ort, Date date, String title, String text,
+			boolean closed, int restriction, boolean deprecated) {
 		super();
 		this.ort = ort;
 		this.date = date;
-		this.titel = titel;
+		this.title = title;
 		this.text = text;
 		this.closed = closed;
-		this.limit = limit;
+		this.restriction = restriction;
 		this.deprecated = deprecated;
 	}
 	public String getOrt() {
@@ -72,11 +75,11 @@ public class Activity {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	public String getTitel() {
-		return titel;
+	public String gettitle() {
+		return title;
 	}
-	public void setTitel(String titel) {
-		this.titel = titel;
+	public void settitle(String title) {
+		this.title = title;
 	}
 	public String getText() {
 		return text;
@@ -90,17 +93,23 @@ public class Activity {
 	public void setClosed(boolean closed) {
 		this.closed = closed;
 	}
-	public int getLimit() {
-		return limit;
+	public int getRestriction() {
+		return restriction;
 	}
-	public void setLimit(int limit) {
-		this.limit = limit;
+	public void setRestriction(int restriction) {
+		this.restriction = restriction;
 	}
 	public boolean isDeprecated() {
 		return deprecated;
 	}
 	public void setDeprecated(boolean deprecated) {
 		this.deprecated = deprecated;
+	}
+	public Subcategory getSubcategory() {
+		return subcategory;
+	}
+	public void setSubcategory(Subcategory subcategory) {
+		this.subcategory = subcategory;
 	}
 	
 }
