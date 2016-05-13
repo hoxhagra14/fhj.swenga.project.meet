@@ -49,8 +49,6 @@
 							<th>titel</th>
 							<th>text</th>
 							<th>limit</th>
-							<th>version</th>
-							<th>DOB</th>
 							<th>Action <a href="fill"><button type="button"
 										class="btn btn-success">Fill List</button></a>
 							</th>
@@ -60,7 +58,9 @@
 						<c:forEach items="${activities}" var="activity">
 							<tr>
 								<td>${activity.id}</td>
+								<td>${activity.subcategory.name}</td>
 								<td>${activity.ort}</td>
+								<td>${activity.title}</td>
 								<td>${activity.text}</td>
 								<td>${activity.restriction}</td>
 							</tr>

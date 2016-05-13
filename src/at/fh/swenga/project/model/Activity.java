@@ -54,13 +54,19 @@ public class Activity {
 	public Activity() {
 		super();
 	}
-
 	
+	public Activity(Subcategory subcategory, String ort, String title, String text) {
+		super();
+		this.subcategory = subcategory;
+		this.ort = ort;
+		this.title = title;
+		this.text = text;
+	}
+
+
 	public Activity(String ort, Date date, String title, String text,
 			boolean closed, int restriction, boolean deprecated) {
 		super();
-		this.users = users;
-		this.subcategory = subcategory;
 		this.ort = ort;
 		this.date = date;
 		this.title = title;
@@ -68,7 +74,6 @@ public class Activity {
 		this.closed = closed;
 		this.restriction = restriction;
 		this.deprecated = deprecated;
-		this.subcategoryString = subcategoryString;
 	}
 
 	public int getId() {
