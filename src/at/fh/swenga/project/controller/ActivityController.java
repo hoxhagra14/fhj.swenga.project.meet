@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import at.fh.swenga.project.dao.ActivityRepository;
+import at.fh.swenga.project.dao.CategoryRepository;
 import at.fh.swenga.project.dao.SubcategoryRepository;
 import at.fh.swenga.project.data.Sports;
 import at.fh.swenga.project.model.Activity;
@@ -27,8 +28,18 @@ public class ActivityController {
 	@Autowired
 	SubcategoryRepository subcategoryRepository;
 	
-	@RequestMapping(value = { "/", "list" })
+	@Autowired 
+	CategoryRepository categoryRepository;
+	
+	@RequestMapping(value = { "/" })
 	public String index(Model model) {
+		
+		
+		return "forward:list";
+	}
+	
+	@RequestMapping(value = { "list" })
+	public String list(Model model) {
 		List<Activity> activities = activityRepository.findAll();
 		model.addAttribute("activities", activities);
 		model.addAttribute("type", "findAll");
@@ -54,7 +65,7 @@ public class ActivityController {
 		
 		model.addAttribute("activities", activities);
 
-		return "index"; 
+		return "list"; 
 	}
 	
 	
