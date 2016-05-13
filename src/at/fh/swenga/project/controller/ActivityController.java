@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import at.fh.swenga.project.dao.ActivityRepository;
 import at.fh.swenga.project.dao.CategoryRepository;
 import at.fh.swenga.project.dao.SubcategoryRepository;
+import at.fh.swenga.project.data.Categories;
 import at.fh.swenga.project.data.Sports;
 import at.fh.swenga.project.model.Activity;
 import at.fh.swenga.project.model.Subcategory;
@@ -33,7 +34,7 @@ public class ActivityController {
 	
 	@RequestMapping(value = { "/" })
 	public String index(Model model) {
-		
+		categoryRepository.save(Categories.FillCategories());
 		
 		return "forward:list";
 	}
