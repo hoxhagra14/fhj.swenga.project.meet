@@ -1,7 +1,9 @@
 package at.fh.swenga.project.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -20,9 +22,10 @@ public class Category {
 	private int id;
 	private String name;
 	
-	@OneToMany(mappedBy = "category", fetch = FetchType.EAGER)
-	private List<Subcategory> subcategories;
-	
+	@OneToMany(mappedBy = "category", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST) //Muss auf persist sein damit daten auch übernommen werden
+	private List<Subcategory> subcategories = new ArrayList<>();
+
+
 	@Version
 	long version;
 	
@@ -41,6 +44,18 @@ public class Category {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public List<Subcategory> getSubcategories() {
+		return subcategories;
+	}
+
+	public void setSubcategories(List<Subcategory> subcategories) {
+		this.subcategories = subcategories;
+	}
+	
+	public void addSubcategory(String name){
+		subcategories.add(new Subcategory(name));
 	}
 	
 

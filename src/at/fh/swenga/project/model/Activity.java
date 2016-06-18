@@ -54,8 +54,16 @@ public class Activity {
 	public Activity() {
 		super();
 	}
-
 	
+	public Activity(Subcategory subcategory, String location, String title, String text) {
+		super();
+		this.subcategory = subcategory;
+		this.location = location;
+		this.title = title;
+		this.text = text;
+	}
+
+
 	public Activity(String location, Date date, String title, String text,
 			boolean closed, int restriction, boolean deprecated) {
 		super();	

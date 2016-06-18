@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import at.fh.swenga.project.dao.ActivityRepository;
+import at.fh.swenga.project.dao.CategoryRepository;
 import at.fh.swenga.project.dao.SubcategoryRepository;
+import at.fh.swenga.project.data.Categories;
+import at.fh.swenga.project.data.Sports;
 import at.fh.swenga.project.model.Activity;
 import at.fh.swenga.project.model.Subcategory;
 
@@ -26,8 +29,18 @@ public class ActivityController {
 	@Autowired
 	SubcategoryRepository subcategoryRepository;
 	
-	@RequestMapping(value = { "/", "list" })
+	@Autowired 
+	CategoryRepository categoryRepository;
+	
+	@RequestMapping(value = { "/" })
 	public String index(Model model) {
+		categoryRepository.save(Categories.FillCategories()); // Fill Categories and Subcategories
+		
+		return "forward:list";
+	}
+	
+	@RequestMapping(value = { "list" })
+	public String list(Model model) {
 		List<Activity> activities = activityRepository.findAll();
 		model.addAttribute("activities", activities);
 		model.addAttribute("type", "findAll");
@@ -62,9 +75,8 @@ public class ActivityController {
 		
 		model.addAttribute("activities", activities);
 		
-	
-		
 		return "index"; 
+
 	}
 	
 	
@@ -75,7 +87,13 @@ public class ActivityController {
 		DataFactory  df = new DataFactory();
 		Subcategory subcategory = null;
 		
-		for(int i=0;i<100; i++){
+		for(Sports s : Sports.values()){
+			subcategory = new Subcategory(s.name());
+			Activity a = new Activity(subcategory, "Graz", "TestTitle", "TestText");
+			activityRepository.save(a);
+		}
+		
+	/*	for(int i=0;i<100; i++){
 			if(i%10==0){
 				String subcategoryName = df.getBusinessName();
 				subcategory = subcategoryRepository.findFirstByName(subcategoryName);
@@ -86,7 +104,7 @@ public class ActivityController {
 			Activity a = new Activity(df.getFirstName(),df.getBirthDate(),df.getRandomText(4), df.getRandomText(4), true, 10, true  ); 
 			a.setSubcategory(subcategory);
 			activityRepository.save(a);
-		}
+		} */
 		
 		return "forward:list";
 	}
