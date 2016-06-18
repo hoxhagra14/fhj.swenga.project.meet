@@ -24,8 +24,11 @@
 				<form method="post" action="find">
 					<label for="searchString">Search:</label> <select name="type">
 						<option value="findAll" selected="selected">findAll</option>
-						<option value="findBySubcategory">findBySubcategory</option>				
-								
+						<option value="findBySubcategoryName">findBySubcategoryName</option>
+						<option value="findByTitleContainingAllIgnoreCase">findByTitleContainingAllIgnoreCase</option>
+						<option value="findByLocation">findByLocation</option>	
+						<option value="findBySubcategoryStringContainingAllIgnoreCase">findBySubcategoryStringContainingAllIgnoreCase</option>	
+									
 					</select> <input type="text" name="searchString"> <input
 						type="submit" value="Do it">
 				</form>
@@ -44,13 +47,14 @@
 					<thead>
 						<tr>
 							<th>ID</th>
-							<th>subcategory</th>
-							<th>ort</th>
-							<th>titel</th>
+							<th>location</th>
+							<th>date</th>
+							<th>title</th>
 							<th>text</th>
-							<th>limit</th>
-							<th>version</th>
-							<th>DOB</th>
+							<th>closed</th>
+							<th>restriction</th>
+							<th>deprecated</th>
+							<th>subcategory</th>
 							<th>Action <a href="fill"><button type="button"
 										class="btn btn-success">Fill List</button></a>
 							</th>
@@ -60,9 +64,15 @@
 						<c:forEach items="${activities}" var="activity">
 							<tr>
 								<td>${activity.id}</td>
-								<td>${activity.ort}</td>
+								<td>${activity.location}</td>
+								<td><fmt:formatDate value="${activity.date}"
+										pattern="dd.MM.yyyy" />
+								<td>${activity.title}</td>		
 								<td>${activity.text}</td>
+								<td>${activity.closed}</td>
 								<td>${activity.restriction}</td>
+								<td>${activity.deprecated}</td>
+								<td>${activity.subcategory.name}</td>
 							</tr>
 						</c:forEach>
 					</tbody>

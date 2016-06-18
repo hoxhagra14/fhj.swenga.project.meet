@@ -43,16 +43,27 @@ public class ActivityController {
 		case "findAll":
 			activities = activityRepository.findAll();
 			break;
-		case "findBySubcategory":
-			activities = activityRepository.findBySubcategory(searchString);
+		case "findBySubcategoryName":
+			activities = activityRepository.findBySubcategoryName(searchString);
 			break;
-		
+		case "findByTitleContainingAllIgnoreCase":
+			activities = activityRepository.findByTitleContainingAllIgnoreCase(searchString);
+			break;
+		case "findByLocation":
+			activities = activityRepository.findByLocation(searchString);
+			break;
+		case "findBySubcategoryStringContainingAllIgnoreCase":
+			activities = activityRepository.findBySubcategoryStringContainingAllIgnoreCase(searchString);
+			break;
+							
 		default:
 			activities = activityRepository.findAll();
 		}
 		
 		model.addAttribute("activities", activities);
-
+		
+	
+		
 		return "index"; 
 	}
 	

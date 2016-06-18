@@ -15,15 +15,15 @@ import at.fh.swenga.project.model.Activity;
 
 public interface ActivityRepository extends JpaRepository<Activity, Integer> {
 
-	public List<Activity> findBySubcategory(String subCategory);
+	public List<Activity> findBySubcategoryName(String subCategory);
 	
-	//public List<Activity> findByOrt(String ort);
+	public List<Activity> findByLocation(String ort);
 	
-	//public List<Activity> findByTitle(String title);
+	public List<Activity> findByTitleContainingAllIgnoreCase(String title);
 	
 	// Unterscheidung zwischen Ersteller und Interessenten?? 
-	//public List<Activity> findByUser(String user);
+	//public List<Activity> findByOwner(String user);
 	
-	
+	public List<Activity> findBySubcategoryStringContainingAllIgnoreCase(String subCategory);
 	
 }
