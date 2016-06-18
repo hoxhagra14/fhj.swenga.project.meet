@@ -57,24 +57,6 @@
 			<div class="col-lg-2">
 				<div class="profile-usermenu">
 					<ul class="nav">
-						<li><a href="addActivity"><button type="button"
-									class="btn btn-success">Add activity</button></a></li>
-
-						<li>
-							<p>Subcategories</p>
-							<form action="find">
-								<c:forEach items="${subcategories}" var="subcategory">
-									<li><a> <input type="checkbox" name="subcategory"
-											value="${subcategory.name}">${subcategory.name}<br>
-									</a>
-									<li>
-								</c:forEach>
-							</form>
-							<button type="submit" class="btn btn-primary">Suchen</button>
-						</li>
-						<p>Search for Activities
-						<p>
-							<input type="text" name="activity">
 						<li class="active"><a href="#"> <i
 								class="glyphicon glyphicon-home"></i> Overview
 						</a></li>
@@ -84,51 +66,67 @@
 						<li><a href="#" target="_blank"> <i
 								class="glyphicon glyphicon-ok"></i> Tasks
 						</a></li>
-						<li><a href="#" target="_blank"> <i
-								class="glyphicon glyphicon-ok"></i> Niti
-						</a></li>
 						<li><a href="#"> <i class="glyphicon glyphicon-flag"></i>
 								Help
 						</a></li>
-
 					</ul>
 				</div>
 			</div>
+			<div class="col-lg-10">
+				<form class="form-horizontal" method="post" action="add">
+					<fieldset>
+						<legend>Add Activity</legend>
 
-			<!-- END MENU -->
-			<div class="col-lg-8">
-				<fieldset>
-					<c:forEach items="${activities}" var="activity">
-						<hr>
-						<div class="row">
-							<div class="col-sm-4">
-								<a href="#" class=""><img src="http://placehold.it/1280X720"
-									class="img-responsive"></a>
-							</div>
-							<div class="col-sm-8">
-
-								<h3 class="title">${activity.title}</h3>
-								<p class="text-muted">
-									<span class="glyphicon glyphicon-lock"></span> Available
-									Exclusively for Premium Members
-								</p>
-								<p>${activity.text}</p>
-
-								<p class="text-muted">
-									Created by <a href="#">Granit Hocha</a>
-								</p>
+						<! ----------------  Titel ---------------- -->
+						<div class="form-group">
+							<label for="inputName" class="col-md-2 control-label">Titel</label>
+							<div class="col-md-10">
+								<input class="form-control" id="inputName" type="text"
+									name="title">
 							</div>
 						</div>
-					</c:forEach>
-				</fieldset>
+
+						<! ----------------  Inhalt ---------------- -->
+						<div class="form-group">
+							<label for="inputName" class="col-md-2 control-label">Inhalt</label>
+							<div class="col-md-10">
+								<input class="form-control" id="inputText" type="text"
+									name="text">
+							</div>
+						</div>
+
+						<! ----------------  Inhalt ---------------- -->
+						<div class="form-group">
+							<label for="inputName" class="col-md-2 control-label">Teilnehmerzahl</label>
+							<div class="col-md-10">
+								<input class="form-control" id="inputRestriction" type="text"
+									name="restriction">
+							</div>
+						</div>
+
+						<! ----------------  buttons ---------------- -->
+						<div class="form-group">
+							<div class="col-md-10 col-md-offset-2">
+								<button type="submit" class="btn btn-primary">Submit</button>
+								<a href="listActivities">
+									<button type="button" class="btn btn-default">Cancel</button>
+								</a>
+							</div>
+						</div>
+
+					</fieldset>
+				</form>
 			</div>
 		</div>
-		<!-- /#wrapper -->
+		<!-- END MENU -->
 
-		<!-- jQuery -->
-		<script src="js/jquery.js"></script>
+	</div>
+	<!-- /#wrapper -->
 
-		<!-- Bootstrap Core JavaScript -->
-		<script src="js/bootstrap.min.js"></script>
+	<!-- jQuery -->
+	<script src="js/jquery.js"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="js/bootstrap.min.js"></script>
 </body>
 </html>
