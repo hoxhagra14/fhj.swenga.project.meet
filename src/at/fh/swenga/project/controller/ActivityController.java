@@ -34,7 +34,7 @@ public class ActivityController {
 	
 	@RequestMapping(value = { "/" })
 	public String index(Model model) {
-		categoryRepository.save(Categories.FillCategories());
+		categoryRepository.save(Categories.FillCategories()); // Fill Categories and Subcategories
 		
 		return "forward:list";
 	}

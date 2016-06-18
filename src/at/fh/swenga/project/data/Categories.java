@@ -10,11 +10,11 @@ public class Categories {
 		List<Category> categories = new ArrayList<>();
 		
 		Category sport = new Category("Sport");
-		for(Sports s: Sports.values()) sport.addSubcategory(s.name());	
+		for(Sports s: Sports.values()) sport.addSubcategory(s.toString());	
 		categories.add(sport);
 		
 		Category games = new Category("Games");
-		for(Games g: Games.values()) games.addSubcategory(g.name());	
+		for(Games g: Games.values()) games.addSubcategory(g.toString());	
 		categories.add(games);
 		
 		return categories;
