@@ -1,4 +1,4 @@
-<%@page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
@@ -6,82 +6,64 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<%@include file="includes/bootstrapMeta.inc"%>
-<title>Employee Manager Spring Data JPA</title>
-<%@include file="includes/bootstrapCss.css"%>
-<%@include file="includes/treeView.css"%>
+<title>meet.</title>
 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+	integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+	crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
+	integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r"
+	crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Custom CSS -->
+<%@include file="includes/simple-sidebar.css"%>
 
 </head>
 <body>
-	<div class="container">
-		<center>
-			<h1>${type}</h1>
-			<br>
-			<!--  Search + Fill ----------------------------------------------------------- -->
-			<div class="row">
-				<form method="post" action="find">
-					<label for="searchString">Search:</label> <select name="type">
-						<option value="findAll" selected="selected">findAll</option>
-						<option value="findBySubcategoryName">findBySubcategoryName</option>
-						<option value="findByTitleContainingAllIgnoreCase">findByTitleContainingAllIgnoreCase</option>
-						<option value="findByLocation">findByLocation</option>	
-						<option value="findBySubcategoryStringContainingAllIgnoreCase">findBySubcategoryStringContainingAllIgnoreCase</option>	
-									
-					</select> <input type="text" name="searchString"> <input
-						type="submit" value="Do it">
-				</form>
-			</div>
-
-			<!--  Search + Fill ----------------------------------------------------------- -->
-		</center>
-
-
-
-		<!--  list all activities ----------------------------------------------------------- -->
-		<div class="row">
-			<div class="col-md-10 col-md-offset-1">
-				<h1>Activities</h1>
-				<table data-toggle="table" class="table table-striped">
-					<thead>
-						<tr>
-							<th>ID</th>
-							<th>location</th>
-							<th>date</th>
-							<th>title</th>
-							<th>text</th>
-							<th>closed</th>
-							<th>restriction</th>
-							<th>deprecated</th>
-							<th>subcategory</th>
-							<th>Action <a href="fill"><button type="button"
-										class="btn btn-success">Fill List</button></a>
-							</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${activities}" var="activity">
-							<tr>
-								<td>${activity.id}</td>
-								<td>${activity.location}</td>
-								<td><fmt:formatDate value="${activity.date}"
-										pattern="dd.MM.yyyy" />
-								<td>${activity.title}</td>		
-								<td>${activity.text}</td>
-								<td>${activity.closed}</td>
-								<td>${activity.restriction}</td>
-								<td>${activity.deprecated}</td>
-								<td>${activity.subcategory.name}</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
+		<!-- SIDEBAR MENU -->
+		<div class="container-fluid">
+			<div class="col-lg-2">
+				<div class="profile-usermenu">
+					<ul class="nav">
+						<li class="active"><a href="#"> <i
+								class="glyphicon glyphicon-home"></i> Overview
+						</a></li>
+						<li><a href="#"> <i class="glyphicon glyphicon-user"></i>
+								Account Settings
+						</a></li>
+						<li><a href="#" target="_blank"> <i
+								class="glyphicon glyphicon-ok"></i> Tasks
+						</a></li>
+						<li><a href="#"> <i class="glyphicon glyphicon-flag"></i>
+								Help
+						</a></li>
+					</ul>
+				</div>
 			</div>
 		</div>
-		<!--  list all activities ----------------------------------------------------------- -->
+		<!-- END MENU -->
+
 	</div>
-	<!--  end of container -->
-	<%@include file="includes/bootstrapJs.js"%>
+	<!-- /#wrapper -->
+
+	<!-- jQuery -->
+	<script src="js/jquery.js"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="js/bootstrap.min.js"></script>
 </body>
 </html>
