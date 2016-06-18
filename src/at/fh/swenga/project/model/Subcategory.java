@@ -39,6 +39,7 @@ public class Subcategory {
 	}
 	
 	public Subcategory(String name){
+		super();
 		this.name = name;
 	}
 

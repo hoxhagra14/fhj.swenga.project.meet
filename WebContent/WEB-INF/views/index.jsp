@@ -72,6 +72,16 @@
 					</ul>
 				</div>
 			</div>
+			<div class="col-lg-10">
+				<div class="row">
+					<div class="col-lg-6">Sports</div>
+					<div class="col-lg-6">Gaming</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-6">Party</div>
+					<div class="col-lg-6">Learning</div>
+				</div>
+			</div>
 		</div>
 		<!-- END MENU -->
 
