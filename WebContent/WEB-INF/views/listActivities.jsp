@@ -61,6 +61,10 @@
 							<input type="checkbox" name="vehicle" value="Bike">I have
 							a bike<br> <input type="checkbox" name="vehicle" value="Car">I
 							have a car
+
+							<c:forEach items="${songs}" var="song">
+								
+							</c:forEach>
 						</form>
 						<button type="submit" class="btn btn-primary">Suchen</button>
 
