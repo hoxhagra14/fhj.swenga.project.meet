@@ -32,6 +32,8 @@
 <!-- Custom CSS -->
 <%@include file="includes/simple-sidebar.css"%>
 
+<%@include file="includes/bootstrapCss.css"%>
+
 </head>
 <body>
 	<div id="wrapper">
@@ -39,7 +41,7 @@
 		<nav class="navbar navbar-static-top" role="navigation">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a href="index.jsp" class="navbar-brand">M E E T .</a>
+				<a href="" class="navbar-brand">M E E T .</a>
 			</div>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -74,12 +76,65 @@
 			</div>
 			<div class="col-lg-10">
 				<div class="row">
-					<div class="col-lg-6">Sports</div>
-					<div class="col-lg-6">Gaming</div>
+					<div class="col-lg-5">
+						<div class="panel">
+							<div class="panel-heading">
+								<h1 class="text-center">Sports</h1>
+							</div>
+							<a href="#">
+								<div class="panel-footer">
+									<p class="text-right">Weiter</p>
+								</div>
+							</a>
+						</div>
+					</div>
+					
+					<div class="col-lg-2"></div>
+							
+					<div class="col-lg-5 ">
+						<div class="panel">
+							<div class="panel-heading">
+								<h1 class="text-center">Gaming</h1>
+							</div>
+							<a href="#">
+								<div class="panel-footer">
+									<p class="text-right">Weiter</p>
+								</div>
+							</a>
+						</div>
+					</div>
 				</div>
+				
+				<div class="row spacer"></div>
+				
 				<div class="row">
-					<div class="col-lg-6">Party</div>
-					<div class="col-lg-6">Learning</div>
+					<div class="col-lg-5 ">
+						<div class="panel">
+							<div class="panel-heading">
+								<h1 class="text-center">Party</h1>
+							</div>
+							<a href="#">
+								<div class="panel-footer">
+									<p class="text-right">Weiter</p>
+								</div>
+							</a>
+						</div>
+					</div>
+					
+					<div class="col-lg-2"></div>
+							
+					<div class="col-lg-5 ">
+						<div class="panel">
+							<div class="panel-heading">
+								<h1 class="text-center">Learning</h1>
+							</div>
+							<a href="#">
+								<div class="panel-footer">
+									<p class="text-right">Weiter</p>
+								</div>
+							</a>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
