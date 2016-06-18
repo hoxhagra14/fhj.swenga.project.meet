@@ -34,6 +34,24 @@
 
 </head>
 <body>
+	<div id="wrapper">
+		<!-- Navigation -->
+		<nav class="navbar navbar-static-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a href="index.jsp" class="navbar-brand">M E E T .</a>
+			</div>
+			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown">User <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Settings</a> <a href="#">Sign out</a></li>
+					</ul></li>
+			</ul>
+		</div>
+		</nav>
+		<!-- /#navigation -->
+
 		<!-- SIDEBAR MENU -->
 		<div class="container-fluid">
 			<div class="col-lg-2">
