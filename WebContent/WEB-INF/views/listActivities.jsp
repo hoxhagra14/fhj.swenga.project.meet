@@ -62,19 +62,23 @@
 
 						<li>
 							<p>Subcategories</p>
-							<form action="find">
+							<form action="findBySubcategoryNameContainingAllIgnoreCase">
 								<c:forEach items="${subcategories}" var="subcategory">
-									<li><a> <input type="checkbox" name="subcategory"
+									<li><a> <input type="checkbox" name="searchString"
 											value="${subcategory.name}">${subcategory.name}<br>
 									</a>
 									<li>
 								</c:forEach>
+								<button type="submit" class="btn btn-primary">Suchen</button>
 							</form>
-							<button type="submit" class="btn btn-primary">Suchen</button>
+							
 						</li>
-						<p>Search for Activities
-						<p>
-							<input type="text" name="activity">
+						<li>
+							<form action="findByTitleContainingAllIgnoreCase" method="post">
+								Search for Activities </br> <input type="text" name="searchString"> <input
+									type="submit" value="Suchen">
+							</form>
+						</li>
 						<li class="active"><a href="#"> <i
 								class="glyphicon glyphicon-home"></i> Overview
 						</a></li>

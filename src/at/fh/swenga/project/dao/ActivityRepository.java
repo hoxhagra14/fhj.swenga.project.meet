@@ -26,4 +26,6 @@ public interface ActivityRepository extends JpaRepository<Activity, Integer> {
 	
 	public List<Activity> findBySubcategoryStringContainingAllIgnoreCase(String subCategory);
 	
+	public List<Activity> findBySubcategoryNameContainingAllIgnoreCase(String subCategory);
+	
 }

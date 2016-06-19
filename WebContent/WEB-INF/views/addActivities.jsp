@@ -86,6 +86,18 @@
 							</div>
 						</div>
 
+						<! ----------------  Subcategory ---------------- -->
+						<div class="form-group">
+							<label for="inputSubcategory" class="col-md-2 control-label">Subcategory</label>
+							<div class="col-md-10">
+								<select name="type">
+									<c:forEach items="${subcategories}" var="subcategory">
+									<option value="${subcategory.name}" selected="selected">${subcategory.name}</option>
+									</c:forEach>
+								</select>
+							</div>
+						</div>
+
 						<! ----------------  Inhalt ---------------- -->
 						<div class="form-group">
 							<label for="inputName" class="col-md-2 control-label">Inhalt</label>
@@ -95,7 +107,7 @@
 							</div>
 						</div>
 
-						<! ----------------  Inhalt ---------------- -->
+						<! ----------------  Teilnehmerzahl ---------------- -->
 						<div class="form-group">
 							<label for="inputName" class="col-md-2 control-label">Teilnehmerzahl</label>
 							<div class="col-md-10">
