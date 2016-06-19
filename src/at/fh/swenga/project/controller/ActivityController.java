@@ -30,10 +30,15 @@ public class ActivityController {
 	@Autowired
 	SubcategoryRepository subcategoryRepository;
 	
-	@RequestMapping(value = { "/", "listActivities" })
-	public String index(Model model) {
-		List<Activity> activities = activityRepository.findAll();
-		List<Subcategory> subcategories = subcategoryRepository.findAll();
+	@RequestMapping(value = { "/" })
+	public String index(Model model){	
+		return "index";
+	}
+	
+	@RequestMapping(value = "/listActivities", method = RequestMethod.GET)
+	public String list(Model model, @RequestParam String category) {
+		List<Activity> activities = activityRepository.findBySubcategoryName(category);
+		List<Subcategory> subcategories = subcategoryRepository.findByCategory(category); //TODO: only right activities
 		
 		model.addAttribute("activities", activities);
 		model.addAttribute("subcategories", subcategories);

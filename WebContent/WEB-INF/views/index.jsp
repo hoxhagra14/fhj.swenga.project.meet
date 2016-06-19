@@ -53,7 +53,7 @@
 		</div>
 		</nav>
 		<!-- /#navigation -->
-
+		<!-- TODO: In foreach ändern -->
 		<!-- SIDEBAR MENU -->
 		<div class="container-fluid">
 			<div class="col-lg-2">
@@ -74,69 +74,71 @@
 					</ul>
 				</div>
 			</div>
-			<div class="col-lg-10">
-				<div class="row">
-					<div class="col-lg-5">
-						<div class="panel">
-							<div class="panel-heading">
-								<h1 class="text-center">Sports</h1>
-							</div>
-							<a href="#">
-								<div class="panel-footer">
-									<p class="text-right">Weiter</p>
+			<form>
+				<div class="col-lg-10">
+					<div class="row">
+						<div class="col-lg-5">
+							<div class="panel">
+								<div class="panel-heading">
+									<h1 class="text-center">Sports</h1>
 								</div>
-							</a>
+								<a href="listActivities?category=sports">
+									<div class="panel-footer">
+										<p class="text-right">Weiter</p>
+									</div>
+								</a>
+							</div>
+						</div>
+
+						<div class="col-lg-2"></div>
+
+						<div class="col-lg-5 ">
+							<div class="panel">
+								<div class="panel-heading">
+									<h1 class="text-center">Gaming</h1>
+								</div>
+								<a href="listActivities?category=gaming">
+									<div class="panel-footer">
+										<p class="text-right">Weiter</p>
+									</div>
+								</a>
+							</div>
 						</div>
 					</div>
-					
-					<div class="col-lg-2"></div>
-							
-					<div class="col-lg-5 ">
-						<div class="panel">
-							<div class="panel-heading">
-								<h1 class="text-center">Gaming</h1>
-							</div>
-							<a href="#">
-								<div class="panel-footer">
-									<p class="text-right">Weiter</p>
+
+					<div class="row spacer"></div>
+
+					<div class="row">
+						<div class="col-lg-5 ">
+							<div class="panel">
+								<div class="panel-heading">
+									<h1 class="text-center">Party</h1>
 								</div>
-							</a>
+								<a href="listActivities?category=party">
+									<div class="panel-footer">
+										<p class="text-right">Weiter</p>
+									</div>
+								</a>
+							</div>
+						</div>
+
+						<div class="col-lg-2"></div>
+
+						<div class="col-lg-5 ">
+							<div class="panel">
+								<div class="panel-heading">
+									<h1 class="text-center">Learning</h1>
+								</div>
+								<a href="listActivities?category=learning">
+									<div class="panel-footer">
+										<p class="text-right">Weiter</p>
+									</div>
+								</a>
+							</div>
 						</div>
 					</div>
+
 				</div>
-				
-				<div class="row spacer"></div>
-				
-				<div class="row">
-					<div class="col-lg-5 ">
-						<div class="panel">
-							<div class="panel-heading">
-								<h1 class="text-center">Party</h1>
-							</div>
-							<a href="#">
-								<div class="panel-footer">
-									<p class="text-right">Weiter</p>
-								</div>
-							</a>
-						</div>
-					</div>
-					
-					<div class="col-lg-2"></div>
-							
-					<div class="col-lg-5 ">
-						<div class="panel">
-							<div class="panel-heading">
-								<h1 class="text-center">Learning</h1>
-							</div>
-							<a href="#">
-								<div class="panel-footer">
-									<p class="text-right">Weiter</p>
-								</div>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
 		<!-- END MENU -->
 

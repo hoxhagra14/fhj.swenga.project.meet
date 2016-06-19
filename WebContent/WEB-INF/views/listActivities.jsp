@@ -70,6 +70,7 @@
 									<li>
 								</c:forEach>
 							</form>
+
 							<button type="submit" class="btn btn-primary">Suchen</button>
 						</li>
 						<p>Search for Activities
