@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import at.fh.swenga.project.dao.ActivityRepository;
@@ -29,22 +30,15 @@ public class ActivityController {
 	@Autowired
 	SubcategoryRepository subcategoryRepository;
 	
-	@Autowired 
-	CategoryRepository categoryRepository;
-	
-	@RequestMapping(value = { "/" })
+	@RequestMapping(value = { "/", "listActivities" })
 	public String index(Model model) {
-		categoryRepository.save(Categories.FillCategories()); // Fill Categories and Subcategories
-		
-		return "forward:list";
-	}
-	
-	@RequestMapping(value = { "list" })
-	public String list(Model model) {
 		List<Activity> activities = activityRepository.findAll();
+		List<Subcategory> subcategories = subcategoryRepository.findAll();
+		
 		model.addAttribute("activities", activities);
+		model.addAttribute("subcategories", subcategories);
 		model.addAttribute("type", "findAll");
-		return "index";
+		return "listActivities";
 	}
 
 	
@@ -75,8 +69,9 @@ public class ActivityController {
 		
 		model.addAttribute("activities", activities);
 		
-		return "index"; 
-
+	
+		
+		return "listActivities"; 
 	}
 	
 	
@@ -89,11 +84,11 @@ public class ActivityController {
 		
 		for(Sports s : Sports.values()){
 			subcategory = new Subcategory(s.name());
-			Activity a = new Activity(subcategory, "Graz", "TestTitle", "TestText");
-			activityRepository.save(a);
+			//Activity a = new Activity(subcategory, "Graz", "TestTitle", "TestText");
+			subcategoryRepository.save(subcategory);
 		}
-		
-	/*	for(int i=0;i<100; i++){
+		/*
+		for(int i=0;i<100; i++){
 			if(i%10==0){
 				String subcategoryName = df.getBusinessName();
 				subcategory = subcategoryRepository.findFirstByName(subcategoryName);
@@ -106,14 +101,30 @@ public class ActivityController {
 			activityRepository.save(a);
 		} */
 		
-		return "forward:list";
+		return "forward:listActivities";
+	}
+	
+	@RequestMapping("/addActivity")
+	public String addActivity(Model model) {
+		
+		return "addActivities";
+	}
+		
+	@RequestMapping("/add")
+	public String addActivityInDatabase(Model model, @RequestParam String title, @RequestParam String text, @RequestParam int restriction  ) {
+		Subcategory s = null;
+		Activity a = new Activity(s, "Graz", text, title );
+		activityRepository.save(a);
+		System.out.println(title);
+		
+		return "forward:listActivities";
 	}
 
 	@RequestMapping("/delete")
 	public String deleteData(Model model, @RequestParam int id) {
 		activityRepository.delete(id);
 
-		return "forward:list";
+		return "forward:listActivities";
 	}
 
 	// @ExceptionHandler(Exception.class)
