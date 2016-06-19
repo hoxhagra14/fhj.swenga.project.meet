@@ -44,7 +44,7 @@ public class ActivityController {
 		List<Activity> activities = activityRepository.findAll();
 		model.addAttribute("activities", activities);
 		model.addAttribute("type", "findAll");
-		return "index";
+		return "login";
 	}
 
 	
@@ -122,4 +122,6 @@ public class ActivityController {
 		return "showError";
 
 	}
+	
+	
 }
