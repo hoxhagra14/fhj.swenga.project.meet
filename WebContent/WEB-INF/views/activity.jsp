@@ -39,22 +39,20 @@
 			<div class="col-md-12">
 				<div class="masthead well well-sm">
 					<h1>
-						<a href="index.asp"><span class="light text-primary">knowledge</span><span
-							style="font-family: Lato, sans-serif; font-weight: 300; text-decoration: none;">|</span><span
-							class="dark text-primary">Base</span></a>
+						<span class="light text-primary">Aktivität</span>
 					</h1>
 				</div>
 			</div>
 		</div>
 
 		<div class="row">
-			<div class="col-md-10">
+			<div class="col-md-8">
 
 				<div class="article">
-					<h3>Pellentesque habitant morbi tristique</h3>
+					<h3>${activity.title}</h3>
 
 					<ul class="list-unstyled list-inline">
-						<li><i class="fa fa-calendar"></i> February 02, 2013</li>
+						<li><i class="fa fa-calendar"></i> ${activity.date }</li>
 						<li><i class="fa fa-user"></i> Sergio Rodriguez</li>
 						<li><i class="fa fa-comments"></i> <a href="#">24
 								Comments</a></li>
@@ -62,36 +60,7 @@
 
 					<div class="article-content">
 
-						<p>At vero eos et accusamus et iusto odio dignissimos ducimus
-							qui blanditiis praesentium voluptatum deleniti atque corrupti
-							quos dolores et quas molestias excepturi sint occaecati
-							cupiditate non provident, similique sunt in culpa qui officia
-							deserunt mollitia animi, id est laborum et dolorum fuga. Et harum
-							quidem rerum facilis est et expedita distinctio lorem ipsum dolor
-							sit amet, consectetur adipiscing elit. Ut non libero consectetur
-							adipiscing elit magna. Sed et quam lacus. Fusce condimentum
-							eleifend enim a feugiat. Pellentesque viverra vehicula sem ut
-							volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing
-							elit. Ut non libero magna. Sed et quam lacus. Fusce condimentum
-							eleifend enim a feugiat. Lorem ipsum dolor sit amet, consectetur
-							adipiscing elit. Ut non libero magna. Sed et quam lacus. Fusce
-							condimentum eleifend enim a feugiat.</p>
-
-						<blockquote class="hero">
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit
-								posuere erat a ante.</p>
-							<small>Someone famous <cite title="Source Title">Source
-									Title</cite></small>
-						</blockquote>
-
-						<p>Accusamus et iusto odio dignissimos ducimus qui blanditiis
-							praesentium voluptatum deleniti atque corrupti quos dolores et
-							quas molestias feugiat. Pellentesque viverra vehicula sem ut
-							volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing
-							elit. Ut non libero magna. Sed et quam lacus. Fusce condimentum
-							eleifend enim a feugiat. Lorem ipsum dolor sit amet, consectetur
-							adipiscing elit. Ut non libero magna. Sed et quam lacus. Fusce
-							condimentum eleifend enim a feugiat.</p>
+						<p>${activity.text}</p>
 
 					</div>
 
@@ -108,11 +77,21 @@
 
 			</div>
 
-			<div class="col-md-2">
+			<div class="col-md-4">
 
 				<div>
 
-					<h3>Tools</h3>
+					<div>
+						<h4>
+							<span class="glyphicon glyphicon-map-marker">Location:</span> <strong>${activity.location}</strong>
+						</h4>
+					</div>
+					<br/>
+					<div>
+						<h4>
+							<span class="glyphicon glyphicon-user">participants:</span>
+						</h4>
+					</div>
 
 					<div class="list-group" id="list-group">
 
@@ -143,6 +122,7 @@
 						</span> <span class="">Email</span>
 						</a>
 					</div>
+
 
 					<div class="headline">
 						<h3>Tags</h3>

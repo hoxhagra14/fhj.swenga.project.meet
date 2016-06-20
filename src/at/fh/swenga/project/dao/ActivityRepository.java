@@ -15,6 +15,8 @@ import at.fh.swenga.project.model.Activity;
 
 public interface ActivityRepository extends JpaRepository<Activity, Integer> {
 
+	public Activity findById (int id);
+	
 	public List<Activity> findBySubcategoryName(String subCategory);
 	
 	public List<Activity> findByLocationContainingAllIgnoreCase(String location);
