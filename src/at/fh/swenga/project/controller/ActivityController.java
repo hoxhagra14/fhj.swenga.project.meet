@@ -30,10 +30,31 @@ public class ActivityController {
 	@Autowired
 	SubcategoryRepository subcategoryRepository;
 	
-	@RequestMapping(value = { "/", "listActivities" })
-	public String index(Model model) {
-		List<Activity> activities = activityRepository.findAll();
-		List<Subcategory> subcategories = subcategoryRepository.findAll();
+	@Autowired
+	CategoryRepository categoryReposiory;
+	
+	@RequestMapping(value = { "/" })
+	public String index(Model model){	
+		subcategoryRepository.save(Categories.FillCategories()); //Erstellen aller Catergories + Subcategories, TODO:Name ändern "Categories"
+		
+		Activity a = new Activity(subcategoryRepository.findByName("Soccer"), "Graz","Steiermark", "Test", "TestText", 1);
+		activityRepository.save(a);
+		
+		Activity b = new Activity(subcategoryRepository.findByName("Counter Strike"), "Graz","Steiermark", "Test", "TestText", 1);
+		activityRepository.save(b);
+
+		
+		return "index";
+	}
+	
+	@RequestMapping(value = "/listActivities") //method = RequestMethod.GET
+	public String list(Model model, @RequestParam(required=false) String category) {
+		if(category==null) category = lastcategory;
+		lastcategory = category;
+		
+		List<Subcategory> subcategories = subcategoryRepository.findByCategoryName(category);
+		List<Activity> activities = activityRepository.iwas(category);
+		
 		model.addAttribute("activities", activities);
 		model.addAttribute("subcategories", subcategories);
 		model.addAttribute("type", "findAll");
@@ -106,28 +127,13 @@ public class ActivityController {
 	@RequestMapping("/fill")
 	@Transactional
 	public String fillData(Model model) {
+		List<Subcategory> subcategories = subcategoryRepository.findAll();;
 		
-		DataFactory  df = new DataFactory();
-		Subcategory subcategory = null;
-		
-		for(Sports s : Sports.values()){
-			subcategory = new Subcategory(s.name());
-			//Activity a = new Activity(subcategory, "Graz", "TestTitle", "TestText");
-			subcategoryRepository.save(subcategory);
-		}
-		/*
-		for(int i=0;i<100; i++){
-			if(i%10==0){
-				String subcategoryName = df.getBusinessName();
-				subcategory = subcategoryRepository.findFirstByName(subcategoryName);
-				if(subcategory == null){
-					subcategory = new Subcategory(subcategoryName);
-				}
-			}
-			Activity a = new Activity(df.getFirstName(),df.getBirthDate(),df.getRandomText(4), df.getRandomText(4), true, 10, true  ); 
-			a.setSubcategory(subcategory);
+		for(Subcategory s : subcategories){
+			Activity a = new Activity(s, "Graz","Steiermark", "Test", "TestText", 1);
 			activityRepository.save(a);
-		} */
+		}
+	
 		
 		return "forward:listActivities";
 	}
@@ -135,7 +141,7 @@ public class ActivityController {
 	@RequestMapping("/addActivity")
 	public String addActivity(Model model) {
 		
-		List<Subcategory> sub = subcategoryRepository.findAll();
+		List<Subcategory> sub = subcategoryRepository.findAll(); // TODO: Nur die richtigen Anzeigen
 		model.addAttribute("subcategories", sub);
 		return "addActivities";
 	}
@@ -151,7 +157,7 @@ public class ActivityController {
 		
 	@RequestMapping("/add")
 	public String addActivityInDatabase(Model model, @RequestParam String title, @RequestParam String text, @RequestParam String state, @RequestParam String location, @RequestParam int restriction, @RequestParam String type  ) {
-		Subcategory s = new Subcategory(type);
+		Subcategory s = subcategoryRepository.findByName(type); // TODO: Sonst Error
 		Activity a = new Activity(s, location ,state, title, text, restriction);
 		activityRepository.save(a);
 		

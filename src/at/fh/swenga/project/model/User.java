@@ -24,7 +24,7 @@ public class User {
 	private int id;
 	private String name;
 	private String city;
-	private Date birthDate;
+	private int age;
 	// Interessen
 	// Bewertung
 	
@@ -41,11 +41,11 @@ public class User {
 		super();
 	}
 
-	public User(String name, String city, Date birthDate, List<Activity> activities) {
+	public User(String name, String city, int age, List<Activity> activities) {
 		super();
 		this.name = name;
 		this.city = city;
-		this.birthDate = birthDate;
+		this.age = age;
 		this.activities = activities;
 	}
 
@@ -65,12 +65,12 @@ public class User {
 		this.city = city;
 	}
 
-	public Date getBirthDate() {
-		return birthDate;
+	public int getAge() {
+		return age;
 	}
 
-	public void setBirthDate(Date birthDate) {
-		this.birthDate = birthDate;
+	public void setAge(int age) {
+		this.age = age;
 	}
 	
 	public List<Activity> getOwnedActivities() {
