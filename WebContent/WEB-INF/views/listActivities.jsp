@@ -55,83 +55,117 @@
 		<!-- SIDEBAR MENU -->
 		<div class="container-fluid">
 			<div class="col-lg-2">
-				<div class="profile-usermenu">
-					<ul class="nav">
-						<li><a href="addActivity"><button type="button"
-									class="btn btn-success">Add activity</button></a></li>
-
+				<div class="sidebar-nav navbar-collapse">
+					<ul class="nav" id ="side-menu">
+						<li><a href="addActivity"> <i
+								class="glyphicon glyphicon-plus"></i> Add Activity
+						</a></li>
+						<li class="sidebar-search">
+							<form action="findByTitleContainingAllIgnoreCase" method="post">
+								Search for Activities </br>
+								<div class="input-group custom-search-form">
+									<input class="form-control" placeholder="Suchen..." type="text"
+										name="searchString"> <span class="input-group-btn">
+										<button class="btn btn-default" type="submit">
+											<i class="glyphicon glyphicon-search"></i>
+										</button>
+									</span>
+								</div>
+							</form>
+						</li>
+						<br/>  
 						<li>
 							<p>Subcategories</p>
-							<form action="find">
+							<form action="findBySubcategoryNameContainingAllIgnoreCase">
 								<c:forEach items="${subcategories}" var="subcategory">
-									<li><a> <input type="checkbox" name="subcategory"
+									<li><a> <input type="checkbox" name="searchString"
 											value="${subcategory.name}">${subcategory.name}<br>
 									</a>
 									<li>
 								</c:forEach>
+								<button type="submit" class="btn btn-primary">Suchen</button>
 							</form>
 
-							<button type="submit" class="btn btn-primary">Suchen</button>
 						</li>
-						<p>Search for Activities
-						<p>
-							<input type="text" name="activity">
-						<li class="active"><a href="#"> <i
-								class="glyphicon glyphicon-home"></i> Overview
-						</a></li>
-						<li><a href="#"> <i class="glyphicon glyphicon-user"></i>
-								Account Settings
-						</a></li>
-						<li><a href="#" target="_blank"> <i
-								class="glyphicon glyphicon-ok"></i> Tasks
-						</a></li>
-						<li><a href="#" target="_blank"> <i
-								class="glyphicon glyphicon-ok"></i> Niti
-						</a></li>
-						<li><a href="#"> <i class="glyphicon glyphicon-flag"></i>
-								Help
-						</a></li>
+						<br/> 
+						<li>
+							<form action="findByState">
+								<a><input type="checkbox" name="searchString"
+									value="Burgenland">Burgenland<br> </a> <a> <input
+									type="checkbox" name="searchString" value="Kärnten">Kärnten<br>
+								</a> <a> <input type="checkbox" name="searchString"
+									value="Niederösterreich">Niederösterreich<br>
+								</a> <a> <input type="checkbox" name="searchString"
+									value="Oberösterreich">Oberösterreich<br>
+								</a> <a> <input type="checkbox" name="searchString"
+									value="Salzburg">Salzburg<br>
+								</a> <a> <input type="checkbox" name="searchString"
+									value="Steiermark">Steiermark<br>
+								</a> <a> <input type="checkbox" name="searchString"
+									value="Tirol">Tirol<br>
+								</a> <a> <input type="checkbox" name="searchString"
+									value="Vorarlberg">Vorarlberg<br>
+								</a> <a> <input type="checkbox" name="searchString" value="Wien">Wien<br>
+								</a>
+								<button type="submit" class="btn btn-primary">Suchen</button>
+							</form>
 
-					</ul>
+						</li>
+						<br/> 
+						<li>
+							<form action="findByLocationContainingAllIgnoreCase" method="post">
+								Ortsuche </br>
+								<div class="input-group custom-search-form">
+									<input class="form-control" placeholder="Suchen..." type="text"
+										name="searchString"> <span class="input-group-btn">
+										<button class="btn btn-default" type="submit">
+											<i class="glyphicon glyphicon-search"></i>
+										</button>
+									</span>
+								</div>
+							</form>
 				</div>
+				</li>
+				</ul>
 			</div>
+		</div>
 
-			<!-- END MENU -->
-			<div class="col-lg-8">
-				<fieldset>
-					<c:forEach items="${activities}" var="activity">
-						<hr>
-						<div class="row">
-							<div class="col-sm-4">
-								<a href="#" class=""><img src="http://placehold.it/1280X720"
-									class="img-responsive"></a>
-							</div>
-							<div class="col-sm-8">
+		<!-- END MENU -->
+		<div class="col-lg-8">
+			<fieldset>
+				<c:forEach items="${activities}" var="activity">
+					<hr>
+					<div class="row">
+						<div class="col-sm-4">
+							<a href="#" class=""><img src="http://placehold.it/1280X720"
+								class="img-responsive"></a>
+						</div>
+						<div class="col-sm-8">
 
-								<h3 class="title">${activity.title}</h3>
-								<p class="text-muted">
-									<span class="glyphicon glyphicon-lock"></span> Available
-									Exclusively for Premium Members
-								</p>
-								<p>${activity.text}</p>
+							<h3 class="title">${activity.title}</h3>
+							<p class="text-muted">
+								<span class="glyphicon glyphicon-lock"></span> Available
+								Exclusively for Premium Members
+							</p>
+							<p>${activity.text}</p>
 								
 								<p>${activity.subcategory.name}</p>
 
-								<p class="text-muted">
-									Created by <a href="#">Granit Hocha</a>
-								</p>
-							</div>
+							<p class="text-muted">
+								Created by <a href="#">Granit Hocha</a>
+							</p>
 						</div>
-					</c:forEach>
-				</fieldset>
-			</div>
+					</div>
+				</c:forEach>
+			</fieldset>
 		</div>
-		<!-- /#wrapper -->
+	</div>
+	<!-- /#wrapper -->
 
-		<!-- jQuery -->
-		<script src="js/jquery.js"></script>
+	<!-- jQuery -->
+	<script src="js/jquery.js"></script>
 
-		<!-- Bootstrap Core JavaScript -->
-		<script src="js/bootstrap.min.js"></script>
+	<!-- Bootstrap Core JavaScript -->
+	<script src="js/bootstrap.min.js"></script>
 </body>
 </html>

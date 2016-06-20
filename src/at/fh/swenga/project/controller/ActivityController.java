@@ -62,11 +62,11 @@ public class ActivityController {
 	}
 
 	
-	@RequestMapping(value = { "/find" })
-	public String find(Model model, @RequestParam String searchString, @ModelAttribute("type")  String type) {
+	/*@RequestMapping(value = { "/find" })
+	public String find(Model model, @RequestParam String searchString, @ModelAttribute("id")  String id) {
 		List<Activity> activities = null;
 		
-		switch (type) {
+		switch (id) {
 		case "findAll":
 			activities = activityRepository.findAll();
 			break;
@@ -86,12 +86,41 @@ public class ActivityController {
 		default:
 			activities = activityRepository.findAll();
 		}
-		
 		model.addAttribute("activities", activities);
 		
-	
-		
 		return "listActivities"; 
+	}*/
+	
+	@RequestMapping(value = { "/findByTitleContainingAllIgnoreCase" })
+	public String findByTitleContainingAllIgnoreCase(Model model, @RequestParam String searchString ) {
+		List<Activity> activities = null;
+		activities = activityRepository.findByTitleContainingAllIgnoreCase(searchString);
+		model.addAttribute("activities", activities);
+		return "listActivities";
+	}
+	
+	@RequestMapping(value = { "/findBySubcategoryNameContainingAllIgnoreCase" })
+	public String findBySubcategoryStringContainingAllIgnoreCase(Model model, @RequestParam String searchString ) {
+		List<Activity> activities = null;
+		activities = activityRepository.findBySubcategoryNameContainingAllIgnoreCase(searchString);
+		model.addAttribute("activities", activities);
+		return "listActivities";
+	}
+	
+	@RequestMapping(value = { "/findByState" })
+	public String findByState(Model model, @RequestParam String searchString ) {
+		List<Activity> activities = null;
+		activities = activityRepository.findByState(searchString);
+		model.addAttribute("activities", activities);
+		return "listActivities";
+	}
+	
+	@RequestMapping(value = { "/findByLocationContainingAllIgnoreCase" })
+	public String findByLocationContainingAllIgnoreCase(Model model, @RequestParam String searchString ) {
+		List<Activity> activities = null;
+		activities = activityRepository.findByLocationContainingAllIgnoreCase(searchString);
+		model.addAttribute("activities", activities);
+		return "listActivities";
 	}
 	
 	
@@ -112,15 +141,16 @@ public class ActivityController {
 	@RequestMapping("/addActivity")
 	public String addActivity(Model model) {
 		
+		List<Subcategory> sub = subcategoryRepository.findAll();
+		model.addAttribute("subcategories", sub);
 		return "addActivities";
 	}
 		
 	@RequestMapping("/add")
-	public String addActivityInDatabase(Model model, @RequestParam String title, @RequestParam String text, @RequestParam int restriction  ) {
-		Subcategory s = null;
-		Activity a = new Activity(s, "Graz", text, title );
+	public String addActivityInDatabase(Model model, @RequestParam String title, @RequestParam String text, @RequestParam String state, @RequestParam String location, @RequestParam int restriction, @RequestParam String type  ) {
+		Subcategory s = new Subcategory(type);
+		Activity a = new Activity(s, location ,state, text, title, restriction);
 		activityRepository.save(a);
-		System.out.println(title);
 		
 		return "forward:listActivities";
 	}
