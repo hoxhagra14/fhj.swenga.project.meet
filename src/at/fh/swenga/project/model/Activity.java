@@ -33,10 +33,11 @@ public class Activity {
 	@ManyToMany(mappedBy="activities", fetch=FetchType.EAGER)
 	private List<User> users;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	Subcategory subcategory;
 	
 	private String location; // Wie Subcategory?
+	private String state; 
 	// Zusätzlich für zocken Kommunikationskanal?
 	private Date date;
 	private String title;
@@ -55,19 +56,22 @@ public class Activity {
 		super();
 	}
 	
-	public Activity(Subcategory subcategory, String location, String title, String text) {
+	public Activity(Subcategory subcategory, String location, String state,  String title, String text, int restriction) {
 		super();
 		this.subcategory = subcategory;
 		this.location = location;
+		this.state = state; 
 		this.title = title;
 		this.text = text;
+		this.restriction = restriction; 
 	}
 
 
-	public Activity(String location, Date date, String title, String text,
+	public Activity(String location, String state, Date date, String title, String text,
 			boolean closed, int restriction, boolean deprecated) {
 		super();	
 		this.location = location;
+		this.state = state; 
 		this.date = date;
 		this.title = title;
 		this.text = text;
@@ -109,6 +113,14 @@ public class Activity {
 
 	public void setLocation(String location) {
 		this.location = location;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
 	}
 
 	public Date getDate() {

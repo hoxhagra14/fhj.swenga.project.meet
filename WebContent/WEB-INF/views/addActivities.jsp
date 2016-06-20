@@ -86,16 +86,56 @@
 							</div>
 						</div>
 
-						<! ----------------  Inhalt ---------------- -->
+						<! ----------------  Unterkategorie ---------------- -->
 						<div class="form-group">
-							<label for="inputName" class="col-md-2 control-label">Inhalt</label>
+							<label for="inputSubcategory" class="col-md-2 control-label">Unterkategorie</label>
 							<div class="col-md-10">
-								<input class="form-control" id="inputText" type="text"
-									name="text">
+								<select name="type">
+									<c:forEach items="${subcategories}" var="subcategory">
+										<option value="${subcategory.name}" selected="selected">${subcategory.name}</option>
+									</c:forEach>
+								</select>
 							</div>
 						</div>
 
+						<! ----------------  Bundesland ---------------- -->
+						<div class="form-group">
+							<label for="inputState" class="col-md-2 control-label">Bundesland</label>
+							<div class="col-md-10">
+								<select name="state">
+									<option value="Burgenland" selected="selected">Burgenland</option>
+									<option value="Kärnten" selected="selected">Kärnten</option>
+									<option value="Niederösterreich" selected="selected">Niederösterreich</option>
+									<option value="Oberösterreich" selected="selected">Oberösterreich</option>
+									<option value="Salzburg" selected="selected">Salzburg</option>
+									<option value="Steiermark" selected="selected">Steiermark</option>
+									<option value="Tirol" selected="selected">Tirol</option>
+									<option value="Vorarlberg" selected="selected">Vorarlberg</option>
+									<option value="Wien" selected="selected">Wien</option>
+								</select>
+							</div>
+						</div>
+
+						<! ----------------  Ort ---------------- -->
+						<div class="form-group">
+							<label for="inputLocation" class="col-md-2 control-label">Ort</label>
+							<div class="col-md-10">
+								<input class="form-control" id="inputLocation" type="text"
+									name="location">
+							</div>
+						</div>
+
+
 						<! ----------------  Inhalt ---------------- -->
+						<div class="form-group">
+							<label for="inputText" class="col-md-2 control-label">Inhalt</label>
+							<div class="col-md-10">
+								<textarea rows="4" class="form-control" id="inputText"
+									type="text" name="text"> </textarea>
+							</div>
+						</div>
+
+						<! ----------------  Teilnehmerzahl ---------------- -->
 						<div class="form-group">
 							<label for="inputName" class="col-md-2 control-label">Teilnehmerzahl</label>
 							<div class="col-md-10">

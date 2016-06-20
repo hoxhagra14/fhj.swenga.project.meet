@@ -1,5 +1,7 @@
 package at.fh.swenga.project.controller;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import org.fluttercode.datafactory.impl.DataFactory;
@@ -16,12 +18,14 @@ import at.fh.swenga.project.dao.ActivityRepository;
 import at.fh.swenga.project.dao.CategoryRepository;
 import at.fh.swenga.project.dao.SubcategoryRepository;
 import at.fh.swenga.project.data.Categories;
+import at.fh.swenga.project.data.Games;
 import at.fh.swenga.project.data.Sports;
 import at.fh.swenga.project.model.Activity;
 import at.fh.swenga.project.model.Subcategory;
 
 @Controller
 public class ActivityController {
+	String lastcategory; 
 	
 	
 	@Autowired
@@ -30,10 +34,30 @@ public class ActivityController {
 	@Autowired
 	SubcategoryRepository subcategoryRepository;
 	
-	@RequestMapping(value = { "/", "listActivities" })
-	public String index(Model model) {
-		List<Activity> activities = activityRepository.findAll();
-		List<Subcategory> subcategories = subcategoryRepository.findAll();
+	@Autowired
+	CategoryRepository categoryReposiory;
+	
+	@RequestMapping(value = { "/" })
+	public String index(Model model){	
+		subcategoryRepository.save(Categories.FillCategories()); //Erstellen aller Catergories + Subcategories, TODO:Name ändern "Categories"
+		
+		Activity a = new Activity(subcategoryRepository.findByName("Soccer"), "Graz","Steiermark", "Test", "TestText", 1);
+		activityRepository.save(a);
+		
+		Activity b = new Activity(subcategoryRepository.findByName("Counter Strike"), "Graz","Steiermark", "Test", "TestText", 1);
+		activityRepository.save(b);
+
+		
+		return "index";
+	}
+	
+	@RequestMapping(value = "/listActivities") //method = RequestMethod.GET
+	public String list(Model model, @RequestParam(required=false) String category) {
+		if(category==null) category = lastcategory;
+		lastcategory = category;
+		
+		List<Subcategory> subcategories = subcategoryRepository.findByCategoryName(category);
+		List<Activity> activities = activityRepository.iwas(category);
 		
 		model.addAttribute("activities", activities);
 		model.addAttribute("subcategories", subcategories);
@@ -42,11 +66,11 @@ public class ActivityController {
 	}
 
 	
-	@RequestMapping(value = { "/find" })
-	public String find(Model model, @RequestParam String searchString, @ModelAttribute("type")  String type) {
+	/*@RequestMapping(value = { "/find" })
+	public String find(Model model, @RequestParam String searchString, @ModelAttribute("id")  String id) {
 		List<Activity> activities = null;
 		
-		switch (type) {
+		switch (id) {
 		case "findAll":
 			activities = activityRepository.findAll();
 			break;
@@ -66,40 +90,54 @@ public class ActivityController {
 		default:
 			activities = activityRepository.findAll();
 		}
-		
 		model.addAttribute("activities", activities);
 		
-	
-		
 		return "listActivities"; 
+	}*/
+	
+	@RequestMapping(value = { "/findByTitleContainingAllIgnoreCase" })
+	public String findByTitleContainingAllIgnoreCase(Model model, @RequestParam String searchString ) {
+		List<Activity> activities = null;
+		activities = activityRepository.findByTitleContainingAllIgnoreCase(searchString);
+		model.addAttribute("activities", activities);
+		return "listActivities";
+	}
+	
+	@RequestMapping(value = { "/findBySubcategoryNameContainingAllIgnoreCase" })
+	public String findBySubcategoryStringContainingAllIgnoreCase(Model model, @RequestParam String searchString ) {
+		List<Activity> activities = null;
+		activities = activityRepository.findBySubcategoryNameContainingAllIgnoreCase(searchString);
+		model.addAttribute("activities", activities);
+		return "listActivities";
+	}
+	
+	@RequestMapping(value = { "/findByState" })
+	public String findByState(Model model, @RequestParam String searchString ) {
+		List<Activity> activities = null;
+		activities = activityRepository.findByState(searchString);
+		model.addAttribute("activities", activities);
+		return "listActivities";
+	}
+	
+	@RequestMapping(value = { "/findByLocationContainingAllIgnoreCase" })
+	public String findByLocationContainingAllIgnoreCase(Model model, @RequestParam String searchString ) {
+		List<Activity> activities = null;
+		activities = activityRepository.findByLocationContainingAllIgnoreCase(searchString);
+		model.addAttribute("activities", activities);
+		return "listActivities";
 	}
 	
 	
 	@RequestMapping("/fill")
 	@Transactional
 	public String fillData(Model model) {
+		List<Subcategory> subcategories = subcategoryRepository.findAll();;
 		
-		DataFactory  df = new DataFactory();
-		Subcategory subcategory = null;
-		
-		for(Sports s : Sports.values()){
-			subcategory = new Subcategory(s.name());
-			//Activity a = new Activity(subcategory, "Graz", "TestTitle", "TestText");
-			subcategoryRepository.save(subcategory);
-		}
-		/*
-		for(int i=0;i<100; i++){
-			if(i%10==0){
-				String subcategoryName = df.getBusinessName();
-				subcategory = subcategoryRepository.findFirstByName(subcategoryName);
-				if(subcategory == null){
-					subcategory = new Subcategory(subcategoryName);
-				}
-			}
-			Activity a = new Activity(df.getFirstName(),df.getBirthDate(),df.getRandomText(4), df.getRandomText(4), true, 10, true  ); 
-			a.setSubcategory(subcategory);
+		for(Subcategory s : subcategories){
+			Activity a = new Activity(s, "Graz","Steiermark", "Test", "TestText", 1);
 			activityRepository.save(a);
-		} */
+		}
+	
 		
 		return "forward:listActivities";
 	}
@@ -107,15 +145,16 @@ public class ActivityController {
 	@RequestMapping("/addActivity")
 	public String addActivity(Model model) {
 		
+		List<Subcategory> sub = subcategoryRepository.findAll(); // TODO: Nur die richtigen Anzeigen
+		model.addAttribute("subcategories", sub);
 		return "addActivities";
 	}
 		
 	@RequestMapping("/add")
-	public String addActivityInDatabase(Model model, @RequestParam String title, @RequestParam String text, @RequestParam int restriction  ) {
-		Subcategory s = null;
-		Activity a = new Activity(s, "Graz", text, title );
+	public String addActivityInDatabase(Model model, @RequestParam String title, @RequestParam String text, @RequestParam String state, @RequestParam String location, @RequestParam int restriction, @RequestParam String type  ) {
+		Subcategory s = subcategoryRepository.findByName(type); // TODO: Sonst Error
+		Activity a = new Activity(s, location ,state, text, title, restriction);
 		activityRepository.save(a);
-		System.out.println(title);
 		
 		return "forward:listActivities";
 	}

@@ -17,6 +17,11 @@ public interface SubcategoryRepository extends JpaRepository<Subcategory, Intege
 
 	@Transactional
 	public Subcategory findFirstByName(String name);
+	
+	public List<Subcategory> findByCategoryName(String category);
+	
+	// For test
+	public Subcategory findByName(String name);  
 
 
 }
