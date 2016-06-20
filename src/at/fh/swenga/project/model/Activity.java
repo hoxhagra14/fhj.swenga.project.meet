@@ -30,8 +30,8 @@ public class Activity {
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	private User owner;
 	
-	@ManyToMany(mappedBy="activities", fetch=FetchType.EAGER)
-	private List<User> users;
+	//@ManyToMany(mappedBy="activities", fetch=FetchType.EAGER)
+	//private List<User> users;
 	
 	@ManyToOne(cascade = CascadeType.MERGE)
 	Subcategory subcategory;
@@ -91,13 +91,13 @@ public class Activity {
 	}
 
 
-	public List<User> getUsers() {
-		return users;
-	}
-
-	public void setUsers(List<User> users) {
-		this.users = users;
-	}
+//	public List<User> getUsers() {
+//		return users;
+//	}
+//
+//	public void setUsers(List<User> users) {
+//		this.users = users;
+//	}
 
 	public Subcategory getSubcategory() {
 		return subcategory;
