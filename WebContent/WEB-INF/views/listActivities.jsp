@@ -32,8 +32,6 @@
 <!-- Custom CSS -->
 <%@include file="includes/simple-sidebar.css"%>
 
-<%@include file="includes/bootstrapCss.css"%>
-
 </head>
 <body>
 	<div id="wrapper">
@@ -41,7 +39,7 @@
 		<nav class="navbar navbar-static-top" role="navigation">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a href="" class="navbar-brand">M E E T .</a>
+				<a href="index.jsp" class="navbar-brand">M E E T .</a>
 			</div>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -59,6 +57,24 @@
 			<div class="col-lg-2">
 				<div class="profile-usermenu">
 					<ul class="nav">
+						<li><a href="addActivity"><button type="button"
+									class="btn btn-success">Add activity</button></a></li>
+
+						<li>
+							<p>Subcategories</p>
+							<form action="find">
+								<c:forEach items="${subcategories}" var="subcategory">
+									<li><a> <input type="checkbox" name="subcategory"
+											value="${subcategory.name}">${subcategory.name}<br>
+									</a>
+									<li>
+								</c:forEach>
+							</form>
+							<button type="submit" class="btn btn-primary">Suchen</button>
+						</li>
+						<p>Search for Activities
+						<p>
+							<input type="text" name="activity">
 						<li class="active"><a href="#"> <i
 								class="glyphicon glyphicon-home"></i> Overview
 						</a></li>
@@ -68,85 +84,51 @@
 						<li><a href="#" target="_blank"> <i
 								class="glyphicon glyphicon-ok"></i> Tasks
 						</a></li>
+						<li><a href="#" target="_blank"> <i
+								class="glyphicon glyphicon-ok"></i> Niti
+						</a></li>
 						<li><a href="#"> <i class="glyphicon glyphicon-flag"></i>
 								Help
 						</a></li>
+
 					</ul>
 				</div>
 			</div>
-			<div class="col-lg-10">
-				<div class="row">
-					<div class="col-lg-5">
-						<div class="panel">
-							<div class="panel-heading">
-								<h1 class="text-center">Sports</h1>
+
+			<!-- END MENU -->
+			<div class="col-lg-8">
+				<fieldset>
+					<c:forEach items="${activities}" var="activity">
+						<hr>
+						<div class="row">
+							<div class="col-sm-4">
+								<a href="#" class=""><img src="http://placehold.it/1280X720"
+									class="img-responsive"></a>
 							</div>
-							<a href="#">
-								<div class="panel-footer">
-									<p class="text-right">Weiter</p>
-								</div>
-							</a>
-						</div>
-					</div>
-					
-					<div class="col-lg-2"></div>
-							
-					<div class="col-lg-5 ">
-						<div class="panel">
-							<div class="panel-heading">
-								<h1 class="text-center">Gaming</h1>
+							<div class="col-sm-8">
+
+								<h3 class="title">${activity.title}</h3>
+								<p class="text-muted">
+									<span class="glyphicon glyphicon-lock"></span> Available
+									Exclusively for Premium Members
+								</p>
+								<p>${activity.text}</p>
+
+								<p class="text-muted">
+									Created by <a href="#">Granit Hocha</a>
+								</p>
 							</div>
-							<a href="#">
-								<div class="panel-footer">
-									<p class="text-right">Weiter</p>
-								</div>
-							</a>
 						</div>
-					</div>
-				</div>
-				
-				<div class="row spacer"></div>
-				
-				<div class="row">
-					<div class="col-lg-5 ">
-						<div class="panel">
-							<div class="panel-heading">
-								<h1 class="text-center">Party</h1>
-							</div>
-							<a href="#">
-								<div class="panel-footer">
-									<p class="text-right">Weiter</p>
-								</div>
-							</a>
-						</div>
-					</div>
-					
-					<div class="col-lg-2"></div>
-							
-					<div class="col-lg-5 ">
-						<div class="panel">
-							<div class="panel-heading">
-								<h1 class="text-center">Learning</h1>
-							</div>
-							<a href="#">
-								<div class="panel-footer">
-									<p class="text-right">Weiter</p>
-								</div>
-							</a>
-						</div>
-					</div>
-				</div>
+					</c:forEach>
+				</fieldset>
 			</div>
 		</div>
-		<!-- END MENU -->
+		<!-- /#wrapper -->
 
-	</div>
-	<!-- /#wrapper -->
+		<!-- jQuery -->
+		<script src="js/jquery.js"></script>
 
-	<!-- jQuery -->
-	<script src="js/jquery.js"></script>
-
-	<!-- Bootstrap Core JavaScript -->
-	<script src="js/bootstrap.min.js"></script>
+		<!-- Bootstrap Core JavaScript -->
+		<script src="js/bootstrap.min.js"></script>
 </body>
 </html>

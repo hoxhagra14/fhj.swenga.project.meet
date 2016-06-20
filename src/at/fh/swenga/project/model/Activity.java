@@ -36,7 +36,7 @@ public class Activity {
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	Subcategory subcategory;
 	
-	private String ort; // Wie Subcategory?
+	private String location; // Wie Subcategory?
 	// Zusätzlich für zocken Kommunikationskanal?
 	private Date date;
 	private String title;
@@ -54,21 +54,27 @@ public class Activity {
 	public Activity() {
 		super();
 	}
-
 	
-	public Activity(String ort, Date date, String title, String text,
-			boolean closed, int restriction, boolean deprecated) {
+	public Activity(Subcategory subcategory, String location, String title, String text) {
 		super();
-		this.users = users;
 		this.subcategory = subcategory;
-		this.ort = ort;
+		this.location = location;
+		this.title = title;
+		this.text = text;
+	}
+
+
+	public Activity(String location, Date date, String title, String text,
+			boolean closed, int restriction, boolean deprecated) {
+		super();	
+		this.location = location;
 		this.date = date;
 		this.title = title;
 		this.text = text;
 		this.closed = closed;
 		this.restriction = restriction;
 		this.deprecated = deprecated;
-		this.subcategoryString = subcategoryString;
+		//this.subcategoryString = subcategoryString;
 	}
 
 	public int getId() {
@@ -97,12 +103,12 @@ public class Activity {
 		this.subcategory = subcategory;
 	}
 
-	public String getOrt() {
-		return ort;
+	public String getLocation() {
+		return location;
 	}
 
-	public void setOrt(String ort) {
-		this.ort = ort;
+	public void setLocation(String location) {
+		this.location = location;
 	}
 
 	public Date getDate() {

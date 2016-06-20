@@ -22,6 +22,7 @@ public class Subcategory {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
 	private String name;
 	
 	@ManyToOne(cascade = CascadeType.PERSIST)
@@ -38,6 +39,7 @@ public class Subcategory {
 	}
 	
 	public Subcategory(String name){
+		super();
 		this.name = name;
 	}
 

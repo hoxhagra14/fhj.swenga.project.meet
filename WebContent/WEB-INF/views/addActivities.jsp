@@ -32,8 +32,6 @@
 <!-- Custom CSS -->
 <%@include file="includes/simple-sidebar.css"%>
 
-<%@include file="includes/bootstrapCss.css"%>
-
 </head>
 <body>
 	<div id="wrapper">
@@ -41,7 +39,7 @@
 		<nav class="navbar navbar-static-top" role="navigation">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a href="" class="navbar-brand">M E E T .</a>
+				<a href="index.jsp" class="navbar-brand">M E E T .</a>
 			</div>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -75,67 +73,49 @@
 				</div>
 			</div>
 			<div class="col-lg-10">
-				<div class="row">
-					<div class="col-lg-5">
-						<div class="panel">
-							<div class="panel-heading">
-								<h1 class="text-center">Sports</h1>
+				<form class="form-horizontal" method="post" action="add">
+					<fieldset>
+						<legend>Add Activity</legend>
+
+						<! ----------------  Titel ---------------- -->
+						<div class="form-group">
+							<label for="inputName" class="col-md-2 control-label">Titel</label>
+							<div class="col-md-10">
+								<input class="form-control" id="inputName" type="text"
+									name="title">
 							</div>
-							<a href="#">
-								<div class="panel-footer">
-									<p class="text-right">Weiter</p>
-								</div>
-							</a>
 						</div>
-					</div>
-					
-					<div class="col-lg-2"></div>
-							
-					<div class="col-lg-5 ">
-						<div class="panel">
-							<div class="panel-heading">
-								<h1 class="text-center">Gaming</h1>
+
+						<! ----------------  Inhalt ---------------- -->
+						<div class="form-group">
+							<label for="inputName" class="col-md-2 control-label">Inhalt</label>
+							<div class="col-md-10">
+								<input class="form-control" id="inputText" type="text"
+									name="text">
 							</div>
-							<a href="#">
-								<div class="panel-footer">
-									<p class="text-right">Weiter</p>
-								</div>
-							</a>
 						</div>
-					</div>
-				</div>
-				
-				<div class="row spacer"></div>
-				
-				<div class="row">
-					<div class="col-lg-5 ">
-						<div class="panel">
-							<div class="panel-heading">
-								<h1 class="text-center">Party</h1>
+
+						<! ----------------  Inhalt ---------------- -->
+						<div class="form-group">
+							<label for="inputName" class="col-md-2 control-label">Teilnehmerzahl</label>
+							<div class="col-md-10">
+								<input class="form-control" id="inputRestriction" type="text"
+									name="restriction">
 							</div>
-							<a href="#">
-								<div class="panel-footer">
-									<p class="text-right">Weiter</p>
-								</div>
-							</a>
 						</div>
-					</div>
-					
-					<div class="col-lg-2"></div>
-							
-					<div class="col-lg-5 ">
-						<div class="panel">
-							<div class="panel-heading">
-								<h1 class="text-center">Learning</h1>
+
+						<! ----------------  buttons ---------------- -->
+						<div class="form-group">
+							<div class="col-md-10 col-md-offset-2">
+								<button type="submit" class="btn btn-primary">Submit</button>
+								<a href="listActivities">
+									<button type="button" class="btn btn-default">Cancel</button>
+								</a>
 							</div>
-							<a href="#">
-								<div class="panel-footer">
-									<p class="text-right">Weiter</p>
-								</div>
-							</a>
 						</div>
-					</div>
-				</div>
+
+					</fieldset>
+				</form>
 			</div>
 		</div>
 		<!-- END MENU -->
