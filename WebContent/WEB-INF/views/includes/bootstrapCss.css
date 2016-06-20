@@ -39,6 +39,9 @@ body {
     margin-top: 5px; /* define margin as you see fit */
 }
 
+.left-spacer {
+    margin-left: 15px; /* define margin as you see fit */
+}
 
 .border {
 	outline: 2px solid black;
