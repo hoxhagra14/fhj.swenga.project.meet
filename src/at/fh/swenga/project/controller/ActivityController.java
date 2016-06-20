@@ -86,6 +86,23 @@ public class ActivityController {
 		return "listActivities";
 	}
 	
+	@RequestMapping(value = { "/findByState" })
+	public String findByState(Model model, @RequestParam String searchString ) {
+		List<Activity> activities = null;
+		activities = activityRepository.findByState(searchString);
+		model.addAttribute("activities", activities);
+		return "listActivities";
+	}
+	
+	@RequestMapping(value = { "/findByLocationContainingAllIgnoreCase" })
+	public String findByLocationContainingAllIgnoreCase(Model model, @RequestParam String searchString ) {
+		List<Activity> activities = null;
+		activities = activityRepository.findByLocationContainingAllIgnoreCase(searchString);
+		model.addAttribute("activities", activities);
+		return "listActivities";
+	}
+	
+	
 	@RequestMapping("/fill")
 	@Transactional
 	public String fillData(Model model) {
@@ -124,11 +141,10 @@ public class ActivityController {
 	}
 		
 	@RequestMapping("/add")
-	public String addActivityInDatabase(Model model, @RequestParam String title, @RequestParam String text, @RequestParam int restriction, @RequestParam String type  ) {
+	public String addActivityInDatabase(Model model, @RequestParam String title, @RequestParam String text, @RequestParam String state, @RequestParam String location, @RequestParam int restriction, @RequestParam String type  ) {
 		Subcategory s = new Subcategory(type);
-		Activity a = new Activity(s, "Graz", text, title);
+		Activity a = new Activity(s, location ,state, text, title, restriction);
 		activityRepository.save(a);
-		System.out.println(title);
 		
 		return "forward:listActivities";
 	}

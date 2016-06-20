@@ -17,15 +17,19 @@ public interface ActivityRepository extends JpaRepository<Activity, Integer> {
 
 	public List<Activity> findBySubcategoryName(String subCategory);
 	
-	public List<Activity> findByLocation(String ort);
+	public List<Activity> findByLocationContainingAllIgnoreCase(String location);
 	
 	public List<Activity> findByTitleContainingAllIgnoreCase(String title);
 	
 	// Unterscheidung zwischen Ersteller und Interessenten?? 
 	//public List<Activity> findByOwner(String user);
 	
+	//search for other subcategories
 	public List<Activity> findBySubcategoryStringContainingAllIgnoreCase(String subCategory);
 	
+	//search for given Subcategories
 	public List<Activity> findBySubcategoryNameContainingAllIgnoreCase(String subCategory);
+	
+	public List<Activity> findByState(String state);
 	
 }
