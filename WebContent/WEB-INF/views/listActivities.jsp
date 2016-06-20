@@ -114,6 +114,8 @@
 									Exclusively for Premium Members
 								</p>
 								<p>${activity.text}</p>
+								
+								<p>${activity.subcategory.name}</p>
 
 								<p class="text-muted">
 									Created by <a href="#">Granit Hocha</a>

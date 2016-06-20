@@ -1,5 +1,7 @@
 package at.fh.swenga.project.controller;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import org.fluttercode.datafactory.impl.DataFactory;
@@ -16,12 +18,14 @@ import at.fh.swenga.project.dao.ActivityRepository;
 import at.fh.swenga.project.dao.CategoryRepository;
 import at.fh.swenga.project.dao.SubcategoryRepository;
 import at.fh.swenga.project.data.Categories;
+import at.fh.swenga.project.data.Games;
 import at.fh.swenga.project.data.Sports;
 import at.fh.swenga.project.model.Activity;
 import at.fh.swenga.project.model.Subcategory;
 
 @Controller
 public class ActivityController {
+	String lastcategory; 
 	
 	
 	@Autowired
@@ -30,15 +34,26 @@ public class ActivityController {
 	@Autowired
 	SubcategoryRepository subcategoryRepository;
 	
+	@Autowired
+	CategoryRepository categoryReposiory;
+	
 	@RequestMapping(value = { "/" })
 	public String index(Model model){	
+		categoryReposiory.save(Categories.FillCategories()); //Erstellen aller Catergories + Subcategories
+		
 		return "index";
 	}
 	
 	@RequestMapping(value = "/listActivities", method = RequestMethod.GET)
-	public String list(Model model, @RequestParam String category) {
-		List<Activity> activities = activityRepository.findBySubcategoryName(category);
-		List<Subcategory> subcategories = subcategoryRepository.findByCategory(category); //TODO: only right activities
+	public String list(Model model, @RequestParam(required=false) String category) {
+		if(category==null) category = lastcategory;
+		
+		List<Subcategory> subcategories = subcategoryRepository.findByCategoryName(category); //TODO: only right activities; Join? 
+		/*List<String> subcategorynames = Collections.<String>emptyList();
+		for(Subcategory sub : subcategories){subcategorynames.add(sub.getName());}*/
+		List<Activity> activities = activityRepository.iwas(category);
+		
+		lastcategory = category;
 		
 		model.addAttribute("activities", activities);
 		model.addAttribute("subcategories", subcategories);
@@ -83,28 +98,13 @@ public class ActivityController {
 	@RequestMapping("/fill")
 	@Transactional
 	public String fillData(Model model) {
+		List<Subcategory> subcategories = subcategoryRepository.findAll();;
 		
-		DataFactory  df = new DataFactory();
-		Subcategory subcategory = null;
-		
-		for(Sports s : Sports.values()){
-			subcategory = new Subcategory(s.name());
-			//Activity a = new Activity(subcategory, "Graz", "TestTitle", "TestText");
-			subcategoryRepository.save(subcategory);
-		}
-		/*
-		for(int i=0;i<100; i++){
-			if(i%10==0){
-				String subcategoryName = df.getBusinessName();
-				subcategory = subcategoryRepository.findFirstByName(subcategoryName);
-				if(subcategory == null){
-					subcategory = new Subcategory(subcategoryName);
-				}
-			}
-			Activity a = new Activity(df.getFirstName(),df.getBirthDate(),df.getRandomText(4), df.getRandomText(4), true, 10, true  ); 
-			a.setSubcategory(subcategory);
+		for(Subcategory s : subcategories){
+			Activity a = new Activity(s, "Graz", "Test", "TestText");
 			activityRepository.save(a);
-		} */
+		}
+	
 		
 		return "forward:listActivities";
 	}

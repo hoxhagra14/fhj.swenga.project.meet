@@ -82,7 +82,7 @@
 								<div class="panel-heading">
 									<h1 class="text-center">Sports</h1>
 								</div>
-								<a href="listActivities?category=sports">
+								<a href="listActivities?category=Sport">
 									<div class="panel-footer">
 										<p class="text-right">Weiter</p>
 									</div>
@@ -97,7 +97,7 @@
 								<div class="panel-heading">
 									<h1 class="text-center">Gaming</h1>
 								</div>
-								<a href="listActivities?category=gaming">
+								<a href="listActivities?category=Games">
 									<div class="panel-footer">
 										<p class="text-right">Weiter</p>
 									</div>
