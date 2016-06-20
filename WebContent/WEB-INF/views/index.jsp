@@ -72,76 +72,7 @@
 								Help
 						</a></li>
 					</ul>
-<<<<<<< HEAD
 				</div>
-			</div>
-			<div class="col-lg-10">
-				<div class="row">
-					<div class="col-lg-5">
-						<div class="panel">
-							<div class="panel-heading">
-								<h1 class="text-center">Sports</h1>
-							</div>
-							<a href="#">
-								<div class="panel-footer">
-									<p class="text-right">Weiter</p>
-								</div>
-							</a>
-						</div>
-					</div>
-					
-					<div class="col-lg-2"></div>
-							
-					<div class="col-lg-5 ">
-						<div class="panel">
-							<div class="panel-heading">
-								<h1 class="text-center">Gaming</h1>
-							</div>
-							<a href="#">
-								<div class="panel-footer">
-									<p class="text-right">Weiter</p>
-								</div>
-							</a>
-						</div>
-					</div>
-=======
->>>>>>> refs/remotes/Steve/master
-				</div>
-<<<<<<< HEAD
-				
-				<div class="row spacer"></div>
-				
-				<div class="row">
-					<div class="col-lg-5 ">
-						<div class="panel">
-							<div class="panel-heading">
-								<h1 class="text-center">Party</h1>
-							</div>
-							<a href="#">
-								<div class="panel-footer">
-									<p class="text-right">Weiter</p>
-								</div>
-							</a>
-						</div>
-					</div>
-					
-					<div class="col-lg-2"></div>
-							
-					<div class="col-lg-5 ">
-						<div class="panel">
-							<div class="panel-heading">
-								<h1 class="text-center">Learning</h1>
-							</div>
-							<a href="#">
-								<div class="panel-footer">
-									<p class="text-right">Weiter</p>
-								</div>
-							</a>
-						</div>
-					</div>
-				</div>
-=======
->>>>>>> refs/remotes/Steve/master
 			</div>
 			<form>
 				<div class="col-lg-10">
