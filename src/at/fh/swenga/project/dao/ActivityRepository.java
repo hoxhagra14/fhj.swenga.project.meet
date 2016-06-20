@@ -32,6 +32,6 @@ public interface ActivityRepository extends JpaRepository<Activity, Integer> {
 	public List<Activity> findByState(String state);
 	
 	@Query("select a from Activity a inner join a.subcategory s where s.category.name = :name")
-	public List<Activity> iwas(@Param("name")String name);
+	public List<Activity> getCatActivites(@Param("name")String name);
 	
 }

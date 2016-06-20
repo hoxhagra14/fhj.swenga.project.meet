@@ -61,14 +61,15 @@
 								class="glyphicon glyphicon-plus"></i> Add Activity
 						</a></li>
 						<li class="sidebar-search">
-							<form action="findByTitleContainingAllIgnoreCase" method="post">
+							<form action="find" method="post">
 								Search for Activities </br>
 								<div class="input-group custom-search-form">
-									<input class="form-control" placeholder="Suchen..." type="text"
-										name="searchString"> <span class="input-group-btn">
-										<button class="btn btn-default" type="submit">
-											<i class="glyphicon glyphicon-search"></i>
-										</button>
+									<input type="hidden" name="type" value="findTitle"> <input
+										class="form-control" placeholder="Suchen..." type="text"
+										name="searchString"> <span class="input-group-btn" />
+									<button class="btn btn-default" type="submit">
+										<i class="glyphicon glyphicon-search"></i>
+									</button>
 									</span>
 								</div>
 							</form>
@@ -76,7 +77,8 @@
 						<br />
 						<li>
 							<p>Subcategories</p>
-							<form action="findBySubcategoryNameContainingAllIgnoreCase">
+							<form action="find" method="post">
+								<input type="hidden" name="type" value="findSubcategory">
 								<c:forEach items="${subcategories}" var="subcategory">
 									<li><a> <input type="checkbox" name="searchString"
 											value="${subcategory.name}">${subcategory.name}<br>
@@ -89,10 +91,11 @@
 						</li>
 						<br />
 						<li>
-							<form action="findByState">
-								<a><input type="checkbox" name="searchString"
-									value="Burgenland">Burgenland<br> </a> <a> <input
-									type="checkbox" name="searchString" value="Kärnten">Kärnten<br>
+							<form action="find">
+								<input type="hidden" name="type" value="findState"> <a><input
+									type="checkbox" name="searchString" value="Burgenland">Burgenland<br>
+								</a> <a> <input type="checkbox" name="searchString"
+									value="Kärnten">Kärnten<br>
 								</a> <a> <input type="checkbox" name="searchString"
 									value="Niederösterreich">Niederösterreich<br>
 								</a> <a> <input type="checkbox" name="searchString"
@@ -113,10 +116,10 @@
 						</li>
 						<br />
 						<li>
-							<form action="findByLocationContainingAllIgnoreCase"
-								method="post">
+							<form action="find" method="post">
 								Ortsuche </br>
 								<div class="input-group custom-search-form">
+									<input type="hidden" name="type" value="findLocation">
 									<input class="form-control" placeholder="Suchen..." type="text"
 										name="searchString"> <span class="input-group-btn">
 										<button class="btn btn-default" type="submit">
