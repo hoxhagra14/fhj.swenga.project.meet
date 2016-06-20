@@ -44,7 +44,7 @@ public class ActivityController {
 		return "index";
 	}
 	
-	@RequestMapping(value = "/listActivities", method = RequestMethod.GET)
+	@RequestMapping(value = "/listActivities") //method = RequestMethod.GET
 	public String list(Model model, @RequestParam(required=false) String category) {
 //		if(category==null) category = lastcategory;
 //		lastcategory = category;

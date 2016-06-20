@@ -56,7 +56,7 @@
 		<div class="container-fluid">
 			<div class="col-lg-2">
 				<div class="sidebar-nav navbar-collapse">
-					<ul class="nav" id ="side-menu">
+					<ul class="nav" id="side-menu">
 						<li><a href="addActivity"> <i
 								class="glyphicon glyphicon-plus"></i> Add Activity
 						</a></li>
@@ -73,7 +73,7 @@
 								</div>
 							</form>
 						</li>
-						<br/>  
+						<br />
 						<li>
 							<p>Subcategories</p>
 							<form action="findBySubcategoryNameContainingAllIgnoreCase">
@@ -87,7 +87,7 @@
 							</form>
 
 						</li>
-						<br/> 
+						<br />
 						<li>
 							<form action="findByState">
 								<a><input type="checkbox" name="searchString"
@@ -111,9 +111,10 @@
 							</form>
 
 						</li>
-						<br/> 
+						<br />
 						<li>
-							<form action="findByLocationContainingAllIgnoreCase" method="post">
+							<form action="findByLocationContainingAllIgnoreCase"
+								method="post">
 								Ortsuche </br>
 								<div class="input-group custom-search-form">
 									<input class="form-control" placeholder="Suchen..." type="text"
@@ -128,37 +129,39 @@
 				</li>
 				</ul>
 			</div>
-		</div>
 
-		<!-- END MENU -->
-		<div class="col-lg-8">
-			<fieldset>
-				<c:forEach items="${activities}" var="activity">
-					<hr>
-					<div class="row">
-						<div class="col-sm-4">
-							<a href="#" class=""><img src="http://placehold.it/1280X720"
-								class="img-responsive"></a>
-						</div>
-						<div class="col-sm-8">
+			<!-- END MENU -->
+			<div class="col-lg-8">
+				<fieldset>
+					<c:forEach items="${activities}" var="activity">
+						<hr>
+						<div class="row">
+							<div class="col-sm-4">
+								<a href="#" class=""><img src="http://placehold.it/1280X720"
+									class="img-responsive"></a>
+							</div>
+							<div class="col-sm-8">
 
-							<h3 class="title">${activity.title}</h3>
-							<p class="text-muted">
-								<span class="glyphicon glyphicon-lock"></span> Available
-								Exclusively for Premium Members
-							</p>
-							<p>${activity.text}</p>
-								
+								<h3 class="title">${activity.title}</h3>
+								<p class="text-muted">
+									<span class="glyphicon glyphicon-lock"></span> Available
+									Exclusively for Premium Members
+								</p>
+								<p>${activity.text}</p>
+
 								<p>${activity.subcategory.name}</p>
 
-							<p class="text-muted">
-								Created by <a href="#">Granit Hocha</a>
-							</p>
+								<p class="text-muted">
+									Created by <a href="#">Granit Hocha</a>
+								</p>
+							</div>
 						</div>
-					</div>
-				</c:forEach>
-			</fieldset>
+					</c:forEach>
+				</fieldset>
+			</div>
 		</div>
+
+
 	</div>
 	<!-- /#wrapper -->
 
