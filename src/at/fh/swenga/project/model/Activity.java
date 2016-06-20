@@ -33,7 +33,7 @@ public class Activity {
 	@ManyToMany(mappedBy="activities", fetch=FetchType.EAGER)
 	private List<User> users;
 	
-	@ManyToOne(cascade = CascadeType.MERGE) //CascadeType.Persist, TODO: Noch notwendig?
+	@ManyToOne(cascade = CascadeType.MERGE)
 	Subcategory subcategory;
 	
 	private String location; // Wie Subcategory?
