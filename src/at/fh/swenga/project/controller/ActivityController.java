@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,7 +28,6 @@ import at.fh.swenga.project.model.Subcategory;
 public class ActivityController {
 	String lastcategory; 
 	
-	
 	@Autowired
 	ActivityRepository activityRepository;
 	
@@ -39,15 +39,7 @@ public class ActivityController {
 	
 	@RequestMapping(value = { "/" })
 	public String index(Model model){	
-		subcategoryRepository.save(Categories.FillCategories()); //Erstellen aller Catergories + Subcategories, TODO:Name ändern "Categories"
-		
-		Activity a = new Activity(subcategoryRepository.findByName("Soccer"), "Graz","Steiermark", "Test", "TestText", 1);
-		activityRepository.save(a);
-		
-		Activity b = new Activity(subcategoryRepository.findByName("Counter Strike"), "Graz","Steiermark", "Test", "TestText", 1);
-		activityRepository.save(b);
-
-		
+	
 		return "index";
 	}
 	
@@ -131,12 +123,13 @@ public class ActivityController {
 	@RequestMapping("/fill")
 	@Transactional
 	public String fillData(Model model) {
-		List<Subcategory> subcategories = subcategoryRepository.findAll();;
+		subcategoryRepository.save(Categories.FillCategories()); //Erstellen aller Catergories + Subcategories, TODO:Name ändern "Categories"
 		
-		for(Subcategory s : subcategories){
-			Activity a = new Activity(s, "Graz","Steiermark", "Test", "TestText", 1);
-			activityRepository.save(a);
-		}
+		Activity a = new Activity(subcategoryRepository.findByName("Soccer"), "Graz","Steiermark", "Test", "TestText", 1);
+		activityRepository.save(a);
+		
+		Activity b = new Activity(subcategoryRepository.findByName("Counter Strike"), "Graz","Steiermark", "Test", "TestText", 1);
+		activityRepository.save(b);
 	
 		
 		return "forward:listActivities";
@@ -152,7 +145,7 @@ public class ActivityController {
 		
 	@RequestMapping("/add")
 	public String addActivityInDatabase(Model model, @RequestParam String title, @RequestParam String text, @RequestParam String state, @RequestParam String location, @RequestParam int restriction, @RequestParam String type  ) {
-		Subcategory s = subcategoryRepository.findByName(type); // TODO: Sonst Error
+		Subcategory s = subcategoryRepository.findByName(type); 
 		Activity a = new Activity(s, location ,state, text, title, restriction);
 		activityRepository.save(a);
 		
@@ -166,11 +159,9 @@ public class ActivityController {
 		return "forward:listActivities";
 	}
 
-	// @ExceptionHandler(Exception.class)
+	@ExceptionHandler(Exception.class)
 	public String handleAllException(Exception ex) {
-
 		return "showError";
-
 	}
 	
 	

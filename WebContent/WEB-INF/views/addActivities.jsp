@@ -39,7 +39,7 @@
 		<nav class="navbar navbar-static-top" role="navigation">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a href="index.jsp" class="navbar-brand">M E E T .</a>
+				<a href="./" class="navbar-brand">M E E T .</a>
 			</div>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
