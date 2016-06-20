@@ -39,7 +39,14 @@ public class ActivityController {
 	
 	@RequestMapping(value = { "/" })
 	public String index(Model model){	
-		categoryReposiory.save(Categories.FillCategories()); //Erstellen aller Catergories + Subcategories
+		subcategoryRepository.save(Categories.FillCategories()); //Erstellen aller Catergories + Subcategories, TODO:Name ändern "Categories"
+		
+		Activity a = new Activity(subcategoryRepository.findByName("Soccer"), "Graz","Steiermark", "Test", "TestText", 1);
+		activityRepository.save(a);
+		
+		Activity b = new Activity(subcategoryRepository.findByName("Counter Strike"), "Graz","Steiermark", "Test", "TestText", 1);
+		activityRepository.save(b);
+
 		
 		return "index";
 	}
@@ -49,12 +56,12 @@ public class ActivityController {
 //		if(category==null) category = lastcategory;
 //		lastcategory = category;
 //		
-//		List<Subcategory> subcategories = subcategoryRepository.findByCategoryName(category); //TODO: only right activities; Join? 
+		List<Subcategory> subcategories = subcategoryRepository.findByCategoryName(category); //TODO: only right activities; Join? 
 //		/*List<String> subcategorynames = Collections.<String>emptyList();
 //		for(Subcategory sub : subcategories){subcategorynames.add(sub.getName());}*/
 //		List<Activity> activities = activityRepository.iwas(category);
 		List<Activity> activities = activityRepository.findAll();
-		List<Subcategory> subcategories = subcategoryRepository.findAll();
+//		List<Subcategory> subcategories = subcategoryRepository.findAll();
 		
 		
 		model.addAttribute("activities", activities);

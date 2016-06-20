@@ -25,11 +25,11 @@ public class Subcategory {
 	
 	private String name;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
 	Category category;
 
-	@OneToMany(mappedBy = "subcategory", fetch = FetchType.EAGER)
-	private Set<Activity> activities; // Set?
+	@OneToMany(mappedBy = "subcategory")
+	private Set<Activity> activities; 
 	
 	@Version
 	long version;
@@ -41,6 +41,12 @@ public class Subcategory {
 	public Subcategory(String name){
 		super();
 		this.name = name;
+	}
+	
+	public Subcategory(String name, Category category){
+		super();
+		this.name = name;
+		this.category = category;
 	}
 
 	public Subcategory(String name, Category category, Set<Activity> activities) {

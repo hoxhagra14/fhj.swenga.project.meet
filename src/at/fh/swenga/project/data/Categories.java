@@ -4,19 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import at.fh.swenga.project.model.Category;
+import at.fh.swenga.project.model.Subcategory;
 
 public class Categories {
-	public static List<Category> FillCategories(){
-		List<Category> categories = new ArrayList<>();
+	public static List<Subcategory> FillCategories(){
+		List<Subcategory> subcategories = new ArrayList<>();
 		
 		Category sport = new Category("Sport");
-		for(Sports s: Sports.values()) sport.addSubcategory(s.toString());	
-		categories.add(sport);
+		for(Sports s: Sports.values()) subcategories.add(new Subcategory(s.toString(),sport)); 
 		
 		Category games = new Category("Games");
-		for(Games g: Games.values()) games.addSubcategory(g.toString());	
-		categories.add(games);
-		
-		return categories;
+		for(Games g: Games.values()) subcategories.add(new Subcategory(g.toString(),games)); 
+	
+		return subcategories;
 	}
 }
