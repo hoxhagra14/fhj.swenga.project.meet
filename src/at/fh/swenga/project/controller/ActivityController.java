@@ -145,7 +145,7 @@ public class ActivityController {
 	@RequestMapping("/addActivity")
 	public String addActivity(Model model) {
 		
-		List<Subcategory> sub = subcategoryRepository.findAll();
+		List<Subcategory> sub = subcategoryRepository.findAll(); // TODO: Nur die richtigen Anzeigen
 		model.addAttribute("subcategories", sub);
 		return "addActivities";
 	}

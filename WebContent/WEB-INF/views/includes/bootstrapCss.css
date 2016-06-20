@@ -35,6 +35,11 @@ body {
     margin-top: 40px; /* define margin as you see fit */
 }
 
+.login-spacer {
+    margin-top: 5px; /* define margin as you see fit */
+}
+
+
 .border {
 	outline: 2px solid black;
 }
