@@ -46,14 +46,15 @@ public class ActivityController {
 	
 	@RequestMapping(value = "/listActivities", method = RequestMethod.GET)
 	public String list(Model model, @RequestParam(required=false) String category) {
-		if(category==null) category = lastcategory;
+//		if(category==null) category = lastcategory;
+//		lastcategory = category;
+//		
+//		List<Subcategory> subcategories = subcategoryRepository.findByCategoryName(category); //TODO: only right activities; Join? 
+//		/*List<String> subcategorynames = Collections.<String>emptyList();
+//		for(Subcategory sub : subcategories){subcategorynames.add(sub.getName());}*/
+//		List<Activity> activities = activityRepository.iwas(category);
 		
-		List<Subcategory> subcategories = subcategoryRepository.findByCategoryName(category); //TODO: only right activities; Join? 
-		/*List<String> subcategorynames = Collections.<String>emptyList();
-		for(Subcategory sub : subcategories){subcategorynames.add(sub.getName());}*/
-		List<Activity> activities = activityRepository.iwas(category);
 		
-		lastcategory = category;
 		
 		model.addAttribute("activities", activities);
 		model.addAttribute("subcategories", subcategories);
