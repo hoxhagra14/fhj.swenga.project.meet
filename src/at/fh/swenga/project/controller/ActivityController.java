@@ -147,6 +147,7 @@ public class ActivityController {
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String handleLogin() {
+		
 		return "login";
 	}
 	
