@@ -127,7 +127,7 @@
 				</li>
 				</ul>
 			</div>
-		</div>
+		
 
 		<!-- END MENU -->
 		<div class="col-lg-8">
@@ -136,25 +136,26 @@
 					<hr>
 					<div class="row">
 						<div class="col-sm-4">
-							<a href="#" class=""><img src="http://placehold.it/1280X720"
+							<a href="fullActivity" class=""><img src="http://placehold.it/1280X720"
 								class="img-responsive"></a>
 						</div>
 						<div class="col-sm-8">
 
 							<h3 class="title">${activity.title}</h3>
 							<p class="text-muted">
-								<span class="glyphicon glyphicon-lock"></span> Available
-								Exclusively for Premium Members
+								<span class="glyphicon glyphicon-calendar"></span> 
+								July 23, 2014
 							</p>
 							<p>${activity.text}</p>
 
 							<p class="text-muted">
-								Created by <a href="#">Granit Hocha</a>
+								Created by <a href="#">Granit Hoxha</a>
 							</p>
 						</div>
 					</div>
 				</c:forEach>
 			</fieldset>
+		</div>
 		</div>
 	</div>
 	<!-- /#wrapper -->

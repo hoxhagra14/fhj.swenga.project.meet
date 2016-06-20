@@ -139,11 +139,20 @@ public class ActivityController {
 		model.addAttribute("subcategories", sub);
 		return "addActivities";
 	}
+	
+	@RequestMapping("/fullActivity")
+	public String fullActivity(Model model) {
+		
+		//model.addAttribute("subcategories", sub);
+		return "activity";
+	}
+	
+	
 		
 	@RequestMapping("/add")
 	public String addActivityInDatabase(Model model, @RequestParam String title, @RequestParam String text, @RequestParam String state, @RequestParam String location, @RequestParam int restriction, @RequestParam String type  ) {
 		Subcategory s = new Subcategory(type);
-		Activity a = new Activity(s, location ,state, text, title, restriction);
+		Activity a = new Activity(s, location ,state, title, text, restriction);
 		activityRepository.save(a);
 		
 		return "forward:listActivities";
