@@ -53,7 +53,8 @@ public class ActivityController {
 //		/*List<String> subcategorynames = Collections.<String>emptyList();
 //		for(Subcategory sub : subcategories){subcategorynames.add(sub.getName());}*/
 //		List<Activity> activities = activityRepository.iwas(category);
-		
+		List<Activity> activities = activityRepository.findAll();
+		List<Subcategory> subcategories = subcategoryRepository.findAll();
 		
 		
 		model.addAttribute("activities", activities);
@@ -131,7 +132,7 @@ public class ActivityController {
 		List<Subcategory> subcategories = subcategoryRepository.findAll();;
 		
 		for(Subcategory s : subcategories){
-			Activity a = new Activity(s, "Graz", "Test", "TestText");
+			Activity a = new Activity(s, "Graz","Steiermark", "Test", "TestText", 1);
 			activityRepository.save(a);
 		}
 	
