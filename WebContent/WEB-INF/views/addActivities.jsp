@@ -12,7 +12,7 @@
 <link
 	href="http://www.malot.fr/bootstrap-datetimepicker/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css"
 	rel="stylesheet">
-	<!-- Custom CSS -->
+<!-- Custom CSS -->
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,7 +30,7 @@
 	crossorigin="anonymous">
 
 
-	<!-- Latest compiled and minified JavaScript -->
+<!-- Latest compiled and minified JavaScript -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script
@@ -79,7 +79,7 @@
 					</ul>
 				</div>
 			</div>
-			<div class="col-lg-10">
+			<div class="col-lg-8">
 				<form class="form-horizontal" method="post" action="add">
 					<fieldset>
 						<legend>Add Activity</legend>
@@ -183,8 +183,8 @@
 
 	<!-- jQuery -->
 	<script src="js/jquery.js"></script>
-	
-		<!-- JS for Datetime picker -->
+
+	<!-- JS for Datetime picker -->
 
 	<script type="text/javascript"
 		src="http://www.malot.fr/bootstrap-datetimepicker/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
@@ -202,8 +202,11 @@
 
 		});
 	</script>
+	
+	
 
 	<!-- Bootstrap Core JavaScript -->
 	<script src="js/bootstrap.min.js"></script>
+	
 </body>
 </html>

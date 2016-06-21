@@ -32,123 +32,117 @@
 
 </head>
 <body>
-	<div class="container">
-		<section id="wrapper">
+	<div id="wrapper">
+		<!-- Navigation -->
+		<nav class="navbar navbar-static-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a href="./" class="navbar-brand">M E E T .</a>
+			</div>
+			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown">User <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Settings</a> <a href="#">Sign out</a></li>
+					</ul></li>
+			</ul>
+		</div>
+		</nav>
+		<!-- /#navigation -->
+		<!-- TODO: In foreach ändern -->
+		<!-- SIDEBAR MENU -->
+		<div class="container-fluid">
+			<div class="col-lg-2">
+				<div class="profile-usermenu">
+					<ul class="nav">
+						<li class="active"><a href="#"> <i
+								class="glyphicon glyphicon-home"></i> Overview
+						</a></li>
+						<li><a href="#"> <i class="glyphicon glyphicon-user"></i>
+								Account Settings
+						</a></li>
+						<li><a href="#" target="_blank"> <i
+								class="glyphicon glyphicon-ok"></i> Tasks
+						</a></li>
+						<li><a href="#"> <i class="glyphicon glyphicon-flag"></i>
+								Help
+						</a></li>
+					</ul>
+				</div>
+			</div>
 
-		<div class="row">
-			<div class="col-md-12">
-				<div class="masthead well well-sm">
-					<h1>
-						<span class="light text-primary">Aktivität</span>
-					</h1>
+			<div class="col-lg-8">
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<h3 class="panel-title">Activity</h3>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-md-3 col-lg-3 " align="center">
+								<img alt="User Pic"
+									src="http://placehold.it/1280X720"
+									class="img-circle img-responsive">
+							</div>
+
+							<div class=" col-md-9 col-lg-9 ">
+								<table class="table table-user-information">
+									<tbody>
+										<tr>
+											<td><strong>Title:</strong></td>
+											<td>${activity.title}</td>
+										</tr>
+										<tr>
+											<td>Date:</td>
+											<td>${activity.date }</td>
+										</tr>
+										<tr>
+											<td><span class="glyphicon glyphicon-map-marker">Location:</span></td>
+											<td>${activity.location }</td>
+										</tr>
+
+										<tr>
+										<tr>
+											<td>Subcategory</td>
+											<td>${activity.subcategory }</td>
+										</tr>
+										<tr>
+											<td><span class="glyphicon glyphicon-user">Attendane:</span></td>
+											<td>${activity.restriction }</td>
+										</tr>
+										<tr>
+											<td>Email</td>
+											<td><a href="mailto:info@support.com">info@support.com</a></td>
+										</tr>
+										<td>Description:</td>
+										<td>${activity.text }</td>
+
+										</tr>
+
+									</tbody>
+								</table>
+
+								<a href="#" class="btn btn-primary">Join Activity</a>
+
+							</div>
+						</div>
+					</div>
+					<div class="panel-footer">
+						<a data-original-title="Broadcast Message" data-toggle="tooltip"
+							type="button" class="btn btn-sm btn-primary"><i
+							class="glyphicon glyphicon-envelope"></i></a> <span
+							class="pull-right"> <a href="edit.html"
+							data-original-title="Edit this user" data-toggle="tooltip"
+							type="button" class="btn btn-sm btn-warning"><i
+								class="glyphicon glyphicon-edit"></i></a> <a
+							data-original-title="Remove this user" data-toggle="tooltip"
+							type="button" class="btn btn-sm btn-danger"><i
+								class="glyphicon glyphicon-remove"></i></a>
+						</span>
+					</div>
+
 				</div>
 			</div>
 		</div>
-
-		<div class="row">
-			<div class="col-md-8">
-
-				<div class="article">
-					<h3>${activity.title}</h3>
-
-					<ul class="list-unstyled list-inline">
-						<li><i class="fa fa-calendar"></i> ${activity.date }</li>
-						<li><i class="fa fa-user"></i> Sergio Rodriguez</li>
-						<li><i class="fa fa-comments"></i> <a href="#">24
-								Comments</a></li>
-					</ul>
-
-					<div class="article-content">
-
-						<p>${activity.text}</p>
-
-					</div>
-
-					<ul class="list-unstyled list-inline blog-tags">
-						<li><a href="#"><span class="fa fa-tag"></span> Example
-								heading</a></li>
-						<li><a href="#"><span class="fa fa-tag"></span> Example
-								heading</a></li>
-						<li><a href="#"><span class="fa fa-tag"></span> Example
-								heading</a></li>
-					</ul>
-
-				</div>
-
-			</div>
-
-			<div class="col-md-4">
-
-				<div>
-
-					<div>
-						<h4>
-							<span class="glyphicon glyphicon-map-marker">Location:</span> <strong>${activity.location}</strong>
-						</h4>
-					</div>
-					<br/>
-					<div>
-						<h4>
-							<span class="glyphicon glyphicon-user">participants:</span>
-						</h4>
-					</div>
-
-					<div class="list-group" id="list-group">
-
-						<a href="#" class="list-group-item"> <span
-							class="fa-stack fa-lg"> <i
-								class="fa-stack-2x fa fa-circle "></i> <i
-								class="fa-stack-1x text-primary fa fa-envelope "></i>
-						</span> <span class="">Email</span>
-						</a> <a href="#" class="list-group-item"> <span
-							class="fa-stack fa-lg"> <i
-								class="fa-stack-2x fa fa-circle "></i> <i
-								class="fa-stack-1x text-primary fa fa-envelope "></i>
-						</span> <span class="">Email</span>
-						</a> <a href="#" class="list-group-item"> <span
-							class="fa-stack fa-lg"> <i
-								class="fa-stack-2x fa fa-circle "></i> <i
-								class="fa-stack-1x text-primary fa fa-envelope "></i>
-						</span> <span class="">Email</span>
-						</a> <a href="#" class="list-group-item"> <span
-							class="fa-stack fa-lg"> <i
-								class="fa-stack-2x fa fa-circle "></i> <i
-								class="fa-stack-1x text-primary fa fa-envelope "></i>
-						</span> <span class="">Email</span>
-						</a> <a href="#" class="list-group-item"> <span
-							class="fa-stack fa-lg"> <i
-								class="fa-stack-2x fa fa-circle "></i> <i
-								class="fa-stack-1x text-primary fa fa-envelope "></i>
-						</span> <span class="">Email</span>
-						</a>
-					</div>
-
-
-					<div class="headline">
-						<h3>Tags</h3>
-					</div>
-
-					<ul class="list-unstyled list-inline blog-tags">
-						<li><a href="#"><i class="fa fa-tags"></i> Business</a></li>
-						<li><a href="#"><i class="fa fa-tags"></i> Music</a></li>
-						<li><a href="#"><i class="fa fa-tags"></i> Internet</a></li>
-						<li><a href="#"><i class="fa fa-tags"></i> Education</a></li>
-						<li><a href="#"><i class="fa fa-tags"></i> People</a></li>
-						<li><a href="#"><i class="fa fa-tags"></i> Math</a></li>
-						<li><a href="#"><i class="fa fa-tags"></i> Photos</a></li>
-						<li><a href="#"><i class="fa fa-tags"></i> Electronics</a></li>
-						<li><a href="#"><i class="fa fa-tags"></i> Apple</a></li>
-						<li><a href="#"><i class="fa fa-tags"></i> Canada</a></li>
-					</ul>
-
-				</div>
-
-			</div>
-		</div>
-
-
-
-		</section>
 	</div>
 </body>
 </html>
