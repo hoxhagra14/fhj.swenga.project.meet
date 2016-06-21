@@ -42,7 +42,7 @@ public class ActivityController {
 	
 	@RequestMapping(value = { "/" })
 	public String index(Model model){	
-		if(!categoriesCreated) subcategoryRepository.save(Categories.FillCategories()); //Erstellen aller Catergories + Subcategories
+		//if(!categoriesCreated) subcategoryRepository.save(Categories.FillCategories()); //Erstellen aller Catergories + Subcategories
 		categoriesCreated = true;
 	
 		return "index";
@@ -71,8 +71,9 @@ public class ActivityController {
 
 	
 	@RequestMapping(value = { "/find" })
-	public String find(Model model, @RequestParam String searchString, @RequestParam String type, RedirectAttributes redirectAttributes) { // TODO: Es werden alle passenden angezeigt nicht nur die der jeweiligen Categorie-Liste
+	public String find(Model model, @RequestParam(required=false) String searchString, @RequestParam String type, RedirectAttributes redirectAttributes) { // TODO: Es werden alle passenden angezeigt nicht nur die der jeweiligen Categorie-Liste
 		List<Activity> activities = null;
+		if(searchString==null) type="default"; //Falls kein Filter ausgewählt wurde, werden alle ausgegeben
 		
 		switch (type) {
 		case "findTitle":
