@@ -1,5 +1,6 @@
 package at.fh.swenga.project.controller;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -53,9 +54,14 @@ public class ActivityController {
 		lastcategory = category;
 	
 		List<Activity> activities = (List<Activity>) model.asMap().get("activities");
+		List<Integer> activitiesInt = new ArrayList<>();
+		if(activities!=null) {
+			for(Activity a : activities) { activitiesInt.add(a.getId()); }
+		}
 		
 		List<Subcategory> subcategories = subcategoryRepository.findByCategoryName(category);
-		if(activities==null) activities = activityRepository.getCatActivites(category); // Falls keine Activties übergeben wurden
+		if(activities==null) activities = activityRepository.getCatActivities(category); // Falls keine Activties übergeben wurden (also keine herausgefiltert wurden)
+		else activities = activityRepository.getFilteredActivities(category, activitiesInt);
 		
 		model.addAttribute("activities", activities);
 		model.addAttribute("subcategories", subcategories);
@@ -133,7 +139,7 @@ public class ActivityController {
 		return "forward:listActivities";
 	}
 
-	@ExceptionHandler(Exception.class)
+	//@ExceptionHandler(Exception.class) TODO: Wieder aktivieren nach fertigstellung
 	public String handleAllException(Exception ex) {
 		return "showError";
 	}
