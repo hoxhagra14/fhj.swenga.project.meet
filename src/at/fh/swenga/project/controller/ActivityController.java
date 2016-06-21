@@ -1,12 +1,12 @@
 package at.fh.swenga.project.controller;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import org.fluttercode.datafactory.impl.DataFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -21,7 +21,6 @@ import at.fh.swenga.project.dao.ActivityRepository;
 import at.fh.swenga.project.dao.CategoryRepository;
 import at.fh.swenga.project.dao.SubcategoryRepository;
 import at.fh.swenga.project.data.Categories;
-import at.fh.swenga.project.data.Games;
 import at.fh.swenga.project.data.Sports;
 import at.fh.swenga.project.model.Activity;
 import at.fh.swenga.project.model.Subcategory;
@@ -123,11 +122,19 @@ public class ActivityController {
 		model.addAttribute("subcategories", sub);
 		return "addActivities";
 	}
-		
+	
+	@RequestMapping("/fullActivity")
+	public String fullActivity(Model model, @RequestParam(required=false) int id) {
+		Activity a = activityRepository.findById(id);
+		model.addAttribute("activity", a);
+		//model.addAttribute("subcategories", sub);
+		return "activity";
+	}
+	
 	@RequestMapping("/add")
-	public String addActivityInDatabase(Model model, @RequestParam String title, @RequestParam String text, @RequestParam String state, @RequestParam String location, @RequestParam int restriction, @RequestParam String type  ) {
-		Subcategory s = subcategoryRepository.findByName(type); 
-		Activity a = new Activity(s, location ,state, title, text, restriction);
+	public String addActivityInDatabase(Model model, @RequestParam String title, @RequestParam String text, @RequestParam String state, @RequestParam String location, @RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy") Date date, @RequestParam int restriction, @RequestParam String type  ) {
+		Subcategory s = subcategoryRepository.findByName(type); // TODO: Sonst Error
+		Activity a = new Activity(s, location ,state, title, date,  text, restriction);
 		activityRepository.save(a);
 		
 		return "forward:listActivities";

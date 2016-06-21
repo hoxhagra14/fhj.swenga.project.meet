@@ -3,10 +3,16 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <title>meet.</title>
+<link
+	href="http://www.malot.fr/bootstrap-datetimepicker/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css"
+	rel="stylesheet">
+<!-- Custom CSS -->
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,6 +28,7 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
 	integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r"
 	crossorigin="anonymous">
+
 
 <!-- Latest compiled and minified JavaScript -->
 <script
@@ -72,7 +79,7 @@
 					</ul>
 				</div>
 			</div>
-			<div class="col-lg-10">
+			<div class="col-lg-8">
 				<form class="form-horizontal" method="post" action="add">
 					<fieldset>
 						<legend>Add Activity</legend>
@@ -125,6 +132,17 @@
 							</div>
 						</div>
 
+						<! ----------------  Datum ---------------- -->
+						<c:set var="now" value="<%=new java.util.Date()%>" />
+						<div class="form-group">
+							<label for="inputDate" class="col-md-2 control-label">Date</label>
+							<div class="col-md-10">
+								<input class="form_datetime" id="inputDate" placeholder="Date"
+									type="text"
+									value="<fmt:formatDate value="${now }" pattern="dd.MM.yyyy"/>"
+									name="date">
+							</div>
+						</div>
 
 						<! ----------------  Inhalt ---------------- -->
 						<div class="form-group">
@@ -166,7 +184,29 @@
 	<!-- jQuery -->
 	<script src="js/jquery.js"></script>
 
+	<!-- JS for Datetime picker -->
+
+	<script type="text/javascript"
+		src="http://www.malot.fr/bootstrap-datetimepicker/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+
+	<script>
+		$(function() {
+
+			$(".form_datetime").datetimepicker({
+				format : "dd.mm.yyyy",
+				autoclose : true,
+				todayBtn : true,
+				pickerPosition : "bottom-left",
+				minView : 2
+			});
+
+		});
+	</script>
+	
+	
+
 	<!-- Bootstrap Core JavaScript -->
 	<script src="js/bootstrap.min.js"></script>
+	
 </body>
 </html>
