@@ -50,12 +50,13 @@
 						<li><a href="user">User Profile</a> <c:url value="/logout"
 								var="logoutUrl" /></li>
 						<li role="separator" class="divider"></li>
-						<li><a href="#">Settings</a> <c:url value="/logout"
-								var="logoutUrl" /></li>
+						<li><button class="btn btn-link" onclick="location.href='#'">Settings</button> 
+						<c:url value="/logout" var="logoutUrl" />
 						<li role="separator" class="divider"></li>
-						<li><form action="${logoutUrl }" method="post">
+						<li><form action="${logoutUrl}" method="post">
 								<input type="hidden" name="${_csrf.parameterName}"
-									value="${_csrf.token}" /> <input class="btn left-spacer"
+									value="${_csrf.token}" /> 
+								<input class="btn btn-link"
 									type="submit" value="Logout" />
 							</form></li>
 					</ul></li>
