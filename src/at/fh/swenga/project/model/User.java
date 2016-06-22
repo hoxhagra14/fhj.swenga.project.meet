@@ -1,95 +1,76 @@
 package at.fh.swenga.project.model;
 
-import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Version;
-
 
 @Entity
-@Table(name = "User")
-public class User {
+@Table(name = "users")
+public class User implements java.io.Serializable {
+	private static final long serialVersionUID = 8198173157518983615L;
+	
+	private String username;
+	private String password;
+	private boolean enabled;
+	private Set<UserRole> userRole = new HashSet<UserRole>(0);
+
+	public User() {
+	}
+
+	public User(String username, String password, boolean enabled) {
+		this.username = username;
+		this.password = password;
+		this.enabled = enabled;
+	}
+
+	public User(String username, String password, boolean enabled,
+			Set<UserRole> userRole) {
+		this.username = username;
+		this.password = password;
+		this.enabled = enabled;
+		this.userRole = userRole;
+	}
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	private String name;
-	private String city;
-	private int age;
-	// Interessen
-	// Bewertung
-	
-	@OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
-	List<Activity> ownedActivities;
-
-	@ManyToMany(cascade = CascadeType.PERSIST, fetch=FetchType.EAGER)
-	List<Activity> activities;
-	
-	@Version
-	long version;
-	
-	public User() {
-		super();
+	@Column(name = "username", unique = true, nullable = false, length = 45)
+	public String getUsername() {
+		return username;
 	}
 
-	public User(String name, String city, int age, List<Activity> activities) {
-		super();
-		this.name = name;
-		this.city = city;
-		this.age = age;
-		this.activities = activities;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
-	public String getName() {
-		return name;
+	@Column(name = "password", nullable = false, length = 60)
+	public String getPassword() {
+		return password;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
-	public String getCity() {
-		return city;
+	@Column(name = "enabled", nullable = false)
+	public boolean isEnabled() {
+		return enabled;
 	}
 
-	public void setCity(String city) {
-		this.city = city;
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 
-	public int getAge() {
-		return age;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	public Set<UserRole> getUserRole() {
+		return userRole;
 	}
 
-	public void setAge(int age) {
-		this.age = age;
+	public void setUserRole(Set<UserRole> userRole) {
+		this.userRole = userRole;
 	}
-	
-	public List<Activity> getOwnedActivities() {
-		return ownedActivities;
-	}
-
-	public void setOwnedActivities(List<Activity> ownedActivities) {
-		this.ownedActivities = ownedActivities;
-	}
-
-
-	public List<Activity> getActivities() {
-		return activities;
-	}
-
-	public void setActivities(List<Activity> activities) {
-		this.activities = activities;
-	}
-	
-	
-	
 }

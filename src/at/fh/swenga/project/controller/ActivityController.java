@@ -152,5 +152,17 @@ public class ActivityController {
 		return "showError";
 	}
 	
+	@RequestMapping("/registration")
+	public String registration()
+	{
+		return "registration";
+		
+	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String handleLogin() {
+		return "login";
+	}
+	
 	
 }
