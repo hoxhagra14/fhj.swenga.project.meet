@@ -36,6 +36,8 @@ public class ActivityController {
 	String lastcategory;
 	String currentUser;
 	boolean categoriesCreated = false;
+	
+	
 
 	@Autowired
 	ActivityRepository activityRepository;
@@ -168,6 +170,29 @@ public class ActivityController {
 		model.addAttribute("currentUser", currentUser);
 		return "activity";
 	}
+	/*
+	@RequestMapping("/editUser")
+	public String editUser(Model model, @RequestParam String name, @RequestParam String age, @RequestParam String city) {
+		
+		User userobject = userRepository.findByUsername(currentUser).get(0);
+		model.addAttribute("currentUser", currentUser);
+		
+		userobject.setName(name);
+		userobject.setAge(Integer.parseInt(age));
+		userobject.setCity(city);
+		
+		userRepository.save(userobject);
+		
+		return "showUserProfile";
+	}*/
+	
+	@RequestMapping("/editUserForm")
+	public String editUserForm(Model model) {
+		User userobject = userRepository.findByUsername(currentUser).get(0);
+		model.addAttribute("userobject", userobject);
+		return "editUser";
+	}
+
 
 	@RequestMapping("/add")
 	public String addActivityInDatabase(Model model, @RequestParam String title, @RequestParam String text,
@@ -185,6 +210,10 @@ public class ActivityController {
 
 	@RequestMapping("/user")
 	public String showUserProfile(Model model) {
+		User userobject = userRepository.findByUsername(currentUser).get(0);
+		model.addAttribute("currentUser", currentUser);
+		
+		model.addAttribute("userobject", userobject);
 		return "showUserProfile";
 	}
 

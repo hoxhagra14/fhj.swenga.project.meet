@@ -48,17 +48,15 @@
 			</div>
 			<ul class="nav navbar-nav navbar-right margin-user">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown">User <span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="user">User Profile</a> <c:url value="/logout"
-								var="logoutUrl" /></li>
-						<li role="separator" class="divider"></li>
-						<li><button class="btn btn-link" onclick="location.href='#'">Settings</button>
-							<c:url value="/logout" var="logoutUrl" />
+					data-toggle="dropdown">${currentUser}<span class="caret"></span></a>
+				<ul class="dropdown-menu">
+						<li><a href="user">User Profile</a></li>
+						<c:url value="/logout" var="logoutUrl" />
 						<li role="separator" class="divider"></li>
 						<li><form action="${logoutUrl}" method="post">
 								<input type="hidden" name="${_csrf.parameterName}"
-									value="${_csrf.token}" /> <input class="btn btn-link"
+									value="${_csrf.token}" /> 
+								<input class="btn btn-link"
 									type="submit" value="Logout" />
 							</form></li>
 					</ul></li>

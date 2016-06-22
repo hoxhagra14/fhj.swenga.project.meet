@@ -47,18 +47,15 @@
 	<div id="wrapper">
 		<!-- Navigation -->
 		<nav class="navbar navbar-static-top" role="navigation">
+		<div class="container-fluid">
 			<div class="navbar-header">
-				<a href="./" class="navbar-brand"> M E E T .</a>
+				<a href="./" class="navbar-brand">M E E T .</a>
 			</div>
-			
-			<div class="nav navbar-nav navbar-right margin-user">
+			<ul class="nav navbar-nav navbar-right margin-user">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">${currentUser}<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="user">User Profile</a> <c:url value="/logout"
-								var="logoutUrl" /></li>
-						<li role="separator" class="divider"></li>
-						<li><button class="btn btn-link" onclick="location.href='#'">Settings</button> 
+				<ul class="dropdown-menu">
+						<li><a href="user">User Profile</a></li>
 						<c:url value="/logout" var="logoutUrl" />
 						<li role="separator" class="divider"></li>
 						<li><form action="${logoutUrl}" method="post">
@@ -68,26 +65,7 @@
 									type="submit" value="Logout" />
 							</form></li>
 					</ul></li>
-			</div>
-
-
-			<!-- <ul class="nav navbar-top-links navbar-right">
-				<li class="dropdown"><a aria-expanded="false"
-					class="dropdown-toggle" data-toggle="dropdown" href="#"> <i
-						class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
-				</a>
-					<ul class="dropdown-menu dropdown-user">
-						<li><a href="#"><i class="fa fa-user fa-fw"></i> User
-								Profile</a></li>
-						<li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-						</li>
-						<li class="divider"></li>
-						<li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i>
-								Logout</a></li>
-					</ul> <!-- /.dropdown-user --></li>
-				<!-- /.dropdown -->
-			<!--  </ul>-->
-			<!-- /.navbar-top-links -->
+			</ul>
 		</div>
 		</nav>
 		<!-- /#navigation -->
