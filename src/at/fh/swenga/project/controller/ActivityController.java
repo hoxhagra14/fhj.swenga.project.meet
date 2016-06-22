@@ -93,6 +93,7 @@ public class ActivityController {
 		model.addAttribute("subcategories", subcategories);
 		model.addAttribute("type", "findAll");
 		model.addAttribute("currentUser", currentUser);
+		model.addAttribute("category", category);
 		return "listActivities";
 	}
 
@@ -143,10 +144,15 @@ public class ActivityController {
 		return "forward:listActivities";
 	}
 
+	//TODO: Edit nur gewissen Personen erlauben
 	@RequestMapping("/addActivity")
-	public String addActivity(Model model) {
-
-		List<Subcategory> sub = subcategoryRepository.findAll(); // TODO: Nur die richtigen Anzeigen
+	public String addActivity(Model model, @RequestParam(required = false) int id) { 
+		List<Subcategory> sub = subcategoryRepository.findByCategoryName(lastcategory);
+		Activity a = activityRepository.findById(id);
+		//List<State> states = stateRepository.findAll();
+		
+		//model.addAttribute("states", states);
+		model.addAttribute("activity", a);
 		model.addAttribute("subcategories", sub);
 		return "addActivities";
 	}
@@ -155,7 +161,7 @@ public class ActivityController {
 	public String fullActivity(Model model, @RequestParam(required = false) int id) {
 		Activity a = activityRepository.findById(id);
 		
-		model.addAttribute("owner", a.getOwner().getUsername());
+		model.addAttribute("activity", a);
 		model.addAttribute("currentUser", currentUser);
 		return "activity";
 	}
@@ -165,8 +171,7 @@ public class ActivityController {
 			@RequestParam String state, @RequestParam String location,
 			@RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy") Date date, @RequestParam int restriction,
 			@RequestParam String type, @RequestParam(required = false) boolean closed) {
-		Subcategory s = subcategoryRepository.findByName(type); // TODO: Sonst
-																// Error
+		Subcategory s = subcategoryRepository.findByName(type); // TODO: Sonst Error
 		Activity a = new Activity(s, location, state, title, date, text, restriction, closed);
 		activityRepository.save(a);
 
@@ -178,7 +183,6 @@ public class ActivityController {
 		return "showUserProfile";
 	}
 
-//	@PreAuthorize("#contact.name == authentication.name") Vergleiche übergebene ID mit 
 	@RequestMapping("/delete")
 	public String deleteData(Model model, @RequestParam int id) {
 		Activity a = activityRepository.findById(id);
@@ -192,8 +196,7 @@ public class ActivityController {
 		return "forward:listActivities";
 	}
 
-	// @ExceptionHandler(Exception.class) TODO: Wieder aktivieren nach
-	// fertigstellung
+	// @ExceptionHandler(Exception.class) TODO: Wieder aktivieren nach fertigstellung
 	public String handleAllException(Exception ex) {
 		return "showError";
 	}

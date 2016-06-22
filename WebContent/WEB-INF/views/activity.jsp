@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Insert title here</title>
+<title>meet.</title>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -47,13 +47,12 @@
 						<li><a href="user">User Profile</a> <c:url value="/logout"
 								var="logoutUrl" /></li>
 						<li role="separator" class="divider"></li>
-						<li><button class="btn btn-link" onclick="location.href='#'">Settings</button> 
-						<c:url value="/logout" var="logoutUrl" />
+						<li><button class="btn btn-link" onclick="location.href='#'">Settings</button>
+							<c:url value="/logout" var="logoutUrl" />
 						<li role="separator" class="divider"></li>
 						<li><form action="${logoutUrl}" method="post">
 								<input type="hidden" name="${_csrf.parameterName}"
-									value="${_csrf.token}" /> 
-								<input class="btn btn-link"
+									value="${_csrf.token}" /> <input class="btn btn-link"
 									type="submit" value="Logout" />
 							</form></li>
 					</ul></li>
@@ -114,11 +113,11 @@
 										<tr>
 										<tr>
 											<td>Subcategory</td>
-											<td>${activity.subcategory }</td>
+											<td>${activity.subcategory}</td>
 										</tr>
 										<tr>
 											<td><span class="glyphicon glyphicon-user">Attendane:</span></td>
-											<td>${activity.restriction }</td>
+											<td>${activity.restriction}</td>
 										</tr>
 										<tr>
 											<td>Email</td>
@@ -132,9 +131,11 @@
 									</tbody>
 								</table>
 
-								<a href="#" class="btn btn-success">Join Activity</a>
-								
-								<c:if test="${owner eq currentUser}">
+								<c:if test="${activity.owner.username ne currentUser}">
+									<a href="#" class="btn btn-success">Join Activity</a>
+								</c:if>
+
+								<c:if test="${activity.owner.username eq currentUser}">
 									<a href="delete?id=${activity.id}">
 										<button type="button" class="btn btn-danger">
 											<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
@@ -143,21 +144,27 @@
 									</a>
 								</c:if>
 
+								<c:if test="${activity.owner.username eq currentUser}">
+									<a href="addActivity?id=${activity.id}" class="btn btn-sm btn-warning">Edit Activity</a>
+								</c:if>
+
 							</div>
 						</div>
 					</div>
 					<div class="panel-footer">
-						<a data-original-title="Broadcast Message" data-toggle="tooltip"
+						<!-- <a data-original-title="Broadcast Message" data-toggle="tooltip"
 							type="button" class="btn btn-sm btn-primary"><i
-							class="glyphicon glyphicon-envelope"></i></a> <span
-							class="pull-right"> <a href="edit.html"
-							data-original-title="Edit this user" data-toggle="tooltip"
+							class="glyphicon glyphicon-envelope"></i></a> 
+							<span
+							class="pull-right">  -->
+						<a href="addActivity?id=${activity.id}"
+							data-original-title="Edit Activity" data-toggle="tooltip"
 							type="button" class="btn btn-sm btn-warning"><i
-								class="glyphicon glyphicon-edit"></i></a>	
-							<a data-original-title="Remove this user" data-toggle="tooltip" 
+							class="glyphicon glyphicon-edit"></i> </a>
+						<a data-original-title="Remove this user" data-toggle="tooltip" 
 							type="button" class="btn btn-sm btn-danger">
 							<i class="glyphicon glyphicon-remove"></i>
-							</a> 
+							</a>   -->
 						</span>
 					</div>
 

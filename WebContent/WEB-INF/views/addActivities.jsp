@@ -42,6 +42,19 @@
 </head>
 <body>
 	<div id="wrapper">
+		<c:choose>
+			<c:when test="${not empty activity}">
+				<c:set var="legend">Change Activity</c:set>
+				<c:set var="Action">edit</c:set>
+				<c:set var="readonly">readonly</c:set>
+			</c:when>
+			<c:otherwise>
+				<c:set var="legend">New Activity</c:set>
+				<c:set var="Action">add</c:set>
+				<c:set var="readonly"></c:set>
+			</c:otherwise>
+		</c:choose>
+
 		<!-- Navigation -->
 		<nav class="navbar navbar-static-top" role="navigation">
 		<div class="container-fluid">
@@ -55,13 +68,12 @@
 						<li><a href="user">User Profile</a> <c:url value="/logout"
 								var="logoutUrl" /></li>
 						<li role="separator" class="divider"></li>
-						<li><button class="btn btn-link" onclick="location.href='#'">Settings</button> 
-						<c:url value="/logout" var="logoutUrl" />
+						<li><button class="btn btn-link" onclick="location.href='#'">Settings</button>
+							<c:url value="/logout" var="logoutUrl" />
 						<li role="separator" class="divider"></li>
 						<li><form action="${logoutUrl}" method="post">
 								<input type="hidden" name="${_csrf.parameterName}"
-									value="${_csrf.token}" /> 
-								<input class="btn btn-link"
+									value="${_csrf.token}" /> <input class="btn btn-link"
 									type="submit" value="Logout" />
 							</form></li>
 					</ul></li>
@@ -91,19 +103,19 @@
 				</div>
 			</div>
 			<div class="col-lg-8">
-				<form class="form-horizontal" method="post" action="add">
-				<input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}" />
+				<form class="form-horizontal" method="post" action="${Action}">
 					<input type="hidden" name="${_csrf.parameterName}"
-						value="${_csrf.token}" />
+						value="${_csrf.token}" /> <input type="hidden"
+						name="${_csrf.parameterName}" value="${_csrf.token}" />
 					<fieldset>
-						<legend>Add Activity</legend>
+						<legend>${legend}</legend>
 
 						<! ----------------  Titel ---------------- -->
 						<div class="form-group">
 							<label for="inputName" class="col-md-2 control-label">Title</label>
 							<div class="col-md-10">
 								<input class="form-control" id="inputName" type="text"
-									name="title">
+									name="title" value="${activity.title}">
 							</div>
 						</div>
 
@@ -142,7 +154,7 @@
 							<label for="inputLocation" class="col-md-2 control-label">Location</label>
 							<div class="col-md-10">
 								<input class="form-control" id="inputLocation" type="text"
-									name="location">
+									name="location" value="${activity.location}">
 							</div>
 						</div>
 
@@ -163,7 +175,7 @@
 							<label for="inputText" class="col-md-2 control-label">Description</label>
 							<div class="col-md-10">
 								<textarea rows="4" class="form-control" id="inputText"
-									type="text" name="text"> </textarea>
+									type="text" name="text" value="${activity.text}"> </textarea>
 							</div>
 						</div>
 
@@ -172,14 +184,14 @@
 							<label for="inputRestriction" class="col-md-2 control-label">Restriction</label>
 							<div class="col-md-10">
 								<input class="form-control" id="inputRestriction" type="text"
-									name="restriction">
+									name="restriction" value="${activity.restriction}">
 							</div>
 						</div>
 
 						<! ----------------  Offen/Geschlossen ---------------- -->
 						<div class="form-group">
 							<div class="col-md-10">
-							<label for="inputClosed" class="col-md-2 control-label">closed</label>
+								<label for="inputClosed" class="col-md-2 control-label">closed</label>
 								<input type="checkbox" name="closed">
 							</div>
 						</div>
