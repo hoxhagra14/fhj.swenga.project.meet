@@ -79,8 +79,7 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-md-3 col-lg-3 " align="center">
-								<img alt="User Pic"
-									src="http://placehold.it/1280X720"
+								<img alt="User Pic" src="http://placehold.it/1280X720"
 									class="img-circle img-responsive">
 							</div>
 
@@ -144,5 +143,7 @@
 			</div>
 		</div>
 	</div>
+
+	
 </body>
 </html>
