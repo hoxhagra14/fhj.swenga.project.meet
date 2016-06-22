@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -41,19 +42,17 @@
 	<div id="wrapper">
 		<!-- Navigation -->
 		<nav class="navbar navbar-static-top" role="navigation">
+		<div class="container-fluid">
 			<div class="navbar-header">
-				<a href="./" class="navbar-brand"> M E E T .</a>
+				<a href="./" class="navbar-brand">M E E T .</a>
 			</div>
-			
-			<div class="nav navbar-nav navbar-right margin-user">
+			<ul class="nav navbar-nav navbar-right margin-user">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">${currentUser}<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="user">User Profile</a> </li>
-						<li role="separator" class="divider"></li>
-						<li><button class="btn btn-link" onclick="location.href='#'">Settings</button> 
-						<li role="separator" class="divider"></li>
+				<ul class="dropdown-menu">
+						<li><a href="user">User Profile</a></li>
 						<c:url value="/logout" var="logoutUrl" />
+						<li role="separator" class="divider"></li>
 						<li><form action="${logoutUrl}" method="post">
 								<input type="hidden" name="${_csrf.parameterName}"
 									value="${_csrf.token}" /> 
@@ -61,7 +60,7 @@
 									type="submit" value="Logout" />
 							</form></li>
 					</ul></li>
-			</div>
+			</ul>
 		</div>
 		</nav>
 		<!-- /#navigation -->
@@ -115,115 +114,51 @@
 				</ul>
 				
 				</div>
-				</div>
-
-			<div class="col-lg-8">
-				<fieldset>
-					<div class="row spacer">
-							<div class="col-md-3 col-lg-3 " align="center">
-								<img alt="User Pic" src="http://placehold.it/1280X720"
-									class="img-circle img-responsive">
-							</div>
-
-							<div class=" col-md-9 col-lg-9 ">
-								<table class="table table-user-information">
-								<thead><h1>${userobject.username}</h1></thead>
-									<tbody>
-										<tr>
-											<td><strong>Name:</strong></td>
-											<td>${userobject.name}</td>
-										</tr>
-										
-										<tr>
-											<td>Age:</td>
-											<td>${userobject.age}</td>
-										</tr>
-
-										<tr>
-										<tr>
-											<td>City</td>
-											<td>${userobject.city}</td>
-										</tr>
-									</tbody>
-								</table>
-
-								<a href="editUserForm" class="btn btn-success">Edit</a>
-
-			
-
-							</div>
-						</div>
-				</fieldset><!-- 
-				<div class="panel panel-info">
+			</div>
+		
+	
+				
+		
+			<div class="col-lg-4 col-lg-offset-2">
+				<div class="login-panel panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title">User</h3>
+						<h3 class="panel-title">Edit User</h3>
 					</div>
 					<div class="panel-body">
-						<div class="row">
-							<div class="col-md-3 col-lg-3 " align="center">
-								<img alt="User Pic" src="http://placehold.it/1280X720"
-									class="img-circle img-responsive">
-							</div>
+						<form class="form-horizontal" method="post" action="registrate">
+							<fieldset>
+								<div class="form-group">
+									<label>Name</label> 
+									<input class="form-control" value="${userobject.name}"name="name" type="text">
+								</div>
+								
+								<div class="form-group">
+									<label>Age</label> 
+									<input class="form-control" value="${userobject.age}"name="age" type="text">
+								</div>
+								<div class="form-group">
+									<label>City</label> 
+									<input class="form-control"
+										value="${userobject.city}" name="city" type="text">
+										
+								</div>
+								<input type="hidden" name="${_csrf.parameterName}"
+								value="${_csrf.token}" />
 
-							<div class=" col-md-9 col-lg-9 ">
-								<table class="table table-user-information">
-									<tbody>
-										<tr>
-											<td><strong>Name:</strong></td>
-											<td>${user.name}</td>
-										</tr>
-										<tr>
-											<td>User Name:</td>
-											<td>${user.username }</td>
-										</tr>
-										<tr>
-											<td>Age:</td>
-											<td>${user.age }</td>
-										</tr>
-
-										<tr>
-										<tr>
-											<td>City/td>
-											<td>${user.city }</td>
-										</tr>
-										<tr>
-											<td>Email</td>
-											<td><a href="mailto:info@support.com">info@support.com</a></td>
-										</tr>
-									</tbody>
-								</table>
-
-								<a href="#" class="btn btn-success">Edit</a>
-
-			
-
-							</div>
-						</div>
+								<!-- Change this to a button or input when using this as a form -->
+								<button class="btn btn-lg btn-primary btn-block" type="submit" action="#">Change</button>
+							</fieldset>
+						</form>
 					</div>
-					<div class="panel-footer">
-						<a data-original-title="Broadcast Message" data-toggle="tooltip"
-							type="button" class="btn btn-sm btn-primary"><i
-							class="glyphicon glyphicon-envelope"></i></a> <span
-							class="pull-right"> <a href="edit.html"
-							data-original-title="Edit this user" data-toggle="tooltip"
-							type="button" class="btn btn-sm btn-warning"><i
-								class="glyphicon glyphicon-edit"></i></a> <a
-							data-original-title="Remove this user" data-toggle="tooltip"
-							type="button" class="btn btn-sm btn-danger"><i
-								class="glyphicon glyphicon-remove"></i></a>
-						</span>
-					</div>
-
-				</div> -->
+				</div>
 			</div>
+	
+			</div>	
 		</div>
-	</div>
-
 				
 <script> $(function() {
 
 	      $('#menu').metisMenu();
 	});</script>
-
 </body>
 </html>

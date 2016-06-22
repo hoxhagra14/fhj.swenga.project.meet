@@ -16,7 +16,6 @@ import at.fh.swenga.project.model.User;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
 	
-	//findbyActivity?? 
-	//public List<User> findByActivities(String activity);
+	//public User findByUsername(String username);
 
 }

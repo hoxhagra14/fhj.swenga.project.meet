@@ -1,21 +1,19 @@
 package at.fh.swenga.project.controller;
 
-import java.util.HashSet;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,8 +25,6 @@ import at.fh.swenga.project.dao.SimpleUserRepository;
 import at.fh.swenga.project.dao.StateRepository;
 import at.fh.swenga.project.dao.SubcategoryRepository;
 import at.fh.swenga.project.dao.UserRoleRepository;
-import at.fh.swenga.project.data.Categories;
-import at.fh.swenga.project.data.Sports;
 import at.fh.swenga.project.model.Activity;
 import at.fh.swenga.project.model.State;
 import at.fh.swenga.project.model.Subcategory;
@@ -184,6 +180,29 @@ public class ActivityController {
 		model.addAttribute("currentUser", currentUser);
 		return "activity";
 	}
+	/*
+	@RequestMapping("/editUser")
+	public String editUser(Model model, @RequestParam String name, @RequestParam String age, @RequestParam String city) {
+		
+		User userobject = userRepository.findByUsername(currentUser).get(0);
+		model.addAttribute("currentUser", currentUser);
+		
+		userobject.setName(name);
+		userobject.setAge(Integer.parseInt(age));
+		userobject.setCity(city);
+		
+		userRepository.save(userobject);
+		
+		return "showUserProfile";
+	}*/
+	
+	@RequestMapping("/editUserForm")
+	public String editUserForm(Model model) {
+		User userobject = userRepository.findByUsername(currentUser).get(0);
+		model.addAttribute("userobject", userobject);
+		return "editUser";
+	}
+
 
 
 	@RequestMapping("/add")
@@ -202,6 +221,10 @@ public class ActivityController {
 
 	@RequestMapping("/user")
 	public String showUserProfile(Model model) {
+		User userobject = userRepository.findByUsername(currentUser).get(0);
+		model.addAttribute("currentUser", currentUser);
+		
+		model.addAttribute("userobject", userobject);
 		return "showUserProfile";
 	}
 

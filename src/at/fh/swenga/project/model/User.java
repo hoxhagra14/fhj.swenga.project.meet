@@ -50,6 +50,14 @@ public class User implements java.io.Serializable {
 	@Column(name = "enabled", nullable = false)
 	private boolean enabled;
 
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
 	private Set<UserRole> userRole = new HashSet<UserRole>(0);
 	
