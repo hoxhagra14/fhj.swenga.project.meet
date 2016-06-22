@@ -26,6 +26,8 @@ public class UserRole implements java.io.Serializable {
 	
 	@Column(name = "role", nullable = false, length = 45)
 	private String role;
+	
+	//Activity definieren?
 
 
 	public Integer getUserRoleId() {

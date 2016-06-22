@@ -41,7 +41,9 @@ public class ActivityController {
 	
 	@RequestMapping(value = { "/" })
 	public String index(Model model){	
-		//if(!categoriesCreated) subcategoryRepository.save(Categories.FillCategories()); //Erstellen aller Catergories + Subcategories
+		//if(!categoriesCreated) subcategoryRepository.save(Categories.FillCategories()); //Erstellen aller Catergories + Subcategories; TODO: löschen!!
+		// auslesen der aktuell eingeloggten person
+		
 		categoriesCreated = true;
 	
 		return "index";
