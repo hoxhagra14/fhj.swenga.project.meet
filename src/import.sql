@@ -27,10 +27,10 @@ INSERT INTO Activity (closed, deprecated, location, restriction, state, text, ti
 INSERT INTO Activity (closed, deprecated, location, restriction, text, title, version, subcategory_id) VALUES (0, 0, 'Skype', 7, 'Bock auf raiden?', 'WoW', 0, 9);
 INSERT INTO Activity (closed, deprecated, location, restriction, text, title, version, subcategory_id) VALUES (0, 0, 'Ts3', 2, '1v1 auf Crossfire', 'Cod!', 0, 7);
 
-INSERT INTO users(username,password,enabled) VALUES ('admin','$2a$10$2BZh7qw/FSh23ZCbojA.OOoo7vzg7KaqHUp34l8/i9.ktxzcr3vJm', TRUE);
-INSERT INTO user_roles (username, ROLE) VALUES ('admin', 'ROLE_USER');
-INSERT INTO user_roles (username, ROLE) VALUES ('admin', 'ROLE_ADMIN');
-INSERT INTO users(username,password,enabled) VALUES ('user','$2a$10$2BZh7qw/FSh23ZCbojA.OOoo7vzg7KaqHUp34l8/i9.ktxzcr3vJm', TRUE);
-INSERT INTO user_roles (username, ROLE) VALUES ('user', 'ROLE_USER');
-INSERT INTO users(username,password,enabled) VALUES ('john','$2a$10$2BZh7qw/FSh23ZCbojA.OOoo7vzg7KaqHUp34l8/i9.ktxzcr3vJm', TRUE);
-INSERT INTO user_roles (username, ROLE) VALUES ('john', 'ROLE_JOHNNY');
+INSERT INTO users(age, city, enabled, name, password, username, version) VALUES (21, 'Graz', TRUE, 'Admin','$2a$10$2BZh7qw/FSh23ZCbojA.OOoo7vzg7KaqHUp34l8/i9.ktxzcr3vJm', 'admin', 0);
+INSERT INTO user_roles (role, user_id) VALUES ('ROLE_USER', 1);
+INSERT INTO user_roles (role, user_id) VALUES ('ROLE_ADMIN', 1);
+INSERT INTO users(age, city, enabled, name, password, username, version) VALUES (28, 'Wien', TRUE, 'User','$2a$10$2BZh7qw/FSh23ZCbojA.OOoo7vzg7KaqHUp34l8/i9.ktxzcr3vJm', 'user88', 0);
+INSERT INTO user_roles (role, user_id) VALUES ('ROLE_USER', 2);
+INSERT INTO users(age, city, enabled, name, password, username, version) VALUES (21, 'Lint', TRUE, 'Johnny','$2a$10$2BZh7qw/FSh23ZCbojA.OOoo7vzg7KaqHUp34l8/i9.ktxzcr3vJm', 'johnny_star', 0);
+INSERT INTO user_roles (role, user_id) VALUES ('ROLE_JOHNNY', 3);
