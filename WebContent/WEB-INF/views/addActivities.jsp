@@ -39,6 +39,8 @@
 <!-- Custom CSS -->
 <%@include file="includes/simple-sidebar.css"%>
 
+<%@include file="includes/bootstrapCss.css"%>
+
 </head>
 <body>
 	<div id="wrapper">
