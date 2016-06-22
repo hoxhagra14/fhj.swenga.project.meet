@@ -43,7 +43,14 @@
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">User <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="#">Settings</a> <a href="#">Sign out</a></li>
+						<li><button class="btn btn-link" onclick="location.href='#'">Settings</button> 
+						<li role="separator" class="divider"></li>
+						<li><form action="/logout" method="post">
+								<input type="hidden" name="${_csrf.parameterName}"
+									value="${_csrf.token}" /> 
+								<input class="btn btn-link"
+									type="submit" value="Logout" />
+							</form></li>
 					</ul></li>
 			</ul>
 		</div>
@@ -79,8 +86,7 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-md-3 col-lg-3 " align="center">
-								<img alt="User Pic"
-									src="http://placehold.it/1280X720"
+								<img alt="User Pic" src="http://placehold.it/1280X720"
 									class="img-circle img-responsive">
 							</div>
 

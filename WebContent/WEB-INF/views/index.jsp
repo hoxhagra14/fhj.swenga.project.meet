@@ -47,12 +47,12 @@
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">User <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="#">Settings</a> <c:url value="/logout"
-								var="logoutUrl" /></li>
+						<li><button class="btn btn-link" onclick="location.href='#'">Settings</button> 
 						<li role="separator" class="divider"></li>
-						<li><form action="${logoutUrl }" method="post">
+						<li><form action="/logout" method="post">
 								<input type="hidden" name="${_csrf.parameterName}"
-									value="${_csrf.token}" /> <input class="btn left-spacer"
+									value="${_csrf.token}" /> 
+								<input class="btn btn-link"
 									type="submit" value="Logout" />
 							</form></li>
 					</ul></li>
