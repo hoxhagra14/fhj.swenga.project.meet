@@ -1,16 +1,14 @@
 package at.fh.swenga.project.controller;
 
-import java.util.Collection;
-import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-import org.fluttercode.datafactory.impl.DataFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,12 +16,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import at.fh.swenga.project.dao.ActivityRepository;
 import at.fh.swenga.project.dao.CategoryRepository;
+import at.fh.swenga.project.dao.SimpleUserRepository;
 import at.fh.swenga.project.dao.SubcategoryRepository;
+import at.fh.swenga.project.dao.UserRoleRepository;
 import at.fh.swenga.project.data.Categories;
-import at.fh.swenga.project.data.Games;
-import at.fh.swenga.project.data.Sports;
 import at.fh.swenga.project.model.Activity;
 import at.fh.swenga.project.model.Subcategory;
+import at.fh.swenga.project.model.User;
+import at.fh.swenga.project.model.UserRole;
 
 @Controller
 public class ActivityController {
@@ -38,6 +38,12 @@ public class ActivityController {
 	
 	@Autowired
 	CategoryRepository categoryReposiory;
+	
+	@Autowired
+	SimpleUserRepository userRepository;
+	
+	@Autowired
+	UserRoleRepository userRoleRepository;
 	
 	@RequestMapping(value = { "/" })
 	public String index(Model model){	
@@ -138,15 +144,33 @@ public class ActivityController {
 		return "showError";
 	}
 	
-	@RequestMapping("/registration")
+	@RequestMapping("/registrationForm")
 	public String registration()
 	{
-		return "registration";
-		
+		return "registrationForm";
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String handleLogin() {
+		
+		return "login";
+	}
+	
+	@RequestMapping("/registrate")
+	public String registrateUser(Model model, @RequestParam String username, @RequestParam String password, @RequestParam String name, @RequestParam String age, @RequestParam String city)
+	{
+		
+		
+		Set<UserRole> userRole = new HashSet<UserRole>();
+		
+		User u = new User(username, password, true, name, Integer.parseInt(age), city);
+		userRepository.save(u);
+		
+		UserRole role = new UserRole(u, "ROLE_USER");
+		userRoleRepository.save(role);
+		
+		userRole.add(role);
+		u.addRole(userRole);
 		
 		return "login";
 	}

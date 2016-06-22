@@ -18,6 +18,14 @@ public class UserRole implements java.io.Serializable {
 	private Integer userRoleId;
 	private User user;
 	private String role;
+	
+	public UserRole()
+	{}
+	
+	public UserRole(User user, String role) {
+		this.user = user;
+		this.role = role;
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

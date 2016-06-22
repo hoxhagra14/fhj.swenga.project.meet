@@ -53,8 +53,7 @@ public class User implements java.io.Serializable {
 		this.userRole = userRole;
 	}
 	
-	public User(String username, String password, boolean enabled,
-			Set<UserRole> userRole, String name, int age, String city) {
+	public User(String username, String password, boolean enabled, String name, int age, String city) {
 		this.username = username;
 		this.password = password;
 		this.enabled = enabled;
@@ -62,6 +61,23 @@ public class User implements java.io.Serializable {
 		this.age = age;
 		this.city = city;
 	}
+	
+	public User(String username, String password, boolean enabled, String name, int age, String city, Set<UserRole> userRole)
+	{
+		this.username = username;
+		this.password = password;
+		this.enabled = enabled;
+		this.name = name;
+		this.age = age;
+		this.city = city;
+		this.userRole = userRole;
+	}
+	
+	public void addRole(Set<UserRole> userRole)
+	{
+		this.userRole = userRole;
+	}
+	
 	@Id
 	@Column(name = "username", unique = true, nullable = false, length = 45)
 	public String getUsername() {

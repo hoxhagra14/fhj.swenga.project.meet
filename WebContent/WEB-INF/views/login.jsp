@@ -67,8 +67,9 @@
 							<button class="btn btn-lg btn-primary btn-block" type="submit">Sign
 								in</button>
 						</form>
+						<a href="registrationForm">
 						<button class="btn btn-md btn-primary btn-block login-spacer"
-							type="submit">Registration</button>
+							type="button">Registration</button></a>
 					</div>
 				</div>
 			</div>
