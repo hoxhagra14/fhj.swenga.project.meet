@@ -8,6 +8,7 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -179,10 +180,10 @@ public class ActivityController {
 	public String registrateUser(Model model, @RequestParam String username, @RequestParam String password, @RequestParam String name, @RequestParam String age, @RequestParam String city)
 	{
 		
-		
+		String pw_hash = BCrypt.hashpw(password, BCrypt.gensalt()); 
 		Set<UserRole> userRole = new HashSet<UserRole>();
 		
-		User u = new User(username, password, true, name, Integer.parseInt(age), city);
+		User u = new User(username, pw_hash, true, name, Integer.parseInt(age), city);
 		userRepository.save(u);
 		
 		UserRole role = new UserRole(u, "ROLE_USER");
