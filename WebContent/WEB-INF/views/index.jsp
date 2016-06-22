@@ -22,12 +22,20 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
 	integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r"
 	crossorigin="anonymous">
+	
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/metisMenu/2.5.2/metisMenu.min.css">
 
 <!-- Latest compiled and minified JavaScript -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/metisMenu/2.5.2/metisMenu.min.js"></script>
 
 <!-- Custom CSS -->
 <%@include file="includes/simple-sidebar.css"%>
@@ -39,11 +47,11 @@
 	<div id="wrapper">
 		<!-- Navigation -->
 		<nav class="navbar navbar-static-top" role="navigation">
-		<div class="container-fluid">
 			<div class="navbar-header">
-				<a href="./" class="navbar-brand">M E E T .</a>
+				<a href="./" class="navbar-brand"> M E E T .</a>
 			</div>
-			<ul class="nav navbar-nav navbar-right">
+			
+			<div class="nav navbar-nav navbar-right margin-user">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">${currentUser}<span class="caret"></span></a>
 					<ul class="dropdown-menu">
@@ -60,10 +68,10 @@
 									type="submit" value="Logout" />
 							</form></li>
 					</ul></li>
-			</ul>
+			</div>
 
 
-			<ul class="nav navbar-top-links navbar-right">
+			<!-- <ul class="nav navbar-top-links navbar-right">
 				<li class="dropdown"><a aria-expanded="false"
 					class="dropdown-toggle" data-toggle="dropdown" href="#"> <i
 						class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -78,7 +86,7 @@
 								Logout</a></li>
 					</ul> <!-- /.dropdown-user --></li>
 				<!-- /.dropdown -->
-			</ul>
+			<!--  </ul>-->
 			<!-- /.navbar-top-links -->
 		</div>
 		</nav>
@@ -86,54 +94,17 @@
 		<!-- TODO: In foreach ändern -->
 		<!-- SIDEBAR MENU -->
 		<div class="container-fluid">
-			<div class="col-lg-2">
-				<div class="profile-usermenu">
-					<ul class="nav">
-						<li class="active"><a href="#"> <i
-								class="glyphicon glyphicon-home"></i> Sport
-						</a>
-						
-                                <li>
-                                    <a href="panels-wells.html">Panels and Wells</a>
-                                </li>
-                                <li>
-                                    <a href="buttons.html">Buttons</a>
-                                </li>
-                                <li>
-                                    <a href="notifications.html">Notifications</a>
-                                </li>
-                                <li>
-                                    <a href="typography.html">Typography</a>
-                                </li>
-                                <li>
-                                    <a href="icons.html"> Icons</a>
-                                </li>
-                                <li>
-                                    <a href="grid.html">Grid</a>
-                                </li>
-                         
-						</li>
-
-                        
-						<li><a href="#"> <i class="glyphicon glyphicon-user"></i>
-								Gaming
-						</a></li>
-						<li><a href="#" target="_blank"> <i
-								class="glyphicon glyphicon-ok"></i> Party
-						</a></li>
-						<li><a href="#"> <i class="glyphicon glyphicon-flag"></i>
-								Learning
-						</a></li>
-					</ul>
-				</div>
-			</div>
-			<form>
+		<div class="col-lg-1"></div>
+			
 				<div class="col-lg-10">
 					<div class="row">
-						<div class="col-lg-5">
-							<div class="panel">
+						<div class="col-lg-6">
+							<div class="panel panel-success">
 								<div class="panel-heading">
-									<h1 class="text-center">Sports</h1>
+								<div class="container-fluid">
+									<div class="col-lg-6"><i class="fa fa-futbol-o glyphicon-big"></i></div>
+									<div class="col-lg-6"><h1 class="text-right">Sports</h1></div>
+								</div>
 								</div>
 								<a href="listActivities?category=Sport">
 									<div class="panel-footer">
@@ -143,12 +114,14 @@
 							</div>
 						</div>
 
-						<div class="col-lg-2"></div>
 
-						<div class="col-lg-5 ">
-							<div class="panel">
+						<div class="col-lg-6">
+							<div class="panel panel-primary">
 								<div class="panel-heading">
-									<h1 class="text-center">Gaming</h1>
+								<div class="container-fluid">
+									<div class="col-lg-6"><i class="fa fa-gamepad glyphicon-big"></i></div>
+									<div class="col-lg-6"><h1 class="text-right">Gaming</h1></div>
+								</div>
 								</div>
 								<a href="listActivities?category=Games">
 									<div class="panel-footer">
@@ -162,10 +135,13 @@
 					<div class="row spacer"></div>
 
 					<div class="row">
-						<div class="col-lg-5 ">
-							<div class="panel">
+						<div class="col-lg-6">
+							<div class="panel panel-warning">
 								<div class="panel-heading">
-									<h1 class="text-center">Party</h1>
+								<div class="container-fluid">
+									<div class="col-lg-6"><i class="glyphicon glyphicon-glass glyphicon-big"></i></div>
+									<div class="col-lg-6"><h1 class="text-right">Party</h1></div>
+								</div>
 								</div>
 								<a href="listActivities?category=party">
 									<div class="panel-footer">
@@ -175,12 +151,14 @@
 							</div>
 						</div>
 
-						<div class="col-lg-2"></div>
 
-						<div class="col-lg-5 ">
-							<div class="panel">
+						<div class="col-lg-6">
+							<div class="panel panel-info">
 								<div class="panel-heading">
-									<h1 class="text-center">Learning</h1>
+									<div class="container-fluid">
+										<div class="col-lg-6"><i class="glyphicon glyphicon-book glyphicon-big"></i></div>
+										<div class="col-lg-6"><h1 class="text-right">Learning</h1></div>
+									</div>
 								</div>
 								<a href="listActivities?category=learning">
 									<div class="panel-footer">
@@ -192,6 +170,7 @@
 					</div>
 
 				</div>
+			<div class="col-lg-1"></div>
 		</div>
 		<!-- END MENU -->
 

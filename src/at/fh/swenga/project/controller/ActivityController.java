@@ -149,9 +149,7 @@ public class ActivityController {
 	public String addActivity(Model model, @RequestParam(required = false) int id) { 
 		List<Subcategory> sub = subcategoryRepository.findByCategoryName(lastcategory);
 		Activity a = activityRepository.findById(id);
-		//List<State> states = stateRepository.findAll();
 		
-		//model.addAttribute("states", states);
 		model.addAttribute("activity", a);
 		model.addAttribute("subcategories", sub);
 		return "addActivities";

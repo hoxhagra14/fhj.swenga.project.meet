@@ -22,15 +22,25 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
 	integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r"
 	crossorigin="anonymous">
+	
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/metisMenu/2.5.2/metisMenu.min.css">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
 
 <!-- Latest compiled and minified JavaScript -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/metisMenu/2.5.2/metisMenu.min.js"></script>
 
 <!-- Custom CSS -->
 <%@include file="includes/simple-sidebar.css"%>
+
+<%@include file="includes/bootstrapCss.css"%>
 
 </head>
 <body>
@@ -41,7 +51,7 @@
 			<div class="navbar-header">
 				<a href="./" class="navbar-brand">M E E T .</a>
 			</div>
-			<ul class="nav navbar-nav navbar-right">
+			<ul class="nav navbar-nav navbar-right margin-user">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">${currentUser}<span class="caret"></span></a>
 				<ul class="dropdown-menu">
@@ -65,10 +75,428 @@
 
 		<!-- SIDEBAR MENU -->
 		<div class="container-fluid">
+			
 			<div class="col-lg-2">
+				<div class="profile-usermenu">
+				
+				<ul class="nav MetisMenu" id="menu">
+				<c:choose>
+				<c:when test="${category=='Sport'}">
+				<li class="active">
+					<a aria-expanded="true">
+						<i class="fa fa-futbol-o"></i> 
+						Sport
+					</a>
+					<ul aria-expanded="true">
+					</br>
+						<li><a href="addActivity?category=Sport">neue Aktivität erstellen</a></li>
+						</br>
+						<li class="sidebar-search">
+							<form action="find" method="post">
+								<input type="hidden" name="${_csrf.parameterName}"
+									value="${_csrf.token}" /> Search for Activities </br>
+								<div class="input-group custom-search-form">
+									<input type="hidden" name="type" value="findTitle"> <input
+										class="form-control" placeholder="Suchen..." type="text"
+										name="searchString"> <span class="input-group-btn" />
+									<button class="btn btn-default" type="submit">
+										<i class="glyphicon glyphicon-search"></i>
+									</button>
+									</span>
+								</div>
+							</form>
+						</li>
+						</br>
+						<li>
+							<p>Subcategories</p>
+							<form action="find" method="post">
+								<input type="hidden" name="${_csrf.parameterName}"
+									value="${_csrf.token}" /> <input type="hidden" name="type"
+									value="findSubcategory">
+								<c:forEach items="${subcategories}" var="subcategory">
+									<li><a> <input type="checkbox" name="searchString"
+											value="${subcategory.name}">${subcategory.name}
+									</a>
+									</li>
+								</c:forEach>
+								<button type="submit" class="btn btn-primary">Suchen</button>
+							</form>
+
+						</li>
+						</br>
+						<li>
+							<p>Bundesland</p>
+							<form action="find">
+								<input type="hidden" name="${_csrf.parameterName}"
+									value="${_csrf.token}" /> <input type="hidden" name="type"
+									value="findState"> <li><a> <input type="checkbox"
+									name="searchString" value="Burgenland">Burgenland
+								</a> </li><li><a> <input type="checkbox" name="searchString"
+									value="Kärnten">Kärnten
+								</a></li><li> <a> <input type="checkbox" name="searchString"
+									value="Niederösterreich">Niederösterreich
+								</a> </li><li><a> <input type="checkbox" name="searchString"
+									value="Oberösterreich">Oberösterreich
+								</a> </li><li><a> <input type="checkbox" name="searchString"
+									value="Salzburg">Salzburg
+								</a> </li><li><a> <input type="checkbox" name="searchString"
+									value="Steiermark">Steiermark
+								</a></li><li> <a> <input type="checkbox" name="searchString"
+									value="Tirol">Tirol
+								</a></li><li> <a> <input type="checkbox" name="searchString"
+									value="Vorarlberg">Vorarlberg
+								</a></li><li> <a> <input type="checkbox" name="searchString" value="Wien">Wien
+								</a></li>
+								<button type="submit" class="btn btn-primary">Suchen</button>
+							</form>
+
+						</li>
+						</br>
+						<li>
+							<form action="find" method="post">
+								<input type="hidden" name="${_csrf.parameterName}"
+									value="${_csrf.token}" /> Ortsuche </br>
+								<div class="input-group custom-search-form">
+									<input type="hidden" name="type" value="findLocation">
+									<input class="form-control" placeholder="Suchen..." type="text"
+										name="searchString"> <span class="input-group-btn">
+										<button class="btn btn-default" type="submit">
+											<i class="glyphicon glyphicon-search"></i>
+										</button>
+									</span>
+								</div>
+							</form>
+						</li>
+						
+					</ul>
+				</li>
+				</c:when>
+				<c:otherwise><li>
+					<a aria-expanded="false">
+						<i class="fa fa-futbol-o"></i> 
+						Sport
+					</a>
+					<ul aria-expanded="false">
+					</br>
+						<li><a href="listActivities?category=Sport">Aktivitäten anzeigen</a></li>
+						<li><a href="addActivity?category=Sport">neue Aktivität erstellen</a></li></ul></li></c:otherwise>
+				</c:choose>
+				
+				<c:choose>
+				<c:when test="${category=='Games'}">
+				<li class="active">
+					<a aria-expanded="true">
+						<i class="fa fa-gamepad"></i>
+						Gaming
+					</a>
+					<ul aria-expanded="true">
+					</br>
+						<li><a href="addActivity?category=Games">neue Aktivität erstellen</a></li>
+						</br>
+						<li class="sidebar-search">
+							<form action="find" method="post">
+								<input type="hidden" name="${_csrf.parameterName}"
+									value="${_csrf.token}" /> Search for Activities </br>
+								<div class="input-group custom-search-form">
+									<input type="hidden" name="type" value="findTitle"> <input
+										class="form-control" placeholder="Suchen..." type="text"
+										name="searchString"> <span class="input-group-btn" />
+									<button class="btn btn-default" type="submit">
+										<i class="glyphicon glyphicon-search"></i>
+									</button>
+									</span>
+								</div>
+							</form>
+						</li>
+						</br>
+						<li>
+							<p>Subcategories</p>
+							<form action="find" method="post">
+								<input type="hidden" name="${_csrf.parameterName}"
+									value="${_csrf.token}" /> <input type="hidden" name="type"
+									value="findSubcategory">
+								<c:forEach items="${subcategories}" var="subcategory">
+									<li><a> <input type="checkbox" name="searchString"
+											value="${subcategory.name}">${subcategory.name}
+									</a>
+									</li>
+								</c:forEach>
+								<button type="submit" class="btn btn-primary">Suchen</button>
+							</form>
+
+						</li>
+						</br>
+						<li>
+							<p>Bundesland</p>
+							<form action="find">
+								<input type="hidden" name="${_csrf.parameterName}"
+									value="${_csrf.token}" /> <input type="hidden" name="type"
+									value="findState"> <li><a> <input type="checkbox"
+									name="searchString" value="Burgenland">Burgenland
+								</a> </li><li><a> <input type="checkbox" name="searchString"
+									value="Kärnten">Kärnten
+								</a></li><li> <a> <input type="checkbox" name="searchString"
+									value="Niederösterreich">Niederösterreich
+								</a> </li><li><a> <input type="checkbox" name="searchString"
+									value="Oberösterreich">Oberösterreich
+								</a> </li><li><a> <input type="checkbox" name="searchString"
+									value="Salzburg">Salzburg
+								</a> </li><li><a> <input type="checkbox" name="searchString"
+									value="Steiermark">Steiermark
+								</a></li><li> <a> <input type="checkbox" name="searchString"
+									value="Tirol">Tirol
+								</a></li><li> <a> <input type="checkbox" name="searchString"
+									value="Vorarlberg">Vorarlberg
+								</a></li><li> <a> <input type="checkbox" name="searchString" value="Wien">Wien
+								</a></li>
+								<button type="submit" class="btn btn-primary">Suchen</button>
+							</form>
+
+						</li>
+						</br>
+						<li>
+							<form action="find" method="post">
+								<input type="hidden" name="${_csrf.parameterName}"
+									value="${_csrf.token}" /> Ortsuche </br>
+								<div class="input-group custom-search-form">
+									<input type="hidden" name="type" value="findLocation">
+									<input class="form-control" placeholder="Suchen..." type="text"
+										name="searchString"> <span class="input-group-btn">
+										<button class="btn btn-default" type="submit">
+											<i class="glyphicon glyphicon-search"></i>
+										</button>
+									</span>
+								</div>
+							</form>
+						</li>
+					</ul>
+				</li></c:when>
+				<c:otherwise>
+				<li>
+				<a aria-expanded="false">
+						<i class="fa fa-gamepad"></i>
+						Gaming
+					</a>
+					<ul aria-expanded="false">
+					</br>
+						<li><a href="listActivities?category=Games">Aktivitäten anzeigen</a></li>
+						<li><a href="addActivity?category=Games">neue Aktivität erstellen</a></li></ul></li>
+				</c:otherwise>
+				</c:choose>
+				<c:choose>
+				<c:when test="${category=='party'}">
+				<li class="active">
+					<a area-expanded="true">
+						<i class="glyphicon glyphicon-glass"></i>
+						Party
+					</a>
+					<ul area-expanded="true">
+					</br>
+
+						<li><a href="addActivity?category=party">neue Aktivität erstellen</a></li>
+						</br>
+						<li class="sidebar-search">
+							<form action="find" method="post">
+								<input type="hidden" name="${_csrf.parameterName}"
+									value="${_csrf.token}" /> Search for Activities </br>
+								<div class="input-group custom-search-form">
+									<input type="hidden" name="type" value="findTitle"> <input
+										class="form-control" placeholder="Suchen..." type="text"
+										name="searchString"> <span class="input-group-btn" />
+									<button class="btn btn-default" type="submit">
+										<i class="glyphicon glyphicon-search"></i>
+									</button>
+									</span>
+								</div>
+							</form>
+						</li>
+						</br>
+						<li>
+							<p>Subcategories</p>
+							<form action="find" method="post">
+								<input type="hidden" name="${_csrf.parameterName}"
+									value="${_csrf.token}" /> <input type="hidden" name="type"
+									value="findSubcategory">
+								<c:forEach items="${subcategories}" var="subcategory">
+									<li><a> <input type="checkbox" name="searchString"
+											value="${subcategory.name}">${subcategory.name}
+									</a>
+									</li>
+								</c:forEach>
+								<button type="submit" class="btn btn-primary">Suchen</button>
+							</form>
+
+						</li>
+						</br>
+						<li>
+							<p>Bundesland</p>
+							<form action="find">
+								<input type="hidden" name="${_csrf.parameterName}"
+									value="${_csrf.token}" /> <input type="hidden" name="type"
+									value="findState"> <li><a> <input type="checkbox"
+									name="searchString" value="Burgenland">Burgenland
+								</a> </li><li><a> <input type="checkbox" name="searchString"
+									value="Kärnten">Kärnten
+								</a></li><li> <a> <input type="checkbox" name="searchString"
+									value="Niederösterreich">Niederösterreich
+								</a> </li><li><a> <input type="checkbox" name="searchString"
+									value="Oberösterreich">Oberösterreich
+								</a> </li><li><a> <input type="checkbox" name="searchString"
+									value="Salzburg">Salzburg
+								</a> </li><li><a> <input type="checkbox" name="searchString"
+									value="Steiermark">Steiermark
+								</a></li><li> <a> <input type="checkbox" name="searchString"
+									value="Tirol">Tirol
+								</a></li><li> <a> <input type="checkbox" name="searchString"
+									value="Vorarlberg">Vorarlberg
+								</a></li><li> <a> <input type="checkbox" name="searchString" value="Wien">Wien
+								</a></li>
+								<button type="submit" class="btn btn-primary">Suchen</button>
+							</form>
+
+						</li>
+						</br>
+						<li>
+							<form action="find" method="post">
+								<input type="hidden" name="${_csrf.parameterName}"
+									value="${_csrf.token}" /> Ortsuche </br>
+								<div class="input-group custom-search-form">
+									<input type="hidden" name="type" value="findLocation">
+									<input class="form-control" placeholder="Suchen..." type="text"
+										name="searchString"> <span class="input-group-btn">
+										<button class="btn btn-default" type="submit">
+											<i class="glyphicon glyphicon-search"></i>
+										</button>
+									</span>
+								</div>
+							</form>
+						</li>
+					</ul>
+				</li>
+				</c:when>
+				<c:otherwise>
+				<li>
+					<a area-expanded="false">
+						<i class="glyphicon glyphicon-glass"></i>
+						Party
+					</a>
+					<ul area-expanded="false">
+					</br>
+						<li><a href="listActivities?category=party">Aktivitäten anzeigen</a></li>
+						<li><a href="addActivity?category=party">neue Aktivität erstellen</a></li></ul></li>
+				</c:otherwise>
+				</c:choose>
+				<c:choose>
+				<c:when test="${category=='learning'}">
+				<li class="active">
+					<a area-expanded="true">
+						<i class="glyphicon glyphicon-book"></i>
+						Learning
+					</a>
+					<ul area-expanded="true">
+					</br>
+						<li><a href="addActivity?category=learning">neue Aktivität erstellen</a></li>
+						</br>
+						<li class="sidebar-search">
+							<form action="find" method="post">
+								<input type="hidden" name="${_csrf.parameterName}"
+									value="${_csrf.token}" /> Search for Activities </br>
+								<div class="input-group custom-search-form">
+									<input type="hidden" name="type" value="findTitle"> <input
+										class="form-control" placeholder="Suchen..." type="text"
+										name="searchString"> <span class="input-group-btn" />
+									<button class="btn btn-default" type="submit">
+										<i class="glyphicon glyphicon-search"></i>
+									</button>
+									</span>
+								</div>
+							</form>
+						</li>
+						</br>
+						<li>
+							<p>Subcategories</p>
+							<form action="find" method="post">
+								<input type="hidden" name="${_csrf.parameterName}"
+									value="${_csrf.token}" /> <input type="hidden" name="type"
+									value="findSubcategory">
+								<c:forEach items="${subcategories}" var="subcategory">
+									<li><a> <input type="checkbox" name="searchString"
+											value="${subcategory.name}">${subcategory.name}
+									</a>
+									</li>
+								</c:forEach>
+								<button type="submit" class="btn btn-primary">Suchen</button>
+							</form>
+
+						</li>
+						</br>
+						<li>
+							<p>Bundesland</p>
+							<form action="find">
+								<input type="hidden" name="${_csrf.parameterName}"
+									value="${_csrf.token}" /> <input type="hidden" name="type"
+									value="findState"> <li><a> <input type="checkbox"
+									name="searchString" value="Burgenland">Burgenland
+								</a> </li><li><a> <input type="checkbox" name="searchString"
+									value="Kärnten">Kärnten
+								</a></li><li> <a> <input type="checkbox" name="searchString"
+									value="Niederösterreich">Niederösterreich
+								</a> </li><li><a> <input type="checkbox" name="searchString"
+									value="Oberösterreich">Oberösterreich
+								</a> </li><li><a> <input type="checkbox" name="searchString"
+									value="Salzburg">Salzburg
+								</a> </li><li><a> <input type="checkbox" name="searchString"
+									value="Steiermark">Steiermark
+								</a></li><li> <a> <input type="checkbox" name="searchString"
+									value="Tirol">Tirol
+								</a></li><li> <a> <input type="checkbox" name="searchString"
+									value="Vorarlberg">Vorarlberg
+								</a></li><li> <a> <input type="checkbox" name="searchString" value="Wien">Wien
+								</a></li>
+								<button type="submit" class="btn btn-primary">Suchen</button>
+							</form>
+
+						</li>
+						</br>
+						<li>
+							<form action="find" method="post">
+								<input type="hidden" name="${_csrf.parameterName}"
+									value="${_csrf.token}" /> Ortsuche </br>
+								<div class="input-group custom-search-form">
+									<input type="hidden" name="type" value="findLocation">
+									<input class="form-control" placeholder="Suchen..." type="text"
+										name="searchString"> <span class="input-group-btn">
+										<button class="btn btn-default" type="submit">
+											<i class="glyphicon glyphicon-search"></i>
+										</button>
+									</span>
+								</div>
+							</form>
+						</li>
+					</ul>
+				</li>
+				</c:when>
+				<c:otherwise>
+				<li>
+					<a area-expanded="false">
+						<i class="glyphicon glyphicon-book"></i>
+						Learning
+					</a>
+					<ul area-expanded="false">
+					</br>
+						<li><a href="listActivities?category=learning">Aktivitäten anzeigen</a></li>
+						<li><a href="addActivity?category=learning">neue Aktivität erstellen</a></li>
+				</c:otherwise>
+				</c:choose>
+				</ul>
+				
+				</div>
+			</div>
+			
+			 <!-- 
 				<div class="sidebar-nav navbar-collapse">
 					<ul class="nav" id="side-menu">
-						<li><a href="addActivity"> <i
+						<li><a href="addActivity?category=${category}"> <i
 								class="glyphicon glyphicon-plus"></i> Add Activity
 						</a></li>
 						<li class="sidebar-search">
@@ -147,8 +575,8 @@
 							</form>
 				</div>
 				</li>
-				</ul>
-			</div>
+				</ul> -->
+			
 
 
 			<!-- END MENU -->
@@ -211,5 +639,10 @@
 
 	<!-- Bootstrap Core JavaScript -->
 	<script src="js/bootstrap.min.js"></script>
+	
+	<script> $(function() {
+
+	      $('#menu').metisMenu();
+	});</script>
 </body>
 </html>
