@@ -156,7 +156,7 @@
 							type="button" class="btn btn-sm btn-primary"><i
 							class="glyphicon glyphicon-envelope"></i></a> 
 							<span
-							class="pull-right">  -->
+							class="pull-right"> 
 						<a href="addActivity?id=${activity.id}"
 							data-original-title="Edit Activity" data-toggle="tooltip"
 							type="button" class="btn btn-sm btn-warning"><i
