@@ -14,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -59,10 +60,6 @@ public class ActivityController {
 	
 	@RequestMapping(value = { "/" })
 	public String index(Model model) {
-		// if(!categoriesCreated)
-		// subcategoryRepository.save(Categories.FillCategories()); //Erstellen
-		// aller Catergories + Subcategories; TODO: löschen!!
-		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         currentUser = auth.getName();
         
@@ -131,30 +128,6 @@ public class ActivityController {
 		return "redirect:listActivities";
 	}
 
-	@RequestMapping("/fill")
-	@Transactional
-	public String fillData(Model model) {
-
-	/*	Activity a = new Activity(subcategoryRepository.findByName("Soccer"), "Graz", "Steiermark", "Test", "TestText",1);
-		
-		
-		Activity a = new Activity(subcategoryRepository.findByName("Soccer"), "Graz", stateRepository.findByName("Wien"), "Test", "TestText", 1);
-		activityRepository.save(a);
-
-		Activity c = new Activity(subcategoryRepository.findByName("Tennis"), "Wien", stateRepository.findByName("Burgenland"), "ka", "KaText", 1);
-		activityRepository.save(c);
-
-		Activity b = new Activity(subcategoryRepository.findByName("Counter Strike"), "Graz", "Steiermark", "Test","TestText", 1);
-		
-		Activity b = new Activity(subcategoryRepository.findByName("Counter Strike"), "Graz",stateRepository.findByName("Steiermark"), "Test", "TestText", 1);
-		activityRepository.save(b);
-
-		return "forward:listActivities"; */
-		
-		return "null";
-	}
-
-	//TODO: Edit nur gewissen Personen erlauben
 	@RequestMapping("/addActivity")
 	public String addActivity(Model model, @RequestParam(required = false) Integer id, @RequestParam(required = false) String category) { 
 		if(category==null) category = lastcategory; 
@@ -180,7 +153,7 @@ public class ActivityController {
 		model.addAttribute("currentUser", currentUser);
 		return "activity";
 	}
-	/*
+	
 	@RequestMapping("/editUser")
 	public String editUser(Model model, @RequestParam String name, @RequestParam String age, @RequestParam String city) {
 		
@@ -193,8 +166,8 @@ public class ActivityController {
 		
 		userRepository.save(userobject);
 		
-		return "showUserProfile";
-	}*/
+		return "index";
+	}
 	
 	@RequestMapping("/editUserForm")
 	public String editUserForm(Model model) {
@@ -203,14 +176,29 @@ public class ActivityController {
 		return "editUser";
 	}
 
+	/*
+	@RequestMapping("/edit")
+	public String editActivityInDatabase(Model model, @RequestParam String title, @RequestParam String text,
+			@RequestParam String state, @RequestParam String location,
+			@RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy") Date date, @RequestParam int restriction,
+			@RequestParam String type, @RequestParam(required = false) boolean closed) {
+		Subcategory s = subcategoryRepository.findByName(type);
+		State stateName = stateRepository.findByName(state);
+		
+		
+		
+		Activity a = new Activity(s, location ,stateName, title, date,  text, restriction, closed);
+		activityRepository.save(a);
 
+		return "forward:listActivities";
+	}*/
 
 	@RequestMapping("/add")
 	public String addActivityInDatabase(Model model, @RequestParam String title, @RequestParam String text,
 			@RequestParam String state, @RequestParam String location,
 			@RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy") Date date, @RequestParam int restriction,
 			@RequestParam String type, @RequestParam(required = false) boolean closed) {
-		Subcategory s = subcategoryRepository.findByName(type); // TODO: Sonst Error
+		Subcategory s = subcategoryRepository.findByName(type);
 		
 		State stateName = stateRepository.findByName(state);
 		Activity a = new Activity(s, location ,stateName, title, date,  text, restriction, closed);
@@ -241,7 +229,7 @@ public class ActivityController {
 		return "forward:listActivities";
 	}
 
-	// @ExceptionHandler(Exception.class) TODO: Wieder aktivieren nach fertigstellung
+	@ExceptionHandler(Exception.class)
 	public String handleAllException(Exception ex) {
 		return "showError";
 	}

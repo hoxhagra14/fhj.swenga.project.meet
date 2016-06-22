@@ -125,7 +125,7 @@
 						<h3 class="panel-title">Edit User</h3>
 					</div>
 					<div class="panel-body">
-						<form class="form-horizontal" method="post" action="registrate">
+						<form class="form-horizontal" method="post" action="editUser">
 							<fieldset>
 								<div class="form-group">
 									<label>Name</label> 
@@ -146,7 +146,7 @@
 								value="${_csrf.token}" />
 
 								<!-- Change this to a button or input when using this as a form -->
-								<button class="btn btn-lg btn-primary btn-block" type="submit" action="#">Change</button>
+								<button class="btn btn-lg btn-primary btn-block" type="submit">Change</button>
 							</fieldset>
 						</form>
 					</div>

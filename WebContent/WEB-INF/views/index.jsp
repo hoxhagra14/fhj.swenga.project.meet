@@ -86,7 +86,7 @@
 								</div>
 								<a href="listActivities?category=Sport">
 									<div class="panel-footer">
-										<p class="text-right">Weiter</p>
+										<p class="text-right">Go</p>
 									</div>
 								</a>
 							</div>
@@ -103,7 +103,7 @@
 								</div>
 								<a href="listActivities?category=Games">
 									<div class="panel-footer">
-										<p class="text-right">Weiter</p>
+										<p class="text-right">Go</p>
 									</div>
 								</a>
 							</div>
@@ -123,7 +123,7 @@
 								</div>
 								<a href="listActivities?category=party">
 									<div class="panel-footer">
-										<p class="text-right">Weiter</p>
+										<p class="text-right">Go</p>
 									</div>
 								</a>
 							</div>
@@ -140,7 +140,7 @@
 								</div>
 								<a href="listActivities?category=learning">
 									<div class="panel-footer">
-										<p class="text-right">Weiter</p>
+										<p class="text-right">Go</p>
 									</div>
 								</a>
 							</div>

@@ -153,10 +153,6 @@
 											<td><span class="glyphicon glyphicon-user">Attendane:</span></td>
 											<td>${activity.restriction}</td>
 										</tr>
-										<tr>
-											<td>Email</td>
-											<td><a href="mailto:info@support.com">info@support.com</a></td>
-										</tr>
 										<td>Description:</td>
 										<td>${activity.text }</td>
 
@@ -164,10 +160,10 @@
 
 									</tbody>
 								</table>
-
+								<!--   
 								<c:if test="${activity.owner.username ne currentUser}">
 									<a href="#" class="btn btn-success">Join Activity</a>
-								</c:if>
+								</c:if> -->
 
 								<c:if test="${activity.owner.username eq currentUser}">
 									<a href="delete?id=${activity.id}">
@@ -177,29 +173,13 @@
 										</button>
 									</a>
 								</c:if>
-
+								<!--  
 								<c:if test="${activity.owner.username eq currentUser}">
 									<a href="addActivity?id=${activity.id}" class="btn btn-sm btn-warning">Edit Activity</a>
-								</c:if>
+								</c:if> -->
 
 							</div>
 						</div>
-					</div>
-					<div class="panel-footer">
-						<!-- <a data-original-title="Broadcast Message" data-toggle="tooltip"
-							type="button" class="btn btn-sm btn-primary"><i
-							class="glyphicon glyphicon-envelope"></i></a> 
-							<span
-							class="pull-right"> 
-						<a href="addActivity?id=${activity.id}"
-							data-original-title="Edit Activity" data-toggle="tooltip"
-							type="button" class="btn btn-sm btn-warning"><i
-							class="glyphicon glyphicon-edit"></i> </a>
-						<a data-original-title="Remove this user" data-toggle="tooltip" 
-							type="button" class="btn btn-sm btn-danger">
-							<i class="glyphicon glyphicon-remove"></i>
-							</a>   -->
-						</span>
 					</div>
 
 				</div>
