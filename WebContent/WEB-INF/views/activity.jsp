@@ -120,7 +120,14 @@
 									</tbody>
 								</table>
 
-								<a href="#" class="btn btn-primary">Join Activity</a>
+								<a href="#" class="btn btn-success">Join Activity</a>
+
+								<a href="delete?id=${activity.id}">
+									<button type="button" class="btn btn-danger">
+										<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+										Delete
+									</button>
+								</a>
 
 							</div>
 						</div>
@@ -144,6 +151,6 @@
 		</div>
 	</div>
 
-	
+
 </body>
 </html>

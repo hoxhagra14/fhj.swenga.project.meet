@@ -81,6 +81,7 @@
 			</div>
 			<div class="col-lg-8">
 				<form class="form-horizontal" method="post" action="add">
+				<input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}" />
 					<fieldset>
 						<legend>Add Activity</legend>
 

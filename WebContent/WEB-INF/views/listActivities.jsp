@@ -132,38 +132,58 @@
 				</li>
 				</ul>
 			</div>
-		
+
 
 			<!-- END MENU -->
 			<div class="col-lg-8">
+				<!--  Error message ----------------------------------------------------------- -->
+				<c:if test="${not empty errorMessage}">
+					<div class="alert alert-danger" role="alert">${errorMessage}</div>
+				</c:if>
+				<!--  Error message ----------------------------------------------------------- -->
+
+				<!--  Warning message ----------------------------------------------------------- -->
+				<c:if test="${not empty warningMessage}">
+					<div class="alert alert-warning" role="warning">
+						${warningMessage}</div>
+				</c:if>
+				<!--  Warning message ----------------------------------------------------------- -->
+
+				<!--   message ----------------------------------------------------------- -->
+				<c:if test="${not empty message}">
+					<div class="alert alert-success" role="warning">${message}</div>
+				</c:if>
+				<!--   message ----------------------------------------------------------- -->
+
+
 				<fieldset>
 					<c:forEach items="${activities}" var="activity">
 						<hr>
 						<div class="row">
 							<div class="col-sm-4">
-								<a href="fullActivity?id=${activity.id}" class=""><img src="http://placehold.it/1280X720"
-									class="img-responsive"></a>  
+								<a href="fullActivity?id=${activity.id}" class=""><img
+									src="http://placehold.it/1280X720" class="img-responsive"></a>
 							</div>
 							<div class="col-sm-8">
 
-							<h3 class="title">${activity.title}</h3>
-							<p class="text-muted">
-								<span class="glyphicon glyphicon-calendar"></span> 
-								July 23, 2014
-							</p>
-							<p>${activity.text}</p>
+								<h3 class="title">${activity.title}</h3>
+								<p class="text-muted">
+									<span class="glyphicon glyphicon-calendar"></span>
+									<fmt:formatDate value="${activity.date }" pattern="yyyy-MM-dd" />
+								</p>
+								<p>${activity.text}</p>
 								<p>${activity.subcategory.name}</p>
 
-							<p class="text-muted">
-								Created by <a href="#">Granit Hoxha</a>
-							</p>
+								<p class="text-muted">
+									Created by <a href="#">Granit Hoxha</a>
+								</p>
 							</div>
 						</div>
 					</c:forEach>
 				</fieldset>
 			</div>
 		</div>
-		</div>
+	</div>
 
 
 	</div>

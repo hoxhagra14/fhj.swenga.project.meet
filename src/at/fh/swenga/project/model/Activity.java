@@ -43,7 +43,7 @@ public class Activity {
 	private String title;
 	private String text;
 	private boolean closed;
-	private int restriction ; // Count der Teilnehmer für limitierte Activitäten
+	private int restriction; // Count der Teilnehmer für limitierte Activitäten
 	private boolean deprecated; // In der Datenbank behalten selbst nach ablauf 
 								// damit Bewertungen durchgeführt werden können
 								// überprüfen mit Systdatetime? 
