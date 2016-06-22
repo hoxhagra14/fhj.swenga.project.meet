@@ -52,13 +52,11 @@
 		<c:choose>
 			<c:when test="${not empty activity}">
 				<c:set var="legend">Change Activity</c:set>
-				<c:set var="Action">edit</c:set>
-				<c:set var="readonly">readonly</c:set>
+				<c:set var="Action">add</c:set>
 			</c:when>
 			<c:otherwise>
 				<c:set var="legend">New Activity</c:set>
 				<c:set var="Action">add</c:set>
-				<c:set var="readonly"></c:set>
 			</c:otherwise>
 		</c:choose>
 
@@ -173,7 +171,7 @@
 							<div class="col-md-10">
 								<select name="state">
 									<c:forEach items="${states}" var="state">
-										<option value="${state.name }" selected="selected">${state.name }</option>
+										<option value="${state.name}" selected="selected">${state.name}</option>
 									</c:forEach>
 								</select>
 							</div>
@@ -194,7 +192,7 @@
 							<div class="col-md-10">
 								<input class="form_datetime" id="inputDate" placeholder="Date"
 									type="text"
-									value="<fmt:formatDate value="${now }" pattern="dd.MM.yyyy"/>"
+									value="<fmt:formatDate value="${now}" pattern="dd.MM.yyyy"/>"
 									name="date">
 							</div>
 						</div>

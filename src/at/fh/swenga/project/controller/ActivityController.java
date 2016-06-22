@@ -66,9 +66,10 @@ public class ActivityController {
 		// if(!categoriesCreated)
 		// subcategoryRepository.save(Categories.FillCategories()); //Erstellen
 		// aller Catergories + Subcategories; TODO: löschen!!
-		// auslesen der aktuell eingeloggten person
+		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         currentUser = auth.getName();
+        
 		categoriesCreated = true;
 
 		model.addAttribute("currentUser", currentUser);
@@ -86,15 +87,17 @@ public class ActivityController {
 		List<State> states = stateRepository.findAll();
 		List<Integer> activitiesInt = new ArrayList<>();
 		
-		if (activities != null) {
-			for (Activity a : activities) {
-				activitiesInt.add(a.getId());
+		if (activities != null) { 
+			if(!activities.isEmpty()) { //Falls nicht Empty: Nach Kategorie filtern, sonst mit leerer Liste weiterarbeiten
+				for (Activity a : activities) {
+					activitiesInt.add(a.getId());
+				}
+				activities = activityRepository.getFilteredActivities(category, activitiesInt);
 			}
 		}
+		else
+			activities = activityRepository.getCatActivities(category);
 
-		if(activities==null) activities = activityRepository.getCatActivities(category); // Falls keine Activties übergeben wurden (also keine herausgefiltert wurden)
-		else activities = activityRepository.getFilteredActivities(category, activitiesInt);
-		
 		model.addAttribute("states", states);
 		model.addAttribute("activities", activities);
 		model.addAttribute("subcategories", subcategories);
@@ -105,8 +108,7 @@ public class ActivityController {
 	}
 
 	@RequestMapping(value = { "/find" })
-	public String find(Model model, @RequestParam(required = false) String searchString, @RequestParam String type,
-			RedirectAttributes redirectAttributes) { // TODO: Es werden alle passenden angezeigt nicht nur die der jeweiligen Categorie-Liste
+	public String find(Model model, @RequestParam(required = false) String searchString, @RequestParam String type, RedirectAttributes redirectAttributes) {
 		List<Activity> activities = null;
 		if (searchString == null)
 			type = "default"; // Falls kein Filter ausgewählt wurde, werden alle ausgegeben
@@ -119,7 +121,7 @@ public class ActivityController {
 			activities = activityRepository.findBySubcategoryNameContainingAllIgnoreCase(searchString);
 			break;
 		case "findState":
-			activities = activityRepository.findByState(searchString);
+			activities = activityRepository.findByStateNameContainingAllIgnoreCase(searchString);
 			break;
 		case "findLocation":
 			activities = activityRepository.findByLocationContainingAllIgnoreCase(searchString);
@@ -137,8 +139,7 @@ public class ActivityController {
 	@Transactional
 	public String fillData(Model model) {
 
-		Activity a = new Activity(subcategoryRepository.findByName("Soccer"), "Graz", "Steiermark", "Test", "TestText",
-				1);
+	/*	Activity a = new Activity(subcategoryRepository.findByName("Soccer"), "Graz", "Steiermark", "Test", "TestText",1);
 		
 		
 		Activity a = new Activity(subcategoryRepository.findByName("Soccer"), "Graz", stateRepository.findByName("Wien"), "Test", "TestText", 1);
@@ -147,23 +148,29 @@ public class ActivityController {
 		Activity c = new Activity(subcategoryRepository.findByName("Tennis"), "Wien", stateRepository.findByName("Burgenland"), "ka", "KaText", 1);
 		activityRepository.save(c);
 
-		Activity b = new Activity(subcategoryRepository.findByName("Counter Strike"), "Graz", "Steiermark", "Test",
-				"TestText", 1);
+		Activity b = new Activity(subcategoryRepository.findByName("Counter Strike"), "Graz", "Steiermark", "Test","TestText", 1);
 		
 		Activity b = new Activity(subcategoryRepository.findByName("Counter Strike"), "Graz",stateRepository.findByName("Steiermark"), "Test", "TestText", 1);
 		activityRepository.save(b);
 
-		return "forward:listActivities";
+		return "forward:listActivities"; */
+		
+		return "null";
 	}
 
 	//TODO: Edit nur gewissen Personen erlauben
 	@RequestMapping("/addActivity")
-	public String addActivity(Model model, @RequestParam(required = false) int id) { 
-		List<Subcategory> sub = subcategoryRepository.findByCategoryName(lastcategory);
-		Activity a = activityRepository.findById(id);
+	public String addActivity(Model model, @RequestParam(required = false) Integer id, @RequestParam(required = false) String category) { 
+		if(category==null) category = lastcategory; 
+		List<Subcategory> sub = subcategoryRepository.findByCategoryName(category);
+		
+		Activity a;
+		if(id!=null){ 
+			a = activityRepository.findById(id); 
+			model.addAttribute("activity", a);
+		}
 		List<State> states = stateRepository.findAll();
 		
-		model.addAttribute("activity", a);
 		model.addAttribute("states", states);
 		model.addAttribute("subcategories", sub);
 		return "addActivities";
