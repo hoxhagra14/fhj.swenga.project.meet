@@ -24,12 +24,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import at.fh.swenga.project.dao.ActivityRepository;
 import at.fh.swenga.project.dao.CategoryRepository;
 import at.fh.swenga.project.dao.SimpleUserRepository;
+import at.fh.swenga.project.dao.StateRepository;
 import at.fh.swenga.project.dao.SubcategoryRepository;
 import at.fh.swenga.project.dao.UserRoleRepository;
 import at.fh.swenga.project.data.Categories;
-
 import at.fh.swenga.project.data.Sports;
 import at.fh.swenga.project.model.Activity;
+import at.fh.swenga.project.model.State;
 import at.fh.swenga.project.model.Subcategory;
 import at.fh.swenga.project.model.User;
 import at.fh.swenga.project.model.UserRole;
@@ -55,6 +56,11 @@ public class ActivityController {
 	@Autowired
 	UserRoleRepository userRoleRepository;
 
+	@Autowired
+	StateRepository stateRepository;
+	
+	
+	
 	@RequestMapping(value = { "/" })
 	public String index(Model model) {
 		// if(!categoriesCreated)
@@ -76,19 +82,20 @@ public class ActivityController {
 		lastcategory = category;
 
 		List<Activity> activities = (List<Activity>) model.asMap().get("activities");
+		List<Subcategory> subcategories = subcategoryRepository.findByCategoryName(category);
+		List<State> states = stateRepository.findAll();
 		List<Integer> activitiesInt = new ArrayList<>();
+		
 		if (activities != null) {
 			for (Activity a : activities) {
 				activitiesInt.add(a.getId());
 			}
 		}
 
-		List<Subcategory> subcategories = subcategoryRepository.findByCategoryName(category);
-		if (activities == null)
-			activities = activityRepository.getCatActivities(category); // Falls keine Activties übergeben wurden (also keine herausgefiltert wurden)
-		else
-			activities = activityRepository.getFilteredActivities(category, activitiesInt);
-
+		if(activities==null) activities = activityRepository.getCatActivities(category); // Falls keine Activties übergeben wurden (also keine herausgefiltert wurden)
+		else activities = activityRepository.getFilteredActivities(category, activitiesInt);
+		
+		model.addAttribute("states", states);
 		model.addAttribute("activities", activities);
 		model.addAttribute("subcategories", subcategories);
 		model.addAttribute("type", "findAll");
@@ -132,13 +139,18 @@ public class ActivityController {
 
 		Activity a = new Activity(subcategoryRepository.findByName("Soccer"), "Graz", "Steiermark", "Test", "TestText",
 				1);
+		
+		
+		Activity a = new Activity(subcategoryRepository.findByName("Soccer"), "Graz", stateRepository.findByName("Wien"), "Test", "TestText", 1);
 		activityRepository.save(a);
 
-		Activity c = new Activity(subcategoryRepository.findByName("Tennis"), "Wien", "Wien", "ka", "KaText", 1);
+		Activity c = new Activity(subcategoryRepository.findByName("Tennis"), "Wien", stateRepository.findByName("Burgenland"), "ka", "KaText", 1);
 		activityRepository.save(c);
 
 		Activity b = new Activity(subcategoryRepository.findByName("Counter Strike"), "Graz", "Steiermark", "Test",
 				"TestText", 1);
+		
+		Activity b = new Activity(subcategoryRepository.findByName("Counter Strike"), "Graz",stateRepository.findByName("Steiermark"), "Test", "TestText", 1);
 		activityRepository.save(b);
 
 		return "forward:listActivities";
@@ -149,8 +161,10 @@ public class ActivityController {
 	public String addActivity(Model model, @RequestParam(required = false) int id) { 
 		List<Subcategory> sub = subcategoryRepository.findByCategoryName(lastcategory);
 		Activity a = activityRepository.findById(id);
+		List<State> states = stateRepository.findAll();
 		
 		model.addAttribute("activity", a);
+		model.addAttribute("states", states);
 		model.addAttribute("subcategories", sub);
 		return "addActivities";
 	}
@@ -170,7 +184,9 @@ public class ActivityController {
 			@RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy") Date date, @RequestParam int restriction,
 			@RequestParam String type, @RequestParam(required = false) boolean closed) {
 		Subcategory s = subcategoryRepository.findByName(type); // TODO: Sonst Error
-		Activity a = new Activity(s, location, state, title, date, text, restriction, closed);
+		
+		State stateName = stateRepository.findByName(state);
+		Activity a = new Activity(s, location ,stateName, title, date,  text, restriction, closed);
 		activityRepository.save(a);
 
 		return "forward:listActivities";

@@ -129,24 +129,11 @@
 							<form action="find">
 								<input type="hidden" name="${_csrf.parameterName}"
 									value="${_csrf.token}" /> <input type="hidden" name="type"
-									value="findState"> <li><a> <input type="checkbox"
-									name="searchString" value="Burgenland">Burgenland
-								</a> </li><li><a> <input type="checkbox" name="searchString"
-									value="Kärnten">Kärnten
-								</a></li><li> <a> <input type="checkbox" name="searchString"
-									value="Niederösterreich">Niederösterreich
-								</a> </li><li><a> <input type="checkbox" name="searchString"
-									value="Oberösterreich">Oberösterreich
-								</a> </li><li><a> <input type="checkbox" name="searchString"
-									value="Salzburg">Salzburg
-								</a> </li><li><a> <input type="checkbox" name="searchString"
-									value="Steiermark">Steiermark
-								</a></li><li> <a> <input type="checkbox" name="searchString"
-									value="Tirol">Tirol
-								</a></li><li> <a> <input type="checkbox" name="searchString"
-									value="Vorarlberg">Vorarlberg
-								</a></li><li> <a> <input type="checkbox" name="searchString" value="Wien">Wien
-								</a></li>
+									value="findState">
+								<c:forEach items="${states}" var="state">
+									<a> <input type="checkbox" name="searchString"
+										value="${state.name }">${state.name }<br>
+								</c:forEach>
 								<button type="submit" class="btn btn-primary">Suchen</button>
 							</form>
 
@@ -231,24 +218,11 @@
 							<form action="find">
 								<input type="hidden" name="${_csrf.parameterName}"
 									value="${_csrf.token}" /> <input type="hidden" name="type"
-									value="findState"> <li><a> <input type="checkbox"
-									name="searchString" value="Burgenland">Burgenland
-								</a> </li><li><a> <input type="checkbox" name="searchString"
-									value="Kärnten">Kärnten
-								</a></li><li> <a> <input type="checkbox" name="searchString"
-									value="Niederösterreich">Niederösterreich
-								</a> </li><li><a> <input type="checkbox" name="searchString"
-									value="Oberösterreich">Oberösterreich
-								</a> </li><li><a> <input type="checkbox" name="searchString"
-									value="Salzburg">Salzburg
-								</a> </li><li><a> <input type="checkbox" name="searchString"
-									value="Steiermark">Steiermark
-								</a></li><li> <a> <input type="checkbox" name="searchString"
-									value="Tirol">Tirol
-								</a></li><li> <a> <input type="checkbox" name="searchString"
-									value="Vorarlberg">Vorarlberg
-								</a></li><li> <a> <input type="checkbox" name="searchString" value="Wien">Wien
-								</a></li>
+									value="findState">
+								<c:forEach items="${states}" var="state">
+									<a> <input type="checkbox" name="searchString"
+										value="${state.name }">${state.name }<br>
+								</c:forEach>
 								<button type="submit" class="btn btn-primary">Suchen</button>
 							</form>
 
@@ -333,24 +307,11 @@
 							<form action="find">
 								<input type="hidden" name="${_csrf.parameterName}"
 									value="${_csrf.token}" /> <input type="hidden" name="type"
-									value="findState"> <li><a> <input type="checkbox"
-									name="searchString" value="Burgenland">Burgenland
-								</a> </li><li><a> <input type="checkbox" name="searchString"
-									value="Kärnten">Kärnten
-								</a></li><li> <a> <input type="checkbox" name="searchString"
-									value="Niederösterreich">Niederösterreich
-								</a> </li><li><a> <input type="checkbox" name="searchString"
-									value="Oberösterreich">Oberösterreich
-								</a> </li><li><a> <input type="checkbox" name="searchString"
-									value="Salzburg">Salzburg
-								</a> </li><li><a> <input type="checkbox" name="searchString"
-									value="Steiermark">Steiermark
-								</a></li><li> <a> <input type="checkbox" name="searchString"
-									value="Tirol">Tirol
-								</a></li><li> <a> <input type="checkbox" name="searchString"
-									value="Vorarlberg">Vorarlberg
-								</a></li><li> <a> <input type="checkbox" name="searchString" value="Wien">Wien
-								</a></li>
+									value="findState">
+								<c:forEach items="${states}" var="state">
+									<a> <input type="checkbox" name="searchString"
+										value="${state.name }">${state.name }<br>
+								</c:forEach>
 								<button type="submit" class="btn btn-primary">Suchen</button>
 							</form>
 
@@ -435,24 +396,11 @@
 							<form action="find">
 								<input type="hidden" name="${_csrf.parameterName}"
 									value="${_csrf.token}" /> <input type="hidden" name="type"
-									value="findState"> <li><a> <input type="checkbox"
-									name="searchString" value="Burgenland">Burgenland
-								</a> </li><li><a> <input type="checkbox" name="searchString"
-									value="Kärnten">Kärnten
-								</a></li><li> <a> <input type="checkbox" name="searchString"
-									value="Niederösterreich">Niederösterreich
-								</a> </li><li><a> <input type="checkbox" name="searchString"
-									value="Oberösterreich">Oberösterreich
-								</a> </li><li><a> <input type="checkbox" name="searchString"
-									value="Salzburg">Salzburg
-								</a> </li><li><a> <input type="checkbox" name="searchString"
-									value="Steiermark">Steiermark
-								</a></li><li> <a> <input type="checkbox" name="searchString"
-									value="Tirol">Tirol
-								</a></li><li> <a> <input type="checkbox" name="searchString"
-									value="Vorarlberg">Vorarlberg
-								</a></li><li> <a> <input type="checkbox" name="searchString" value="Wien">Wien
-								</a></li>
+									value="findState">
+								<c:forEach items="${states}" var="state">
+									<a> <input type="checkbox" name="searchString"
+										value="${state.name }">${state.name }<br>
+								</c:forEach>
 								<button type="submit" class="btn btn-primary">Suchen</button>
 							</form>
 
@@ -531,34 +479,18 @@
 							</form>
 
 						</li>
-						<br />
 						<li>
 							<form action="find">
 								<input type="hidden" name="${_csrf.parameterName}"
 									value="${_csrf.token}" /> <input type="hidden" name="type"
-									value="findState"> <a> <input type="checkbox"
-									name="searchString" value="Burgenland">Burgenland<br>
-								</a> <a> <input type="checkbox" name="searchString"
-									value="Kärnten">Kärnten<br>
-								</a> <a> <input type="checkbox" name="searchString"
-									value="Niederösterreich">Niederösterreich<br>
-								</a> <a> <input type="checkbox" name="searchString"
-									value="Oberösterreich">Oberösterreich<br>
-								</a> <a> <input type="checkbox" name="searchString"
-									value="Salzburg">Salzburg<br>
-								</a> <a> <input type="checkbox" name="searchString"
-									value="Steiermark">Steiermark<br>
-								</a> <a> <input type="checkbox" name="searchString"
-									value="Tirol">Tirol<br>
-								</a> <a> <input type="checkbox" name="searchString"
-									value="Vorarlberg">Vorarlberg<br>
-								</a> <a> <input type="checkbox" name="searchString" value="Wien">Wien<br>
-								</a>
+									value="findState">
+								<c:forEach items="${states}" var="state">
+									<a> <input type="checkbox" name="searchString"
+										value="${state.name }">${state.name }<br>
+								</c:forEach>
 								<button type="submit" class="btn btn-primary">Suchen</button>
 							</form>
-
 						</li>
-						<br />
 						<li>
 							<form action="find" method="post">
 								<input type="hidden" name="${_csrf.parameterName}"

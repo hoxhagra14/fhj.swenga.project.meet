@@ -167,25 +167,17 @@
 								</select>
 							</div>
 						</div>
-
 						<! ----------------  Bundesland ---------------- -->
 						<div class="form-group">
 							<label for="inputState" class="col-md-2 control-label">Bundesland</label>
 							<div class="col-md-10">
 								<select name="state">
-									<option value="Burgenland" selected="selected">Burgenland</option>
-									<option value="Kärnten" selected="selected">Kärnten</option>
-									<option value="Niederösterreich" selected="selected">Niederösterreich</option>
-									<option value="Oberösterreich" selected="selected">Oberösterreich</option>
-									<option value="Salzburg" selected="selected">Salzburg</option>
-									<option value="Steiermark" selected="selected">Steiermark</option>
-									<option value="Tirol" selected="selected">Tirol</option>
-									<option value="Vorarlberg" selected="selected">Vorarlberg</option>
-									<option value="Wien" selected="selected">Wien</option>
+									<c:forEach items="${states}" var="state">
+										<option value="${state.name }" selected="selected">${state.name }</option>
+									</c:forEach>
 								</select>
 							</div>
 						</div>
-
 						<! ----------------  Ort ---------------- -->
 						<div class="form-group">
 							<label for="inputLocation" class="col-md-2 control-label">Location</label>
