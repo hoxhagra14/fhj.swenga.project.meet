@@ -44,7 +44,10 @@
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">User <span class="caret"></span></a>
-					<ul class="dropdown-menu">
+				<ul class="dropdown-menu">
+						<li><a href="user">User Profile</a> <c:url value="/logout"
+								var="logoutUrl" /></li>
+						<li role="separator" class="divider"></li>
 						<li><button class="btn btn-link" onclick="location.href='#'">Settings</button> 
 						<c:url value="/logout" var="logoutUrl" />
 						<li role="separator" class="divider"></li>
@@ -150,6 +153,26 @@
 
 			<!-- END MENU -->
 			<div class="col-lg-8">
+				<!--  Error message ----------------------------------------------------------- -->
+				<c:if test="${not empty errorMessage}">
+					<div class="alert alert-danger" role="alert">${errorMessage}</div>
+				</c:if>
+				<!--  Error message ----------------------------------------------------------- -->
+
+				<!--  Warning message ----------------------------------------------------------- -->
+				<c:if test="${not empty warningMessage}">
+					<div class="alert alert-warning" role="warning">
+						${warningMessage}</div>
+				</c:if>
+				<!--  Warning message ----------------------------------------------------------- -->
+
+				<!--   message ----------------------------------------------------------- -->
+				<c:if test="${not empty message}">
+					<div class="alert alert-success" role="warning">${message}</div>
+				</c:if>
+				<!--   message ----------------------------------------------------------- -->
+
+
 				<fieldset>
 					<c:forEach items="${activities}" var="activity">
 						<hr>
@@ -162,8 +185,8 @@
 
 								<h3 class="title">${activity.title}</h3>
 								<p class="text-muted">
-									<span class="glyphicon glyphicon-calendar"></span> July 23,
-									2014
+									<span class="glyphicon glyphicon-calendar"></span>
+									<fmt:formatDate value="${activity.date }" pattern="yyyy-MM-dd" />
 								</p>
 								<p>${activity.text}</p>
 								<p>${activity.subcategory.name}</p>

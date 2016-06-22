@@ -47,6 +47,9 @@
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">User <span class="caret"></span></a>
 					<ul class="dropdown-menu">
+						<li><a href="user">User Profile</a> <c:url value="/logout"
+								var="logoutUrl" /></li>
+						<li role="separator" class="divider"></li>
 						<li><button class="btn btn-link" onclick="location.href='#'">Settings</button> 
 						<c:url value="/logout" var="logoutUrl" />
 						<li role="separator" class="divider"></li>
@@ -58,6 +61,25 @@
 							</form></li>
 					</ul></li>
 			</ul>
+
+
+			<ul class="nav navbar-top-links navbar-right">
+				<li class="dropdown"><a aria-expanded="false"
+					class="dropdown-toggle" data-toggle="dropdown" href="#"> <i
+						class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+				</a>
+					<ul class="dropdown-menu dropdown-user">
+						<li><a href="#"><i class="fa fa-user fa-fw"></i> User
+								Profile</a></li>
+						<li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+						</li>
+						<li class="divider"></li>
+						<li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i>
+								Logout</a></li>
+					</ul> <!-- /.dropdown-user --></li>
+				<!-- /.dropdown -->
+			</ul>
+			<!-- /.navbar-top-links -->
 		</div>
 		</nav>
 		<!-- /#navigation -->
@@ -68,16 +90,39 @@
 				<div class="profile-usermenu">
 					<ul class="nav">
 						<li class="active"><a href="#"> <i
-								class="glyphicon glyphicon-home"></i> Overview
-						</a></li>
+								class="glyphicon glyphicon-home"></i> Sport
+						</a>
+						
+                                <li>
+                                    <a href="panels-wells.html">Panels and Wells</a>
+                                </li>
+                                <li>
+                                    <a href="buttons.html">Buttons</a>
+                                </li>
+                                <li>
+                                    <a href="notifications.html">Notifications</a>
+                                </li>
+                                <li>
+                                    <a href="typography.html">Typography</a>
+                                </li>
+                                <li>
+                                    <a href="icons.html"> Icons</a>
+                                </li>
+                                <li>
+                                    <a href="grid.html">Grid</a>
+                                </li>
+                         
+						</li>
+
+                        
 						<li><a href="#"> <i class="glyphicon glyphicon-user"></i>
-								Account Settings
+								Gaming
 						</a></li>
 						<li><a href="#" target="_blank"> <i
-								class="glyphicon glyphicon-ok"></i> Tasks
+								class="glyphicon glyphicon-ok"></i> Party
 						</a></li>
 						<li><a href="#"> <i class="glyphicon glyphicon-flag"></i>
-								Help
+								Learning
 						</a></li>
 					</ul>
 				</div>
@@ -154,9 +199,11 @@
 	<!-- /#wrapper -->
 
 	<!-- jQuery -->
-	<script src="js/jquery.js"></script>
+	<script src="includes/jquery.js"></script>
 
 	<!-- Bootstrap Core JavaScript -->
-	<script src="js/bootstrap.min.js"></script>
+	<script src="includes/bootstrap.min.js"></script>
+	
+	
 </body>
 </html>

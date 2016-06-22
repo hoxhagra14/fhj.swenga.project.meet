@@ -144,17 +144,23 @@ public class ActivityController {
 	}
 	
 	@RequestMapping("/add")
-	public String addActivityInDatabase(Model model, @RequestParam String title, @RequestParam String text, @RequestParam String state, @RequestParam String location, @RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy") Date date, @RequestParam int restriction, @RequestParam String type  ) {
+	public String addActivityInDatabase(Model model, @RequestParam String title, @RequestParam String text, @RequestParam String state, @RequestParam String location, @RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy") Date date, @RequestParam int restriction, @RequestParam String type, @RequestParam(required=false) boolean closed  ) {
 		Subcategory s = subcategoryRepository.findByName(type); // TODO: Sonst Error
-		Activity a = new Activity(s, location ,state, title, date,  text, restriction);
+		Activity a = new Activity(s, location ,state, title, date,  text, restriction, closed);
 		activityRepository.save(a);
 		
 		return "forward:listActivities";
+	}
+	
+	@RequestMapping("/user")
+	public String showUserProfile(Model model) {
+		return "showUserProfile";
 	}
 
 	@RequestMapping("/delete")
 	public String deleteData(Model model, @RequestParam int id) {
 		activityRepository.delete(id);
+		model.addAttribute("warningMessage", "Activity " + id + " deleted");
 
 		return "forward:listActivities";
 	}

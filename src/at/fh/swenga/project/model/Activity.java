@@ -43,7 +43,7 @@ public class Activity {
 	private String title;
 	private String text;
 	private boolean closed;
-	private int restriction ; // Count der Teilnehmer für limitierte Activitäten
+	private int restriction; // Count der Teilnehmer für limitierte Activitäten
 	private boolean deprecated; // In der Datenbank behalten selbst nach ablauf 
 								// damit Bewertungen durchgeführt werden können
 								// überprüfen mit Systdatetime? 
@@ -76,6 +76,18 @@ public class Activity {
 		this.title = title;
 		this.text = text;
 		this.restriction = restriction; 
+	}
+	
+	public Activity(Subcategory subcategory, String location, String state,  String title, Date date, String text, int restriction, boolean closed) {
+		super();
+		this.subcategory = subcategory;
+		this.location = location;
+		this.state = state; 
+		this.date = date; 
+		this.title = title;
+		this.text = text;
+		this.restriction = restriction; 
+		this.closed = closed; 
 	}
 
 
