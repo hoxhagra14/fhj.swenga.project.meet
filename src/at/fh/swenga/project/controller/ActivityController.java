@@ -154,7 +154,8 @@ public class ActivityController {
 	@RequestMapping("/fullActivity")
 	public String fullActivity(Model model, @RequestParam(required = false) int id) {
 		Activity a = activityRepository.findById(id);
-		model.addAttribute("activity", a);
+		
+		model.addAttribute("owner", a.getOwner().getUsername());
 		model.addAttribute("currentUser", currentUser);
 		return "activity";
 	}
@@ -186,7 +187,7 @@ public class ActivityController {
 			model.addAttribute("warningMessage", "Activity " + id + " deleted");
 		}
 		else
-			model.addAttribute("warningMessage", "Activity " + id + "not deleted");
+			model.addAttribute("errorMessage", "Not permitted ");
 		
 		return "forward:listActivities";
 	}

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -132,13 +133,15 @@
 								</table>
 
 								<a href="#" class="btn btn-success">Join Activity</a>
-
-								<a href="delete?id=${activity.id}">
-									<button type="button" class="btn btn-danger">
-										<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-										Delete
-									</button>
-								</a>
+								
+								<c:if test="${owner eq currentUser}">
+									<a href="delete?id=${activity.id}">
+										<button type="button" class="btn btn-danger">
+											<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+											Delete
+										</button>
+									</a>
+								</c:if>
 
 							</div>
 						</div>
@@ -150,10 +153,11 @@
 							class="pull-right"> <a href="edit.html"
 							data-original-title="Edit this user" data-toggle="tooltip"
 							type="button" class="btn btn-sm btn-warning"><i
-								class="glyphicon glyphicon-edit"></i></a> <a
-							data-original-title="Remove this user" data-toggle="tooltip"
-							type="button" class="btn btn-sm btn-danger"><i
-								class="glyphicon glyphicon-remove"></i></a>
+								class="glyphicon glyphicon-edit"></i></a>	
+							<a data-original-title="Remove this user" data-toggle="tooltip" 
+							type="button" class="btn btn-sm btn-danger">
+							<i class="glyphicon glyphicon-remove"></i>
+							</a> 
 						</span>
 					</div>
 
