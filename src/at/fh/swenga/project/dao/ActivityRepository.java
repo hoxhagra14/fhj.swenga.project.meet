@@ -15,6 +15,8 @@ import at.fh.swenga.project.model.Activity;
 
 public interface ActivityRepository extends JpaRepository<Activity, Integer> {
 
+	public Activity findById (int id);
+	
 	public List<Activity> findBySubcategoryName(String subCategory);
 	
 	public List<Activity> findByLocationContainingAllIgnoreCase(String location);
@@ -32,6 +34,9 @@ public interface ActivityRepository extends JpaRepository<Activity, Integer> {
 	public List<Activity> findByState(String state);
 	
 	@Query("select a from Activity a inner join a.subcategory s where s.category.name = :name")
-	public List<Activity> getCatActivites(@Param("name")String name);
+	public List<Activity> getCatActivities(@Param("name")String name);
+	
+	@Query("select a from Activity a inner join a.subcategory s where s.category.name = :name and a.id in :activitiesId")
+	public List<Activity> getFilteredActivities(@Param("name")String name, @Param("activitiesId") List<Integer> activitiesId);
 	
 }

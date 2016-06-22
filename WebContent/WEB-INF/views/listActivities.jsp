@@ -45,7 +45,15 @@
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">User <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="#">Settings</a> <a href="#">Sign out</a></li>
+						<li><button class="btn btn-link" onclick="location.href='#'">Settings</button> 
+						<c:url value="/logout" var="logoutUrl" />
+						<li role="separator" class="divider"></li>
+						<li><form action="${logoutUrl}" method="post">
+								<input type="hidden" name="${_csrf.parameterName}"
+									value="${_csrf.token}" /> 
+								<input class="btn btn-link"
+									type="submit" value="Logout" />
+							</form></li>
 					</ul></li>
 			</ul>
 		</div>
@@ -62,7 +70,8 @@
 						</a></li>
 						<li class="sidebar-search">
 							<form action="find" method="post">
-								Search for Activities </br>
+								<input type="hidden" name="${_csrf.parameterName}"
+									value="${_csrf.token}" /> Search for Activities </br>
 								<div class="input-group custom-search-form">
 									<input type="hidden" name="type" value="findTitle"> <input
 										class="form-control" placeholder="Suchen..." type="text"
@@ -78,7 +87,9 @@
 						<li>
 							<p>Subcategories</p>
 							<form action="find" method="post">
-								<input type="hidden" name="type" value="findSubcategory">
+								<input type="hidden" name="${_csrf.parameterName}"
+									value="${_csrf.token}" /> <input type="hidden" name="type"
+									value="findSubcategory">
 								<c:forEach items="${subcategories}" var="subcategory">
 									<li><a> <input type="checkbox" name="searchString"
 											value="${subcategory.name}">${subcategory.name}<br>
@@ -92,8 +103,10 @@
 						<br />
 						<li>
 							<form action="find">
-								<input type="hidden" name="type" value="findState"> <a><input
-									type="checkbox" name="searchString" value="Burgenland">Burgenland<br>
+								<input type="hidden" name="${_csrf.parameterName}"
+									value="${_csrf.token}" /> <input type="hidden" name="type"
+									value="findState"> <a> <input type="checkbox"
+									name="searchString" value="Burgenland">Burgenland<br>
 								</a> <a> <input type="checkbox" name="searchString"
 									value="Kärnten">Kärnten<br>
 								</a> <a> <input type="checkbox" name="searchString"
@@ -117,7 +130,8 @@
 						<br />
 						<li>
 							<form action="find" method="post">
-								Ortsuche </br>
+								<input type="hidden" name="${_csrf.parameterName}"
+									value="${_csrf.token}" /> Ortsuche </br>
 								<div class="input-group custom-search-form">
 									<input type="hidden" name="type" value="findLocation">
 									<input class="form-control" placeholder="Suchen..." type="text"
@@ -133,6 +147,7 @@
 				</ul>
 			</div>
 
+
 			<!-- END MENU -->
 			<div class="col-lg-8">
 				<fieldset>
@@ -140,22 +155,21 @@
 						<hr>
 						<div class="row">
 							<div class="col-sm-4">
-								<a href="#" class=""><img src="http://placehold.it/1280X720"
-									class="img-responsive"></a>
+								<a href="fullActivity?id=${activity.id}" class=""><img
+									src="http://placehold.it/1280X720" class="img-responsive"></a>
 							</div>
 							<div class="col-sm-8">
 
 								<h3 class="title">${activity.title}</h3>
 								<p class="text-muted">
-									<span class="glyphicon glyphicon-lock"></span> Available
-									Exclusively for Premium Members
+									<span class="glyphicon glyphicon-calendar"></span> July 23,
+									2014
 								</p>
 								<p>${activity.text}</p>
-
 								<p>${activity.subcategory.name}</p>
 
 								<p class="text-muted">
-									Created by <a href="#">Granit Hocha</a>
+									Created by <a href="#">Granit Hoxha</a>
 								</p>
 							</div>
 						</div>
@@ -163,6 +177,7 @@
 				</fieldset>
 			</div>
 		</div>
+	</div>
 
 
 	</div>

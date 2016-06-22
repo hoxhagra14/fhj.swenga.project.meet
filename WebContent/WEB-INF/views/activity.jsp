@@ -1,12 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>meet.</title>
+<title>Insert title here</title>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,7 +29,6 @@
 <!-- Custom CSS -->
 <%@include file="includes/simple-sidebar.css"%>
 
-<%@include file="includes/bootstrapCss.css"%>
 
 </head>
 <body>
@@ -48,9 +44,8 @@
 					data-toggle="dropdown">User <span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><button class="btn btn-link" onclick="location.href='#'">Settings</button> 
-						<c:url value="/logout" var="logoutUrl" />
 						<li role="separator" class="divider"></li>
-						<li><form action="${logoutUrl}" method="post">
+						<li><form action="/logout" method="post">
 								<input type="hidden" name="${_csrf.parameterName}"
 									value="${_csrf.token}" /> 
 								<input class="btn btn-link"
@@ -61,7 +56,7 @@
 		</div>
 		</nav>
 		<!-- /#navigation -->
-		<!-- TODO: In foreach Ã¤ndern -->
+		<!-- TODO: In foreach ändern -->
 		<!-- SIDEBAR MENU -->
 		<div class="container-fluid">
 			<div class="col-lg-2">
@@ -82,81 +77,78 @@
 					</ul>
 				</div>
 			</div>
-			<form>
-				<div class="col-lg-10">
-					<div class="row">
-						<div class="col-lg-5">
-							<div class="panel">
-								<div class="panel-heading">
-									<h1 class="text-center">Sports</h1>
-								</div>
-								<a href="listActivities?category=Sport">
-									<div class="panel-footer">
-										<p class="text-right">Weiter</p>
-									</div>
-								</a>
+
+			<div class="col-lg-8">
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<h3 class="panel-title">Activity</h3>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-md-3 col-lg-3 " align="center">
+								<img alt="User Pic" src="http://placehold.it/1280X720"
+									class="img-circle img-responsive">
 							</div>
-						</div>
 
-						<div class="col-lg-2"></div>
+							<div class=" col-md-9 col-lg-9 ">
+								<table class="table table-user-information">
+									<tbody>
+										<tr>
+											<td><strong>Title:</strong></td>
+											<td>${activity.title}</td>
+										</tr>
+										<tr>
+											<td>Date:</td>
+											<td>${activity.date }</td>
+										</tr>
+										<tr>
+											<td><span class="glyphicon glyphicon-map-marker">Location:</span></td>
+											<td>${activity.location }</td>
+										</tr>
 
-						<div class="col-lg-5 ">
-							<div class="panel">
-								<div class="panel-heading">
-									<h1 class="text-center">Gaming</h1>
-								</div>
-								<a href="listActivities?category=Games">
-									<div class="panel-footer">
-										<p class="text-right">Weiter</p>
-									</div>
-								</a>
+										<tr>
+										<tr>
+											<td>Subcategory</td>
+											<td>${activity.subcategory }</td>
+										</tr>
+										<tr>
+											<td><span class="glyphicon glyphicon-user">Attendane:</span></td>
+											<td>${activity.restriction }</td>
+										</tr>
+										<tr>
+											<td>Email</td>
+											<td><a href="mailto:info@support.com">info@support.com</a></td>
+										</tr>
+										<td>Description:</td>
+										<td>${activity.text }</td>
+
+										</tr>
+
+									</tbody>
+								</table>
+
+								<a href="#" class="btn btn-primary">Join Activity</a>
+
 							</div>
 						</div>
 					</div>
-
-					<div class="row spacer"></div>
-
-					<div class="row">
-						<div class="col-lg-5 ">
-							<div class="panel">
-								<div class="panel-heading">
-									<h1 class="text-center">Party</h1>
-								</div>
-								<a href="listActivities?category=party">
-									<div class="panel-footer">
-										<p class="text-right">Weiter</p>
-									</div>
-								</a>
-							</div>
-						</div>
-
-						<div class="col-lg-2"></div>
-
-						<div class="col-lg-5 ">
-							<div class="panel">
-								<div class="panel-heading">
-									<h1 class="text-center">Learning</h1>
-								</div>
-								<a href="listActivities?category=learning">
-									<div class="panel-footer">
-										<p class="text-right">Weiter</p>
-									</div>
-								</a>
-							</div>
-						</div>
+					<div class="panel-footer">
+						<a data-original-title="Broadcast Message" data-toggle="tooltip"
+							type="button" class="btn btn-sm btn-primary"><i
+							class="glyphicon glyphicon-envelope"></i></a> <span
+							class="pull-right"> <a href="edit.html"
+							data-original-title="Edit this user" data-toggle="tooltip"
+							type="button" class="btn btn-sm btn-warning"><i
+								class="glyphicon glyphicon-edit"></i></a> <a
+							data-original-title="Remove this user" data-toggle="tooltip"
+							type="button" class="btn btn-sm btn-danger"><i
+								class="glyphicon glyphicon-remove"></i></a>
+						</span>
 					</div>
 
 				</div>
+			</div>
 		</div>
-		<!-- END MENU -->
-
 	</div>
-	<!-- /#wrapper -->
-
-	<!-- jQuery -->
-	<script src="js/jquery.js"></script>
-
-	<!-- Bootstrap Core JavaScript -->
-	<script src="js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -65,6 +65,18 @@ public class Activity {
 		this.text = text;
 		this.restriction = restriction; 
 	}
+	
+	
+	public Activity(Subcategory subcategory, String location, String state,  String title, Date date, String text, int restriction) {
+		super();
+		this.subcategory = subcategory;
+		this.location = location;
+		this.state = state; 
+		this.date = date; 
+		this.title = title;
+		this.text = text;
+		this.restriction = restriction; 
+	}
 
 
 	public Activity(String location, String state, Date date, String title, String text,
