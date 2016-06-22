@@ -79,6 +79,7 @@ public class ActivityController {
 		model.addAttribute("activities", activities);
 		model.addAttribute("subcategories", subcategories);
 		model.addAttribute("type", "findAll");
+		model.addAttribute("category", category);
 		return "listActivities";
 	}
 
@@ -130,9 +131,9 @@ public class ActivityController {
 	}
 	
 	@RequestMapping("/addActivity")
-	public String addActivity(Model model) {
+	public String addActivity(Model model, @RequestParam String category) {
 		
-		List<Subcategory> sub = subcategoryRepository.findAll(); // TODO: Nur die richtigen Anzeigen
+		List<Subcategory> sub = subcategoryRepository.findByCategoryName(category); // TODO: Nur die richtigen Anzeigen
 		model.addAttribute("subcategories", sub);
 		return "addActivities";
 	}

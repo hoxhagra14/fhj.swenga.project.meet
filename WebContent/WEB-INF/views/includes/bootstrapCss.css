@@ -47,6 +47,22 @@ body {
 	outline: 2px solid black;
 }
 
+.margin-user
+{
+	margin-right: 30px;
+}
+
+.margin-brand
+{
+	margin-left: 30px;
+}
+
+.glyphicon-big
+{
+	font-size: 7em;
+}
+
+
 panel-footer{
 	padding:5px 5px;
 	background-color:#f5f5f5;

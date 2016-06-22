@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Insert title here</title>
+<title>meet.</title>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,6 +25,11 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/metisMenu/2.5.2/metisMenu.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/metisMenu/2.5.2/metisMenu.min.js"></script>
 
 <!-- Custom CSS -->
 <%@include file="includes/simple-sidebar.css"%>
@@ -40,7 +45,7 @@
 			<div class="navbar-header">
 				<a href="./" class="navbar-brand">M E E T .</a>
 			</div>
-			<ul class="nav navbar-nav navbar-right">
+			<ul class="nav navbar-nav navbar-right margin-user">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">User <span class="caret"></span></a>
 					<ul class="dropdown-menu">
@@ -66,22 +71,52 @@
 		<div class="container-fluid">
 			<div class="col-lg-2">
 				<div class="profile-usermenu">
-					<ul class="nav">
-						<li class="active"><a href="#"> <i
-								class="glyphicon glyphicon-home"></i> Overview
-						</a></li>
-						<li><a href="#"> <i class="glyphicon glyphicon-user"></i>
-								Account Settings
-						</a></li>
-						<li><a href="#" target="_blank"> <i
-								class="glyphicon glyphicon-ok"></i> Tasks
-						</a></li>
-						<li><a href="#"> <i class="glyphicon glyphicon-flag"></i>
-								Help
-						</a></li>
+				
+				<ul class="nav MetisMenu" id="menu">
+				<li>
+					<a area-expanded="false">
+						<i class="fa fa-futbol-o"></i> 
+						Sport
+					</a>
+					<ul area-expanded="false">
+						<li><a href="listActivities?category=Sport">Aktivitäten</a></li>
+						<li><a href="addActivity?category=Sport">neue Aktivität erstellen</a></li>
 					</ul>
+				</li>
+				<li>
+					<a area-expanded="false">
+						<i class="fa fa-gamepad"></i>
+						Gaming
+					</a>
+					<ul area-expanded="false">
+						<li><a href="listActivities?category=Games">Aktivitäten</a></li>
+						<li><a href="addActivity?category=Games">neue Aktivität erstellen</a></li>
+					</ul>
+				</li>
+				<li>
+					<a area-expanded="false">
+						<i class="glyphicon glyphicon-glass"></i>
+						Party
+					</a>
+					<ul area-expanded="false">
+						<li><a href="listActivities?category=party">Aktivitäten</a></li>
+						<li><a href="addActivity?category=party">neue Aktivität erstellen</a></li>
+					</ul>
+				</li>
+				<li>
+					<a area-expanded="false">
+						<i class="glyphicon glyphicon-book"></i>
+						Learning
+					</a>
+					<ul area-expanded="false">
+						<li><a href="listActivities?category=learning">Aktivitäten</a></li>
+						<li><a href="addActivity?category=learning">neue Aktivität erstellen</a></li>
+					</ul>
+				</li>
+				</ul>
+				
 				</div>
-			</div>
+				</div>
 
 			<div class="col-lg-8">
 				<div class="panel panel-info">
@@ -163,6 +198,10 @@
 		</div>
 	</div>
 
+<script> $(function() {
 
+	      $('#menu').metisMenu();
+	});</script>
+	
 </body>
 </html>
