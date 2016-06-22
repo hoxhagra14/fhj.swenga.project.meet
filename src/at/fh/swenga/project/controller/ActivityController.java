@@ -1,5 +1,6 @@
 package at.fh.swenga.project.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -26,9 +27,9 @@ import at.fh.swenga.project.model.Subcategory;
 
 @Controller
 public class ActivityController {
+	String lastcategory; 
 	boolean categoriesCreated = false; 
 	
-	String lastcategory;
 	@Autowired
 	ActivityRepository activityRepository;
 	
@@ -40,7 +41,7 @@ public class ActivityController {
 	
 	@RequestMapping(value = { "/" })
 	public String index(Model model){	
-		if(!categoriesCreated) subcategoryRepository.save(Categories.FillCategories()); //Erstellen aller Catergories + Subcategories
+		//if(!categoriesCreated) subcategoryRepository.save(Categories.FillCategories()); //Erstellen aller Catergories + Subcategories
 		categoriesCreated = true;
 	
 		return "index";
@@ -52,9 +53,14 @@ public class ActivityController {
 		lastcategory = category;
 	
 		List<Activity> activities = (List<Activity>) model.asMap().get("activities");
+		List<Integer> activitiesInt = new ArrayList<>();
+		if(activities!=null) {
+			for(Activity a : activities) { activitiesInt.add(a.getId()); }
+		}
 		
 		List<Subcategory> subcategories = subcategoryRepository.findByCategoryName(category);
-		if(activities==null) activities = activityRepository.getCatActivites(category); // Falls keine Activties übergeben wurden
+		if(activities==null) activities = activityRepository.getCatActivities(category); // Falls keine Activties übergeben wurden (also keine herausgefiltert wurden)
+		else activities = activityRepository.getFilteredActivities(category, activitiesInt);
 		
 		model.addAttribute("activities", activities);
 		model.addAttribute("subcategories", subcategories);
@@ -64,8 +70,9 @@ public class ActivityController {
 
 	
 	@RequestMapping(value = { "/find" })
-	public String find(Model model, @RequestParam String searchString, @RequestParam String type, RedirectAttributes redirectAttributes) { // TODO: Es werden alle passenden angezeigt nicht nur die der jeweiligen Categorie-Liste
+	public String find(Model model, @RequestParam(required=false) String searchString, @RequestParam String type, RedirectAttributes redirectAttributes) { // TODO: Es werden alle passenden angezeigt nicht nur die der jeweiligen Categorie-Liste
 		List<Activity> activities = null;
+		if(searchString==null) type="default"; //Falls kein Filter ausgewählt wurde, werden alle ausgegeben
 		
 		switch (type) {
 		case "findTitle":
@@ -140,9 +147,21 @@ public class ActivityController {
 		return "forward:listActivities";
 	}
 
-	@ExceptionHandler(Exception.class)
+	//@ExceptionHandler(Exception.class) TODO: Wieder aktivieren nach fertigstellung
 	public String handleAllException(Exception ex) {
 		return "showError";
+	}
+	
+	@RequestMapping("/registration")
+	public String registration()
+	{
+		return "registration";
+		
+	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String handleLogin() {
+		return "login";
 	}
 	
 	
