@@ -132,6 +132,7 @@
 					<div class="row">
 						<div class="col-lg-5">
 							<div class="panel">
+								<img src="sports.png">
 								<div class="panel-heading">
 									<h1 class="text-center">Sports</h1>
 								</div>

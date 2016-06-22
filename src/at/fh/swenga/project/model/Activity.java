@@ -36,8 +36,12 @@ public class Activity {
 	@ManyToOne(cascade = CascadeType.MERGE)
 	Subcategory subcategory;
 	
+	@ManyToOne(cascade = CascadeType.MERGE)
+	State state;
+	
+	
+	
 	private String location; // Wie Subcategory?
-	private String state; 
 	// Zusätzlich für zocken Kommunikationskanal?
 	private Date date;
 	private String title;
@@ -56,7 +60,7 @@ public class Activity {
 		super();
 	}
 	
-	public Activity(Subcategory subcategory, String location, String state,  String title, String text, int restriction) {
+	public Activity(Subcategory subcategory, String location, State state,  String title, String text, int restriction) {
 		super();
 		this.subcategory = subcategory;
 		this.location = location;
@@ -67,7 +71,7 @@ public class Activity {
 	}
 	
 	
-	public Activity(Subcategory subcategory, String location, String state,  String title, Date date, String text, int restriction) {
+	public Activity(Subcategory subcategory, String location, State state,  String title, Date date, String text, int restriction) {
 		super();
 		this.subcategory = subcategory;
 		this.location = location;
@@ -78,7 +82,7 @@ public class Activity {
 		this.restriction = restriction; 
 	}
 	
-	public Activity(Subcategory subcategory, String location, String state,  String title, Date date, String text, int restriction, boolean closed) {
+	public Activity(Subcategory subcategory, String location, State state,  String title, Date date, String text, int restriction, boolean closed) {
 		super();
 		this.subcategory = subcategory;
 		this.location = location;
@@ -89,9 +93,20 @@ public class Activity {
 		this.restriction = restriction; 
 		this.closed = closed; 
 	}
+	
+	public Activity(Subcategory subcategory, String location,  String title, Date date, String text, int restriction, boolean closed) {
+		super();
+		this.subcategory = subcategory;
+		this.location = location;
+		this.date = date; 
+		this.title = title;
+		this.text = text;
+		this.restriction = restriction; 
+		this.closed = closed; 
+	}
 
 
-	public Activity(String location, String state, Date date, String title, String text,
+	public Activity(String location, State state, Date date, String title, String text,
 			boolean closed, int restriction, boolean deprecated) {
 		super();	
 		this.location = location;
@@ -139,11 +154,11 @@ public class Activity {
 		this.location = location;
 	}
 
-	public String getState() {
+	public State getState() {
 		return state;
 	}
 
-	public void setState(String state) {
+	public void setState(State state) {
 		this.state = state;
 	}
 
