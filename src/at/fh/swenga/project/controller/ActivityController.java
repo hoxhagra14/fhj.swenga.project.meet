@@ -1,21 +1,19 @@
 package at.fh.swenga.project.controller;
 
-import java.util.HashSet;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,8 +25,6 @@ import at.fh.swenga.project.dao.SimpleUserRepository;
 import at.fh.swenga.project.dao.StateRepository;
 import at.fh.swenga.project.dao.SubcategoryRepository;
 import at.fh.swenga.project.dao.UserRoleRepository;
-import at.fh.swenga.project.data.Categories;
-import at.fh.swenga.project.data.Sports;
 import at.fh.swenga.project.model.Activity;
 import at.fh.swenga.project.model.State;
 import at.fh.swenga.project.model.Subcategory;
@@ -136,9 +132,6 @@ public class ActivityController {
 	@RequestMapping("/fill")
 	@Transactional
 	public String fillData(Model model) {
-
-		Activity a = new Activity(subcategoryRepository.findByName("Soccer"), "Graz", "Steiermark", "Test", "TestText",
-				1);
 		
 		
 		Activity a = new Activity(subcategoryRepository.findByName("Soccer"), "Graz", stateRepository.findByName("Wien"), "Test", "TestText", 1);
@@ -147,8 +140,6 @@ public class ActivityController {
 		Activity c = new Activity(subcategoryRepository.findByName("Tennis"), "Wien", stateRepository.findByName("Burgenland"), "ka", "KaText", 1);
 		activityRepository.save(c);
 
-		Activity b = new Activity(subcategoryRepository.findByName("Counter Strike"), "Graz", "Steiermark", "Test",
-				"TestText", 1);
 		
 		Activity b = new Activity(subcategoryRepository.findByName("Counter Strike"), "Graz",stateRepository.findByName("Steiermark"), "Test", "TestText", 1);
 		activityRepository.save(b);
