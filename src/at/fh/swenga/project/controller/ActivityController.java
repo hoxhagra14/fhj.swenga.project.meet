@@ -185,6 +185,7 @@ public class ActivityController {
 		return "activity";
 	}
 
+
 	@RequestMapping("/add")
 	public String addActivityInDatabase(Model model, @RequestParam String title, @RequestParam String text,
 			@RequestParam String state, @RequestParam String location,
