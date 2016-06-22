@@ -9,13 +9,14 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import at.fh.swenga.project.model.Activity;
+import at.fh.swenga.project.model.User;
 
 
 @Repository
 
 public interface ActivityRepository extends JpaRepository<Activity, Integer> {
 
-	public Activity findById (int id);
+	public Activity findById(int id);
 	
 	public List<Activity> findBySubcategoryName(String subCategory);
 	

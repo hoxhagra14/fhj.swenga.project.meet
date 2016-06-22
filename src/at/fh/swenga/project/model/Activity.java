@@ -30,6 +30,8 @@ public class Activity {
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	private User owner;
 	
+
+
 	@ManyToMany(mappedBy="activities", fetch=FetchType.EAGER)
 	private List<User> users;
 	
@@ -122,6 +124,14 @@ public class Activity {
 //	public void setUsers(List<User> users) {
 //		this.users = users;
 //	}
+	
+	public User getOwner() {
+		return owner;
+	}
+
+	public void setOwner(User owner) {
+		this.owner = owner;
+	}
 
 	public Subcategory getSubcategory() {
 		return subcategory;
