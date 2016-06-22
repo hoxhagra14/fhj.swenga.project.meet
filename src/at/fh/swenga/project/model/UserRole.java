@@ -28,6 +28,14 @@ public class UserRole implements java.io.Serializable {
 	private String role;
 	
 	//Activity definieren?
+	
+	public UserRole()
+	{}
+	
+	public UserRole(User user, String role) {
+		this.user = user;
+		this.role = role;
+	}
 
 
 	public Integer getUserRoleId() {

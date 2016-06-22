@@ -52,6 +52,9 @@
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">User <span class="caret"></span></a>
 					<ul class="dropdown-menu">
+						<li><a href="user">User Profile</a> <c:url value="/logout"
+								var="logoutUrl" /></li>
+						<li role="separator" class="divider"></li>
 						<li><button class="btn btn-link" onclick="location.href='#'">Settings</button> 
 						<c:url value="/logout" var="logoutUrl" />
 						<li role="separator" class="divider"></li>
@@ -89,6 +92,7 @@
 			</div>
 			<div class="col-lg-8">
 				<form class="form-horizontal" method="post" action="add">
+				<input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}" />
 					<input type="hidden" name="${_csrf.parameterName}"
 						value="${_csrf.token}" />
 					<fieldset>
@@ -96,7 +100,7 @@
 
 						<! ----------------  Titel ---------------- -->
 						<div class="form-group">
-							<label for="inputName" class="col-md-2 control-label">Titel</label>
+							<label for="inputName" class="col-md-2 control-label">Title</label>
 							<div class="col-md-10">
 								<input class="form-control" id="inputName" type="text"
 									name="title">
@@ -105,7 +109,7 @@
 
 						<! ----------------  Unterkategorie ---------------- -->
 						<div class="form-group">
-							<label for="inputSubcategory" class="col-md-2 control-label">Unterkategorie</label>
+							<label for="inputSubcategory" class="col-md-2 control-label">Subcategory</label>
 							<div class="col-md-10">
 								<select name="type">
 									<c:forEach items="${subcategories}" var="subcategory">
@@ -135,7 +139,7 @@
 
 						<! ----------------  Ort ---------------- -->
 						<div class="form-group">
-							<label for="inputLocation" class="col-md-2 control-label">Ort</label>
+							<label for="inputLocation" class="col-md-2 control-label">Location</label>
 							<div class="col-md-10">
 								<input class="form-control" id="inputLocation" type="text"
 									name="location">
@@ -156,7 +160,7 @@
 
 						<! ----------------  Inhalt ---------------- -->
 						<div class="form-group">
-							<label for="inputText" class="col-md-2 control-label">Inhalt</label>
+							<label for="inputText" class="col-md-2 control-label">Description</label>
 							<div class="col-md-10">
 								<textarea rows="4" class="form-control" id="inputText"
 									type="text" name="text"> </textarea>
@@ -165,10 +169,18 @@
 
 						<! ----------------  Teilnehmerzahl ---------------- -->
 						<div class="form-group">
-							<label for="inputName" class="col-md-2 control-label">Teilnehmerzahl</label>
+							<label for="inputRestriction" class="col-md-2 control-label">Restriction</label>
 							<div class="col-md-10">
 								<input class="form-control" id="inputRestriction" type="text"
 									name="restriction">
+							</div>
+						</div>
+
+						<! ----------------  Offen/Geschlossen ---------------- -->
+						<div class="form-group">
+							<div class="col-md-10">
+							<label for="inputClosed" class="col-md-2 control-label">closed</label>
+								<input type="checkbox" name="closed">
 							</div>
 						</div>
 

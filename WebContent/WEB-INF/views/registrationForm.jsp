@@ -48,7 +48,7 @@
 						<h3 class="panel-title">Please Register</h3>
 					</div>
 					<div class="panel-body">
-						<form role="form">
+						<form class="form-horizontal" method="post" action="registrate">
 							<fieldset>
 								<div class="form-group">
 									<label>Username</label> 
@@ -62,8 +62,13 @@
 										value="">
 								</div>
 								<div class="form-group">
+									<label>Name</label> 
+									<input class="form-control"
+										placeholder="Name" name="name" type="text">
+								</div>
+								<div class="form-group">
 									<label>Age</label> 
-									<select class="form-control">
+									<select class="form-control" name="age">
 										<c:forEach begin="1" end="99" var="i">
 											<option>
 												<c:out value="${i}"></c:out>
@@ -76,10 +81,13 @@
 									<label>City</label> 
 									<input class="form-control"
 										placeholder="City" name="city" type="text">
+										
 								</div>
+								<input type="hidden" name="${_csrf.parameterName}"
+								value="${_csrf.token}" />
 
 								<!-- Change this to a button or input when using this as a form -->
-								<button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+								<button class="btn btn-lg btn-primary btn-block" type="submit" action="registrate">Register</button>
 							</fieldset>
 						</form>
 					</div>
