@@ -44,7 +44,10 @@
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">User <span class="caret"></span></a>
-					<ul class="dropdown-menu">
+				<ul class="dropdown-menu">
+						<li><a href="user">User Profile</a> <c:url value="/logout"
+								var="logoutUrl" /></li>
+						<li role="separator" class="divider"></li>
 						<li><button class="btn btn-link" onclick="location.href='#'">Settings</button> 
 						<c:url value="/logout" var="logoutUrl" />
 						<li role="separator" class="divider"></li>

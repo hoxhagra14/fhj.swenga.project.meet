@@ -42,7 +42,7 @@
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">User <span class="caret"></span></a>
-					<ul class="dropdown-menu">
+				<ul class="dropdown-menu">
 						<li><a href="user">User Profile</a> <c:url value="/logout"
 								var="logoutUrl" /></li>
 						<li role="separator" class="divider"></li>
@@ -67,25 +67,25 @@
 				<div class="profile-usermenu">
 					<ul class="nav">
 						<li class="active"><a href="#"> <i
-								class="glyphicon glyphicon-home"></i> Overview
+								class="glyphicon glyphicon-home"></i> Sport
 						</a></li>
 						<li><a href="#"> <i class="glyphicon glyphicon-user"></i>
-								Account Settings
+								Party
 						</a></li>
 						<li><a href="#" target="_blank"> <i
-								class="glyphicon glyphicon-ok"></i> Tasks
+								class="glyphicon glyphicon-ok"></i> Gaming
 						</a></li>
 						<li><a href="#"> <i class="glyphicon glyphicon-flag"></i>
-								Help
+								Learning
 						</a></li>
 					</ul>
 				</div>
 			</div>
 
-			<div class="col-lg-8">
+			<div class="col-lg-6 col-md-offset-1">
 				<div class="panel panel-info">
 					<div class="panel-heading">
-						<h3 class="panel-title">Activity</h3>
+						<h3 class="panel-title">User</h3>
 					</div>
 					<div class="panel-body">
 						<div class="row">
@@ -98,47 +98,33 @@
 								<table class="table table-user-information">
 									<tbody>
 										<tr>
-											<td><strong>Title:</strong></td>
-											<td>${activity.title}</td>
+											<td><strong>Name:</strong></td>
+											<td>${user.name}</td>
 										</tr>
 										<tr>
-											<td>Date:</td>
-											<td>${activity.date }</td>
+											<td>User Name:</td>
+											<td>${user.username }</td>
 										</tr>
 										<tr>
-											<td><span class="glyphicon glyphicon-map-marker">Location:</span></td>
-											<td>${activity.location }</td>
+											<td>Age:</td>
+											<td>${user.age }</td>
 										</tr>
 
 										<tr>
 										<tr>
-											<td>Subcategory</td>
-											<td>${activity.subcategory }</td>
-										</tr>
-										<tr>
-											<td><span class="glyphicon glyphicon-user">Attendane:</span></td>
-											<td>${activity.restriction }</td>
+											<td>City/td>
+											<td>${user.city }</td>
 										</tr>
 										<tr>
 											<td>Email</td>
 											<td><a href="mailto:info@support.com">info@support.com</a></td>
 										</tr>
-										<td>Description:</td>
-										<td>${activity.text }</td>
-
-										</tr>
-
 									</tbody>
 								</table>
 
-								<a href="#" class="btn btn-success">Join Activity</a>
+								<a href="#" class="btn btn-success">Edit</a>
 
-								<a href="delete?id=${activity.id}">
-									<button type="button" class="btn btn-danger">
-										<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-										Delete
-									</button>
-								</a>
+			
 
 							</div>
 						</div>

@@ -90,16 +90,39 @@
 				<div class="profile-usermenu">
 					<ul class="nav">
 						<li class="active"><a href="#"> <i
-								class="glyphicon glyphicon-home"></i> Overview
-						</a></li>
+								class="glyphicon glyphicon-home"></i> Sport
+						</a>
+						
+                                <li>
+                                    <a href="panels-wells.html">Panels and Wells</a>
+                                </li>
+                                <li>
+                                    <a href="buttons.html">Buttons</a>
+                                </li>
+                                <li>
+                                    <a href="notifications.html">Notifications</a>
+                                </li>
+                                <li>
+                                    <a href="typography.html">Typography</a>
+                                </li>
+                                <li>
+                                    <a href="icons.html"> Icons</a>
+                                </li>
+                                <li>
+                                    <a href="grid.html">Grid</a>
+                                </li>
+                         
+						</li>
+
+                        
 						<li><a href="#"> <i class="glyphicon glyphicon-user"></i>
-								Account Settings
+								Gaming
 						</a></li>
 						<li><a href="#" target="_blank"> <i
-								class="glyphicon glyphicon-ok"></i> Tasks
+								class="glyphicon glyphicon-ok"></i> Party
 						</a></li>
 						<li><a href="#"> <i class="glyphicon glyphicon-flag"></i>
-								Help
+								Learning
 						</a></li>
 					</ul>
 				</div>
@@ -176,9 +199,11 @@
 	<!-- /#wrapper -->
 
 	<!-- jQuery -->
-	<script src="js/jquery.js"></script>
+	<script src="includes/jquery.js"></script>
 
 	<!-- Bootstrap Core JavaScript -->
-	<script src="js/bootstrap.min.js"></script>
+	<script src="includes/bootstrap.min.js"></script>
+	
+	
 </body>
 </html>

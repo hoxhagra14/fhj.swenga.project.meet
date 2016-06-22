@@ -139,6 +139,11 @@ public class ActivityController {
 		
 		return "forward:listActivities";
 	}
+	
+	@RequestMapping("/user")
+	public String showUserProfile(Model model) {
+		return "showUserProfile";
+	}
 
 	@RequestMapping("/delete")
 	public String deleteData(Model model, @RequestParam int id) {
