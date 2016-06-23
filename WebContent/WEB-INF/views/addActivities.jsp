@@ -53,12 +53,10 @@
 			<c:when test="${not empty activity}">
 				<c:set var="legend">Change Activity</c:set>
 				<c:set var="Action">edit</c:set>
-				<c:set var="readonly">readonly</c:set>
 			</c:when>
 			<c:otherwise>
 				<c:set var="legend">New Activity</c:set>
 				<c:set var="Action">add</c:set>
-				<c:set var="readonly"></c:set>
 			</c:otherwise>
 		</c:choose>
 
@@ -101,8 +99,8 @@
 						Sport
 					</a>
 					<ul area-expanded="false">
-						<li><a href="listActivities?category=Sport">Aktivitäten</a></li>
-						<li><a href="addActivity?category=Sport">neue Aktivität erstellen</a></li>
+						<li><a href="listActivities?category=Sport">Activity</a></li>
+						<li><a href="addActivity?category=Sport">create new Activity</a></li>
 					</ul>
 				</li>
 				<li>
@@ -111,8 +109,8 @@
 						Gaming
 					</a>
 					<ul area-expanded="false">
-						<li><a href="listActivities?category=Games">Aktivitäten</a></li>
-						<li><a href="addActivity?category=Games">neue Aktivität erstellen</a></li>
+						<li><a href="listActivities?category=Games">Activity</a></li>
+						<li><a href="addActivity?category=Games">create new Activity</a></li>
 					</ul>
 				</li>
 				<li>
@@ -121,8 +119,8 @@
 						Party
 					</a>
 					<ul area-expanded="false">
-						<li><a href="listActivities?category=party">Aktivitäten</a></li>
-						<li><a href="addActivity?category=party">neue Aktivität erstellen</a></li>
+						<li><a href="listActivities?category=party">Activity</a></li>
+						<li><a href="addActivity?category=party">create new Activity</a></li>
 					</ul>
 				</li>
 				<li>
@@ -131,8 +129,8 @@
 						Learning
 					</a>
 					<ul area-expanded="false">
-						<li><a href="listActivities?category=learning">Aktivitäten</a></li>
-						<li><a href="addActivity?category=learning">neue Aktivität erstellen</a></li>
+						<li><a href="listActivities?category=learning">Activity</a></li>
+						<li><a href="addActivity?category=learning">create new Activity</a></li>
 					</ul>
 				</li>
 				</ul>
@@ -152,7 +150,7 @@
 							<label for="inputName" class="col-md-2 control-label">Title</label>
 							<div class="col-md-10">
 								<input class="form-control" id="inputName" type="text"
-									name="title" value="${activity.title}">
+									name="title"">
 							</div>
 						</div>
 
@@ -173,7 +171,7 @@
 							<div class="col-md-10">
 								<select name="state">
 									<c:forEach items="${states}" var="state">
-										<option value="${state.name }" selected="selected">${state.name }</option>
+										<option value="${state.name}" selected="selected">${state.name}</option>
 									</c:forEach>
 								</select>
 							</div>
@@ -183,7 +181,7 @@
 							<label for="inputLocation" class="col-md-2 control-label">Location</label>
 							<div class="col-md-10">
 								<input class="form-control" id="inputLocation" type="text"
-									name="location" value="${activity.location}">
+									name="location">
 							</div>
 						</div>
 
@@ -194,7 +192,7 @@
 							<div class="col-md-10">
 								<input class="form_datetime" id="inputDate" placeholder="Date"
 									type="text"
-									value="<fmt:formatDate value="${now }" pattern="dd.MM.yyyy"/>"
+									value="<fmt:formatDate value="${now}" pattern="dd.MM.yyyy"/>"
 									name="date">
 							</div>
 						</div>
@@ -204,7 +202,7 @@
 							<label for="inputText" class="col-md-2 control-label">Description</label>
 							<div class="col-md-10">
 								<textarea rows="4" class="form-control" id="inputText"
-									type="text" name="text" value="${activity.text}"> </textarea>
+									type="text" name="text"> </textarea>
 							</div>
 						</div>
 
@@ -213,17 +211,17 @@
 							<label for="inputRestriction" class="col-md-2 control-label">Restriction</label>
 							<div class="col-md-10">
 								<input class="form-control" id="inputRestriction" type="text"
-									name="restriction" value="${activity.restriction}">
+									name="restriction">
 							</div>
 						</div>
 
 						<! ----------------  Offen/Geschlossen ---------------- -->
-						<div class="form-group">
+						<!--  <div class="form-group">
 							<div class="col-md-10">
 								<label for="inputClosed" class="col-md-2 control-label">closed</label>
 								<input type="checkbox" name="closed">
 							</div>
-						</div>
+						</div> -->
 
 						<! ----------------  buttons ---------------- -->
 						<div class="form-group">

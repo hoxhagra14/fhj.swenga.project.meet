@@ -32,7 +32,7 @@ public interface ActivityRepository extends JpaRepository<Activity, Integer> {
 	
 	public List<Activity> findBySubcategoryNameContainingAllIgnoreCase(String subCategory);
 	
-	public List<Activity> findByState(String state);
+	public List<Activity> findByStateNameContainingAllIgnoreCase(String state);
 	
 	@Query("select a from Activity a inner join a.subcategory s where s.category.name = :name")
 	public List<Activity> getCatActivities(@Param("name")String name); //TODO: SQLInjection?!!!

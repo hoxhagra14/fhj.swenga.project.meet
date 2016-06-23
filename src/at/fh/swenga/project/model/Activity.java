@@ -26,11 +26,8 @@ public class Activity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	private User owner;
-	
-
 
 	@ManyToMany(mappedBy="activities", fetch=FetchType.EAGER)
 	private List<User> users;
@@ -50,9 +47,7 @@ public class Activity {
 	private String text;
 	private boolean closed;
 	private int restriction; // Count der Teilnehmer für limitierte Activitäten
-	private boolean deprecated; // In der Datenbank behalten selbst nach ablauf 
-								// damit Bewertungen durchgeführt werden können
-								// überprüfen mit Systdatetime? 
+	private boolean deprecated; // In der Datenbank behalten selbst nach ablauf damit Bewertungen durchgeführt werden können überprüfen mit Systdatetime? 
 	private String subcategoryString; // Falls eine Andere Activity; Also nicht in Liste vorhanden
 	
 	@Version

@@ -55,10 +55,7 @@
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">${currentUser}<span class="caret"></span></a>
 				<ul class="dropdown-menu">
-						<li><a href="user">User Profile</a> <c:url value="/logout"
-								var="logoutUrl" /></li>
-						<li role="separator" class="divider"></li>
-						<li><button class="btn btn-link" onclick="location.href='#'">Settings</button> 
+						<li><a href="user">User Profile</a></li>
 						<c:url value="/logout" var="logoutUrl" />
 						<li role="separator" class="divider"></li>
 						<li><form action="${logoutUrl}" method="post">
@@ -89,7 +86,7 @@
 					</a>
 					<ul aria-expanded="true">
 					</br>
-						<li><a href="addActivity?category=Sport">neue Aktivität erstellen</a></li>
+						<li><a href="addActivity?category=Sport">neue Aktivität erstellen</a></li> <!--  !!!!!!!!!!!  -->
 						</br>
 						<li class="sidebar-search">
 							<form action="find" method="post">
@@ -126,13 +123,12 @@
 						</br>
 						<li>
 							<p>Bundesland</p>
-							<form action="find">
-								<input type="hidden" name="${_csrf.parameterName}"
-									value="${_csrf.token}" /> <input type="hidden" name="type"
-									value="findState">
+							<form action="find" method="post">
+								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
+								<input type="hidden" name="type" value="findState">
 								<c:forEach items="${states}" var="state">
-									<a> <input type="checkbox" name="searchString"
-										value="${state.name }">${state.name }<br>
+									<li><a> <input type="checkbox" name="searchString"
+										value="${state.name}">${state.name}</a></li>
 								</c:forEach>
 								<button type="submit" class="btn btn-primary">Suchen</button>
 							</form>
@@ -439,76 +435,7 @@
 				</ul>
 				
 				</div>
-			</div>
-			
-			 <!-- 
-				<div class="sidebar-nav navbar-collapse">
-					<ul class="nav" id="side-menu">
-						<li><a href="addActivity?category=${category}"> <i
-								class="glyphicon glyphicon-plus"></i> Add Activity
-						</a></li>
-						<li class="sidebar-search">
-							<form action="find" method="post">
-								<input type="hidden" name="${_csrf.parameterName}"
-									value="${_csrf.token}" /> Search for Activities </br>
-								<div class="input-group custom-search-form">
-									<input type="hidden" name="type" value="findTitle"> <input
-										class="form-control" placeholder="Suchen..." type="text"
-										name="searchString"> <span class="input-group-btn" />
-									<button class="btn btn-default" type="submit">
-										<i class="glyphicon glyphicon-search"></i>
-									</button>
-									</span>
-								</div>
-							</form>
-						</li>
-						<br />
-						<li>
-							<p>Subcategories</p>
-							<form action="find" method="post">
-								<input type="hidden" name="${_csrf.parameterName}"
-									value="${_csrf.token}" /> <input type="hidden" name="type"
-									value="findSubcategory">
-								<c:forEach items="${subcategories}" var="subcategory">
-									<li><a> <input type="checkbox" name="searchString"
-											value="${subcategory.name}">${subcategory.name}<br>
-									</a>
-									<li>
-								</c:forEach>
-								<button type="submit" class="btn btn-primary">Suchen</button>
-							</form>
-
-						</li>
-						<li>
-							<form action="find">
-								<input type="hidden" name="${_csrf.parameterName}"
-									value="${_csrf.token}" /> <input type="hidden" name="type"
-									value="findState">
-								<c:forEach items="${states}" var="state">
-									<a> <input type="checkbox" name="searchString"
-										value="${state.name }">${state.name }<br>
-								</c:forEach>
-								<button type="submit" class="btn btn-primary">Suchen</button>
-							</form>
-						</li>
-						<li>
-							<form action="find" method="post">
-								<input type="hidden" name="${_csrf.parameterName}"
-									value="${_csrf.token}" /> Ortsuche </br>
-								<div class="input-group custom-search-form">
-									<input type="hidden" name="type" value="findLocation">
-									<input class="form-control" placeholder="Suchen..." type="text"
-										name="searchString"> <span class="input-group-btn">
-										<button class="btn btn-default" type="submit">
-											<i class="glyphicon glyphicon-search"></i>
-										</button>
-									</span>
-								</div>
-							</form>
-				</div>
-				</li>
-				</ul> -->
-			
+			</div>		
 
 
 			<!-- END MENU -->
@@ -546,13 +473,13 @@
 								<h3 class="title">${activity.title}</h3>
 								<p class="text-muted">
 									<span class="glyphicon glyphicon-calendar"></span>
-									<fmt:formatDate value="${activity.date }" pattern="yyyy-MM-dd" />
+									<fmt:formatDate value="${activity.date}" pattern="yyyy-MM-dd" />
 								</p>
 								<p>${activity.text}</p>
 								<p>${activity.subcategory.name}</p>
 
 								<p class="text-muted">
-									Created by <a href="#">Granit Hoxha</a>
+									Created by ${activity.owner.username}
 								</p>
 							</div>
 						</div>

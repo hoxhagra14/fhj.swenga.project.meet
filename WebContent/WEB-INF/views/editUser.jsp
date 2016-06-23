@@ -114,83 +114,51 @@
 				</ul>
 				
 				</div>
-				</div>
-
-			<div class="col-lg-8">
-				<div class="panel panel-info">
+			</div>
+		
+	
+				
+		
+			<div class="col-lg-4 col-lg-offset-2">
+				<div class="login-panel panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title">Activity</h3>
+						<h3 class="panel-title">Edit User</h3>
 					</div>
 					<div class="panel-body">
-						<div class="row">
-							<div class="col-md-3 col-lg-3 " align="center">
-								<img alt="User Pic" src="http://placehold.it/1280X720"
-									class="img-circle img-responsive">
-							</div>
+						<form class="form-horizontal" method="post" action="editUser">
+							<fieldset>
+								<div class="form-group">
+									<label>Name</label> 
+									<input class="form-control" value="${userobject.name}"name="name" type="text">
+								</div>
+								
+								<div class="form-group">
+									<label>Age</label> 
+									<input class="form-control" value="${userobject.age}"name="age" type="text">
+								</div>
+								<div class="form-group">
+									<label>City</label> 
+									<input class="form-control"
+										value="${userobject.city}" name="city" type="text">
+										
+								</div>
+								<input type="hidden" name="${_csrf.parameterName}"
+								value="${_csrf.token}" />
 
-							<div class=" col-md-9 col-lg-9 ">
-								<table class="table table-user-information">
-									<tbody>
-										<tr>
-											<td><strong>Title:</strong></td>
-											<td>${activity.title}</td>
-										</tr>
-										<tr>
-											<td>Date:</td>
-											<td>${activity.date }</td>
-										</tr>
-										<tr>
-											<td><span class="glyphicon glyphicon-map-marker">Location:</span></td>
-											<td>${activity.location }</td>
-										</tr>
-
-										<tr>
-										<tr>
-											<td>Subcategory</td>
-											<td>${activity.subcategory}</td>
-										</tr>
-										<tr>
-											<td><span class="glyphicon glyphicon-user">Attendane:</span></td>
-											<td>${activity.restriction}</td>
-										</tr>
-										<td>Description:</td>
-										<td>${activity.text }</td>
-
-										</tr>
-
-									</tbody>
-								</table>
-								<!--   
-								<c:if test="${activity.owner.username ne currentUser}">
-									<a href="#" class="btn btn-success">Join Activity</a>
-								</c:if> -->
-
-								<c:if test="${activity.owner.username eq currentUser}">
-									<a href="delete?id=${activity.id}">
-										<button type="button" class="btn btn-danger">
-											<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-											Delete
-										</button>
-									</a>
-								</c:if>
-								<!--  
-								<c:if test="${activity.owner.username eq currentUser}">
-									<a href="addActivity?id=${activity.id}" class="btn btn-sm btn-warning">Edit Activity</a>
-								</c:if> -->
-
-							</div>
-						</div>
+								<!-- Change this to a button or input when using this as a form -->
+								<button class="btn btn-lg btn-primary btn-block" type="submit">Change</button>
+							</fieldset>
+						</form>
 					</div>
-
 				</div>
 			</div>
+	
+			</div>	
 		</div>
-	</div>
-
+				
 <script> $(function() {
 
 	      $('#menu').metisMenu();
 	});</script>
-	
 </body>
 </html>
