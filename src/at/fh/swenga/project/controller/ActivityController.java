@@ -137,19 +137,13 @@ public class ActivityController {
 	@Transactional
 	public String fillData(Model model) {
 
-		Activity a = new Activity(subcategoryRepository.findByName("Soccer"), "Graz", "Steiermark", "Test", "TestText",
-				1);
-		
 		
 		Activity a = new Activity(subcategoryRepository.findByName("Soccer"), "Graz", stateRepository.findByName("Wien"), "Test", "TestText", 1);
 		activityRepository.save(a);
 
 		Activity c = new Activity(subcategoryRepository.findByName("Tennis"), "Wien", stateRepository.findByName("Burgenland"), "ka", "KaText", 1);
 		activityRepository.save(c);
-
-		Activity b = new Activity(subcategoryRepository.findByName("Counter Strike"), "Graz", "Steiermark", "Test",
-				"TestText", 1);
-		
+	
 		Activity b = new Activity(subcategoryRepository.findByName("Counter Strike"), "Graz",stateRepository.findByName("Steiermark"), "Test", "TestText", 1);
 		activityRepository.save(b);
 
